@@ -1,8 +1,69 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{einstein1905}
-Albert Einstein.
-\newblock On the electrodynamics of moving bodies.
-\newblock {\em Annalen der Physik}, 322(10):891--921, 1905.
+\bibitem{bhuiyan2025bhasabodh}
+M.~Bhuiyan et~al.
+\newblock Bridging bangla dialects and romanized forms through machine
+  translation.
+\newblock {\em Preprint}, 2025.
+
+\bibitem{chowdhury2025chatgaiyya}
+T.~Chowdhury et~al.
+\newblock A dataset for conversion from chittagonian dialect to standard
+  bangla.
+\newblock {\em Data in Brief}, 59:111200, 2025.
+
+\bibitem{faria2025vashantor}
+I.~Faria et~al.
+\newblock A large-scale multilingual benchmark dataset for translation of
+  bangla regional dialects.
+\newblock {\em arXiv preprint arXiv:2503.00004}, 2025.
+
+\bibitem{fayaz2025bidwesh}
+S.~Fayaz et~al.
+\newblock A bangla regional based hate speech detection dataset.
+\newblock {\em arXiv preprint arXiv:2502.00003}, 2025.
+
+\bibitem{jawad2025dialtsa}
+M.~Jawad et~al.
+\newblock Benchmarking llms on bangla dialect translation and sentiment
+  analysis.
+\newblock In {\em Proceedings of the Workshop on Bangla Language Processing
+  (BLP)}, pages 55--65, 2025.
+
+\bibitem{kundu2026anubhuti}
+A.~Kundu et~al.
+\newblock A comprehensive corpus for sentiment analysis in bangla regional
+  languages.
+\newblock {\em arXiv preprint arXiv:2601.00002}, 2026.
+
+\bibitem{mahi2025bangladial}
+M.~Mahi et~al.
+\newblock A merged and imbalanced text dataset for bengali regional dialect
+  analysis.
+\newblock {\em Data in Brief}, 58:111000, 2025.
+
+\bibitem{mahjabin2025banglachq}
+S.~Mahjabin et~al.
+\newblock Human-llm benchmarks for bangla dialect translation.
+\newblock In {\em Proceedings of the Workshop on Bangla Language Processing
+  (BLP)}, pages 45--54, 2025.
+
+\bibitem{paul2025ancholik}
+S.~Paul et~al.
+\newblock A benchmark dataset for bangla regional named entity recognition.
+\newblock {\em arXiv preprint arXiv:2501.00001}, 2025.
+
+\bibitem{sultana2025onubad}
+N.~Sultana et~al.
+\newblock A comprehensive dataset for automated conversion of bangla regional
+  dialects.
+\newblock {\em Data in Brief}, 60:111500, 2025.
+
+\bibitem{sultana2024bdregion}
+R.~Sultana et~al.
+\newblock Resource creation and evaluation for bangla regional text
+  classification.
+\newblock {\em Indonesian Journal of Electrical Engineering and Computer
+  Science}, 34(2):1120--1129, 2024.
 
 \end{thebibliography}
