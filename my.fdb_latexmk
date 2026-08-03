@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex my"] 1785593977.8839 "my.aux" "my.bbl" "my" 1785594422.67416 0
-  "./biblography.bib" 1785593773 222 c285eddb4bd38955dbc974a00d8d2780 ""
+["bibtex my"] 0 "my.aux" "my.bbl" "my" 1785766961.381 0
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "my.aux" 1785594422 288 52b49a28b988eaad86bf063dd64d3700 "pdflatex"
+  "my.aux" 0 -1 0 "pdflatex"
+  "my_tex/bibliography.bib" 0 -1 0 ""
   (generated)
   "my.bbl"
   "my.blg"
   (rewritten before read)
-["pdflatex"] 1785594421.50147 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785594422.67483 0
-  "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1785593643 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1785766959.45116 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785766961.38206 0
+  "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1785766943 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1785593653 13367061 0084e52eced66129f45eb6c348f12d1f ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmbx12.tfm" 1136765053 1324 c910af8c371558dc20f2d7822f66fe64 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/fonts/tfm/public/cm/cmr12.tfm" 1136765053 1288 655e228510b4c2a1abe905c368440826 ""
@@ -28,11 +28,11 @@
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/graphics/keyval.sty" 1780842058 2671 22a90a26d1edef7d1936f15a91d387af ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/graphics/trig.sty" 1780842058 4023 5a4fcfe68d7c6df02f94d7bf578e99fd ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3backend-pdftex.def" 1774811737 30909 7dedb28cb21a1e79c47a35a35ae3c507 ""
-  "e:/Writing Defence/my.tex" 1785594422 562 05fe5dd63aeb73b2ef081b43f7ca6026 ""
+  "e:/Writing Defence/my.tex" 1785766958 566 d563c8de490585cdf6d2018ffab4ddc7 ""
   "graphics/1.png" 1757956472 809399 7e8c01caa17b0667b19750023ba1884c ""
-  "my.aux" 1785594422 288 52b49a28b988eaad86bf063dd64d3700 "pdflatex"
+  "my.aux" 1785766960 296 8262a395ab02c7e4a86d82bc7a1dc025 "pdflatex"
   "my.bbl" 1785593978 210 d2645cd2ab3c45e8651370cf265fcbb7 "bibtex my"
-  "my.tex" 1785594422 562 05fe5dd63aeb73b2ef081b43f7ca6026 ""
+  "my.tex" 1785766958 566 d563c8de490585cdf6d2018ffab4ddc7 ""
   (generated)
   "my.aux"
   "my.log"
