@@ -84,7 +84,7 @@ This deep intra-language divergence engenders significant communication barriers
 \subsection{Problem Statement}
 In recent years, Neural Machine Translation (NMT) architectures and Large Language Models (LLMs) have achieved state-of-the-art results for cross-lingual tasks involving high-resource languages. However, their efficacy degrades severely when applied to low-resource intra-language dialectal shifts. Most existing Bangla NLP benchmarks and pre-trained models treat the language as a singular, uniform distribution, fundamentally ignoring the complex cross-dialectal matrix. 
 
-This oversight stems from a confluence of critical technical challenges. Firstly, there is an acute scarcity of multi-dialectal parallel corpora required to effectively fine-tune deep neural networks. Secondly, the lack of standardized orthography for regional dialects exacerbates tokenization mismatches; standard Byte-Pair Encoding (BPE) or WordPiece algorithms optimized for SCB frequently fragment dialectal words into meaningless subwords, destroying semantic integrity. Finally, existing regional text datasets suffer from severe class imbalance and are predominantly tailored for simple classification tasks rather than complex generative alignment. Addressing these challenges requires a paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach.
+This oversight stems from a confluence of critical technical challenges. Firstly, there is an acute scarcity of multi-dialectal parallel corpora required to effectively fine-tune deep neural networks. Secondly, the lack of standardized orthography for regional dialects exacerbates tokenization mismatches; standard Byte-Pair Encoding (BPE) \cite{sennrich2015neural} or WordPiece \cite{wu2016google} algorithms optimized for SCB frequently fragment dialectal words into meaningless subwords, destroying semantic integrity. Finally, existing regional text datasets suffer from severe class imbalance and are predominantly tailored for simple classification tasks rather than complex generative alignment. Addressing these challenges requires a paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach.
 
 \subsection{Proposed System and Contributions}
 To address these fundamental limitations, this research introduces a unified \textbf{Poly-Dialectal Neural Machine Translation System} tailored specifically for the morphological and syntactic nuances of Bangla regional dialects. As illustrated in Figure~\ref{fig:overview}, our architecture enables robust, multi-directional translation across three core operational paradigms: Dialect $\rightarrow$ Standard Bangla, Standard Bangla $\rightarrow$ Dialect, and direct Dialect $\rightarrow$ Dialect translation, thereby eliminating the cascading errors typically introduced by pivot-based translation methods.
@@ -99,8 +99,8 @@ To address these fundamental limitations, this research introduces a unified \te
 The primary contributions of this thesis are summarized as follows:
 \begin{enumerate}
     \item \textbf{Largest Multi-Dialectal Parallel Corpus:} We construct the most expansive multi-dialect machine translation corpus for Bangla to date, comprising 14,552 aligned rows across 12 regional dialect columns. The corpus integrates seven prior datasets---Ancholik-NER, Anubhuti, BanglaDial, BhasaBodh, ChatgaiyyaAlap, ONUBAD, and Vashantor---yielding a grand total of 51,531 non-null parallel sentence pairs spanning Standard Bangla and 11 regional variants including four previously uncovered dialects (Kishoreganj, Narail, Narsingdi, and Tangail).
-    \item \textbf{Comprehensive Evaluation of Multilingual NMT Architectures:} We systematically fine-tune and empirically evaluate three prominent Sequence-to-Sequence models---BanglaT5, NLLB-200, and mBART-50---under diverse, multi-directional translation settings using parameter-efficient Low-Rank Adaptation (LoRA).
-    \item \textbf{Systematic Cross-Dialectal Linguistic Analysis:} We conduct a rigorous quantitative characterization of cross-dialectal transfer mechanisms. By analyzing performance metrics (BLEU, chrF++, TER, METEOR) against linguistic divergences, we uncover how morphological proximity and training data volume jointly influence neural machine translation efficacy.
+    \item \textbf{Comprehensive Evaluation of Multilingual NMT Architectures:} We systematically fine-tune and empirically evaluate three prominent Sequence-to-Sequence models---BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, NLLB-200 \cite{nllb2022}, and mBART-50 \cite{tang2020multilingual}---under diverse, multi-directional translation settings using parameter-efficient Low-Rank Adaptation (LoRA) \cite{hu2021lora}.
+    \item \textbf{Systematic Cross-Dialectal Linguistic Analysis:} We conduct a rigorous quantitative characterization of cross-dialectal transfer mechanisms. By analyzing performance metrics (BLEU \cite{papineni2002bleu}, chrF++ \cite{popovic2015chrf}, TER \cite{snover2006study}, METEOR \cite{banerjee2005meteor}) against linguistic divergences, we uncover how morphological proximity and training data volume jointly influence neural machine translation efficacy.
 \end{enumerate}
 
 \subsection{Thesis Organization}
@@ -145,7 +145,7 @@ The specific objectives of this research are:
 \begin{enumerate}
     \item To construct the largest multi-dialect parallel corpus for Bangla machine translation by integrating, aligning, and deduplicating seven existing dialectal datasets across 12 regional variants.
     \item To develop a unified poly-dialectal translation system capable of three translation paradigms: Dialect $\rightarrow$ Standard Bangla, Standard Bangla $\rightarrow$ Dialect, and direct Dialect $\rightarrow$ Dialect translation.
-    \item To systematically evaluate and compare the performance of three state-of-the-art multilingual NMT architectures---BanglaT5, NLLB-200, and mBART-50---under parameter-efficient LoRA fine-tuning on the constructed corpus.
+    \item To systematically evaluate and compare the performance of three state-of-the-art multilingual NMT architectures---BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, NLLB-200 \cite{nllb2022}, and mBART-50 \cite{tang2020multilingual}---under parameter-efficient LoRA \cite{hu2021lora} fine-tuning on the constructed corpus.
     \item To quantitatively analyze cross-dialectal transfer effects by examining how training data volume and linguistic proximity jointly influence translation quality.
     \item To promote digital inclusion and linguistic accessibility for Bangla dialect speakers by establishing open benchmarks for future research.
 \end{enumerate}
@@ -198,7 +198,7 @@ The raw integrated corpus undergoes a rigorous four-stage preprocessing pipeline
 \end{enumerate}
 
 \subsection{Model Architectures}
-We evaluate three state-of-the-art encoder-decoder Transformer architectures, chosen to represent a spectrum of design philosophies for multilingual and Bangla-specific NMT:
+We evaluate three state-of-the-art encoder-decoder Transformer \cite{vaswani2017attention} architectures, chosen to represent a spectrum of design philosophies for multilingual and Bangla-specific NMT:
 
 \begin{table}[htbp]
 \centering
@@ -220,10 +220,10 @@ Languages Supported & Bangla  & 200     & 50 \\
 \end{tabular}
 \end{table}
 
-\textbf{BanglaT5} is a T5-based model pre-trained on approximately 27.5~GB of Bangla text, making it the only language-specific model in our comparison. \textbf{NLLB-200} (No Language Left Behind, distilled 600M variant) is Meta AI's massively multilingual model designed for 200 languages. \textbf{mBART-50} is Facebook AI's multilingual denoising auto-encoder covering 50 languages.
+\textbf{BanglaT5} \cite{bhattacharjee-etal-2023-banglanlg} is a T5-based \cite{raffel2020exploring} model pre-trained on approximately 27.5~GB of Bangla text, making it the only language-specific model in our comparison. \textbf{NLLB-200} \cite{nllb2022} (No Language Left Behind, distilled 600M variant) is Meta AI's massively multilingual model designed for 200 languages. \textbf{mBART-50} \cite{tang2020multilingual} is Facebook AI's multilingual denoising auto-encoder based on BART \cite{lewis2020bart} covering 50 languages.
 
 \subsection{Fine-Tuning Strategy}
-All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)}, a parameter-efficient method that injects trainable low-rank decomposition matrices into each attention layer while freezing the pre-trained weights. We investigate two LoRA configurations:
+All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)} \cite{hu2021lora}, a parameter-efficient method that injects trainable low-rank decomposition matrices into each attention layer while freezing the pre-trained weights. We investigate two LoRA configurations:
 \begin{itemize}
     \item \textbf{Configuration A:} rank $r = 8$, scaling factor $\alpha = 16$, trained for 10 epochs.
     \item \textbf{Configuration B:} rank $r = 64$, scaling factor $\alpha = 128$, trained for 20 epochs.
@@ -241,10 +241,10 @@ Unlike prior uni-directional approaches, our system is trained to handle all pos
 \subsection{Evaluation Metrics}
 Model performance is assessed using four complementary automatic evaluation metrics:
 \begin{itemize}
-    \item \textbf{BLEU} (Bilingual Evaluation Understudy): Measures $n$-gram precision between generated and reference translations.
-    \item \textbf{chrF++}: Character-level $F$-score incorporating word-level bigrams, robust to morphological variations.
-    \item \textbf{METEOR}: Harmonic mean of precision and recall with synonym matching and stemming.
-    \item \textbf{TER} (Translation Edit Rate): Minimum number of edits required to transform the output into the reference (lower is better).
+    \item \textbf{BLEU} \cite{papineni2002bleu} (Bilingual Evaluation Understudy): Measures $n$-gram precision between generated and reference translations.
+    \item \textbf{chrF++} \cite{popovic2015chrf}: Character-level $F$-score incorporating word-level bigrams, robust to morphological variations.
+    \item \textbf{METEOR} \cite{banerjee2005meteor}: Harmonic mean of precision and recall with synonym matching and stemming.
+    \item \textbf{TER} \cite{snover2006study} (Translation Edit Rate): Minimum number of edits required to transform the output into the reference (lower is better).
 \end{itemize}
 
 \newpage
@@ -324,7 +324,7 @@ As shown in Figure~\ref{fig:scaling}, BLEU improves from 12.09 to 25.74 (a 113\%
     \item \textbf{Persistent Class Imbalance:} Despite integrating seven source corpora, the dataset exhibits a 21:1 imbalance ratio between the most represented dialect (Standard Bangla: 14,535 entries) and the least represented (Kishoreganj, Narail, Narsingdi, Tangail: $\sim$502 each). This imbalance limits the model's generalization capacity for underrepresented dialects, as evidenced by the low BLEU scores for Rajshahi (23.4) and Rangpur (23.4) even under the best model.
     \item \textbf{Computational Cost:} Fine-tuning even moderately sized models (247M--615M parameters) on the full multi-directional translation matrix requires substantial GPU memory and training time. The 100-epoch BanglaT5 training required approximately 851 seconds, while mBART-50 required 13,889 seconds---a 16$\times$ disparity highlighting the efficiency advantage of language-specific models.
     \item \textbf{Text-Only Modality:} The current system operates exclusively on text input, neglecting the phonological richness and prosodic variation characteristic of spoken Bangla dialects. A speech-to-text pipeline would be necessary for real-world deployment in voice-based applications.
-    \item \textbf{Absence of Human Evaluation:} While automatic metrics (BLEU, chrF++, METEOR, TER) provide objective and reproducible quality assessments, they cannot fully capture translation fluency, dialectal authenticity, and semantic adequacy as perceived by native speakers.
+    \item \textbf{Absence of Human Evaluation:} While automatic metrics (BLEU \cite{papineni2002bleu}, chrF++ \cite{popovic2015chrf}, METEOR \cite{banerjee2005meteor}, TER \cite{snover2006study}) provide objective and reproducible quality assessments, they cannot fully capture translation fluency, dialectal authenticity, and semantic adequacy as perceived by native speakers.
 \end{enumerate}
 
 \subsection{Future Directions}

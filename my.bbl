@@ -1,5 +1,20 @@
 \begin{thebibliography}{10}
 
+\bibitem{banerjee2005meteor}
+Satanjeev Banerjee and Alon Lavie.
+\newblock Meteor: An automatic metric for mt evaluation with improved
+  correlation with human judgments.
+\newblock In {\em Proceedings of the acl workshop on intrinsic and extrinsic
+  evaluation measures for machine translation and/or summarization}, pages
+  65--72, 2005.
+
+\bibitem{bhattacharjee-etal-2023-banglanlg}
+Abhik Bhattacharjee, Tahmid Hasan, Wasi~Uddin Ahmad, and Rifat Shahriyar.
+\newblock {B}angla{NLG} and {B}angla{T}5: Benchmarks and resources for
+  evaluating low-resource natural language generation in {B}angla.
+\newblock In {\em Findings of the Association for Computational Linguistics:
+  EACL 2023}, pages 726--735, 2023.
+
 \bibitem{bhuiyan2025bhasabodh}
 M.~Bhuiyan et~al.
 \newblock Bridging bangla dialects and romanized forms through machine
@@ -23,6 +38,12 @@ S.~Fayaz et~al.
 \newblock A bangla regional based hate speech detection dataset.
 \newblock {\em arXiv preprint arXiv:2502.00003}, 2025.
 
+\bibitem{hu2021lora}
+Edward~J Hu, Yelong Shen, Phil Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
+  Wang, Lu~Wang, and Weizhu Chen.
+\newblock Lora: Low-rank adaptation of large language models.
+\newblock In {\em International Conference on Learning Representations}, 2022.
+
 \bibitem{jawad2025dialtsa}
 M.~Jawad et~al.
 \newblock Benchmarking llms on bangla dialect translation and sentiment
@@ -36,6 +57,13 @@ A.~Kundu et~al.
   languages.
 \newblock {\em arXiv preprint arXiv:2601.00002}, 2026.
 
+\bibitem{lewis2020bart}
+Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed,
+  Omer Levy, Veselin Stoyanov, and Luke Zettlemoyer.
+\newblock Bart: Denoising sequence-to-sequence pre-training for natural
+  language generation, translation, and comprehension.
+\newblock {\em arXiv preprint arXiv:1910.13461}, 2019.
+
 \bibitem{mahi2025bangladial}
 M.~Mahi et~al.
 \newblock A merged and imbalanced text dataset for bengali regional dialect
@@ -48,10 +76,42 @@ S.~Mahjabin et~al.
 \newblock In {\em Proceedings of the Workshop on Bangla Language Processing
   (BLP)}, pages 45--54, 2025.
 
+\bibitem{papineni2002bleu}
+Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu.
+\newblock Bleu: a method for automatic evaluation of machine translation.
+\newblock In {\em Proceedings of the 40th annual meeting of the Association for
+  Computational Linguistics}, pages 311--318, 2002.
+
 \bibitem{paul2025ancholik}
 S.~Paul et~al.
 \newblock A benchmark dataset for bangla regional named entity recognition.
 \newblock {\em arXiv preprint arXiv:2501.00001}, 2025.
+
+\bibitem{popovic2015chrf}
+Maja Popovi{\'c}.
+\newblock chrf: character n-gram f-score for automatic mt evaluation.
+\newblock In {\em Proceedings of the Tenth Workshop on Statistical Machine
+  Translation}, pages 392--395, 2015.
+
+\bibitem{raffel2020exploring}
+Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael
+  Matena, Yanqi Zhou, Wei Li, and Peter~J Liu.
+\newblock Exploring the limits of transfer learning with a unified text-to-text
+  transformer.
+\newblock {\em Journal of Machine Learning Research}, 21(140):1--67, 2020.
+
+\bibitem{sennrich2015neural}
+Rico Sennrich, Barry Haddow, and Alexandra Birch.
+\newblock Neural machine translation of rare words with subword units.
+\newblock In {\em Proceedings of the 54th Annual Meeting of the Association for
+  Computational Linguistics (Volume 1: Long Papers)}, pages 1715--1725, 2016.
+
+\bibitem{snover2006study}
+Matthew Snover, Bonnie Dorr, Richard Schwartz, Linnea Micciulla, and John
+  Makhoul.
+\newblock A study of translation edit rate with targeted human annotation.
+\newblock In {\em Proceedings of the 7th Conference of the Association for
+  Machine Translation in the Americas: Technical Papers}, pages 223--231, 2006.
 
 \bibitem{sultana2025onubad}
 N.~Sultana et~al.
@@ -65,5 +125,30 @@ R.~Sultana et~al.
   classification.
 \newblock {\em Indonesian Journal of Electrical Engineering and Computer
   Science}, 34(2):1120--1129, 2024.
+
+\bibitem{tang2020multilingual}
+Yuqing Tang, Chau Tran, Xian Li, Peng-Jen Chen, Naman Goyal, Vishrav Chaudhary,
+  Jiatao Gu, and Angela Fan.
+\newblock Multilingual translation with extensible multilingual pretraining and
+  finetuning.
+\newblock {\em arXiv preprint arXiv:2008.00490}, 2020.
+
+\bibitem{nllb2022}
+NLLB Team, Marta~R. Costa-juss{\`a}, et~al.
+\newblock No language left behind: Scaling human-centered machine translation.
+\newblock {\em arXiv preprint arXiv:2207.04672}, 2022.
+
+\bibitem{vaswani2017attention}
+Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
+  Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
+\newblock Attention is all you need.
+\newblock {\em Advances in neural information processing systems}, 30, 2017.
+
+\bibitem{wu2016google}
+Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc~V Le, Mohammad Norouzi, Wolfgang
+  Macherey, Maxim Krikun, Yuan Cao, Qin Gao, Klaus Macherey, et~al.
+\newblock Google's neural machine translation system: Bridging the gap between
+  human and machine translation.
+\newblock {\em arXiv preprint arXiv:1609.08144}, 2016.
 
 \end{thebibliography}

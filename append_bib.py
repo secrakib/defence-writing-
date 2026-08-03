@@ -1,91 +1,6 @@
-@article{paul2025ancholik,
-  title={A Benchmark Dataset for Bangla Regional Named Entity Recognition},
-  author={Paul, S. and others},
-  journal={arXiv preprint arXiv:2501.00001},
-  year={2025}
-}
+import os
 
-@article{kundu2026anubhuti,
-  title={A Comprehensive Corpus for Sentiment Analysis in Bangla Regional Languages},
-  author={Kundu, A. and others},
-  journal={arXiv preprint arXiv:2601.00002},
-  year={2026}
-}
-
-@article{mahi2025bangladial,
-  title={A merged and imbalanced text dataset for Bengali regional dialect analysis},
-  author={Mahi, M. and others},
-  journal={Data in Brief},
-  volume={58},
-  pages={111000},
-  year={2025}
-}
-
-@article{sultana2024bdregion,
-  title={Resource Creation and Evaluation for Bangla Regional Text Classification},
-  author={Sultana, R. and others},
-  journal={Indonesian Journal of Electrical Engineering and Computer Science},
-  volume={34},
-  number={2},
-  pages={1120--1129},
-  year={2024}
-}
-
-@article{bhuiyan2025bhasabodh,
-  title={Bridging Bangla Dialects and Romanized Forms through Machine Translation},
-  author={Bhuiyan, M. and others},
-  journal={Preprint},
-  year={2025}
-}
-
-@article{fayaz2025bidwesh,
-  title={A Bangla Regional Based Hate Speech Detection Dataset},
-  author={Fayaz, S. and others},
-  journal={arXiv preprint arXiv:2502.00003},
-  year={2025}
-}
-
-@article{chowdhury2025chatgaiyya,
-  title={A dataset for conversion from Chittagonian dialect to standard Bangla},
-  author={Chowdhury, T. and others},
-  journal={Data in Brief},
-  volume={59},
-  pages={111200},
-  year={2025}
-}
-
-@inproceedings{mahjabin2025banglachq,
-  title={Human-LLM Benchmarks for Bangla Dialect Translation},
-  author={Mahjabin, S. and others},
-  booktitle={Proceedings of the Workshop on Bangla Language Processing (BLP)},
-  pages={45--54},
-  year={2025}
-}
-
-@inproceedings{jawad2025dialtsa,
-  title={Benchmarking LLMs on Bangla Dialect Translation and Sentiment Analysis},
-  author={Jawad, M. and others},
-  booktitle={Proceedings of the Workshop on Bangla Language Processing (BLP)},
-  pages={55--65},
-  year={2025}
-}
-
-@article{sultana2025onubad,
-  title={A comprehensive dataset for automated conversion of Bangla regional dialects},
-  author={Sultana, N. and others},
-  journal={Data in Brief},
-  volume={60},
-  pages={111500},
-  year={2025}
-}
-
-@article{faria2025vashantor,
-  title={A Large-scale Multilingual Benchmark Dataset for Translation of Bangla Regional Dialects},
-  author={Faria, I. and others},
-  journal={arXiv preprint arXiv:2503.00004},
-  year={2025}
-}
-
+bibtex_entries = """
 @inproceedings{bhattacharjee-etal-2023-banglanlg,
     title = "{B}angla{NLG} and {B}angla{T}5: Benchmarks and Resources for Evaluating Low-Resource Natural Language Generation in {B}angla",
     author = "Bhattacharjee, Abhik and Hasan, Tahmid and Ahmad, Wasi Uddin and Shahriyar, Rifat",
@@ -96,7 +11,7 @@
 
 @article{nllb2022,
   title={No Language Left Behind: Scaling Human-Centered Machine Translation},
-  author={NLLB Team and Costa-juss{\`a}, Marta R. and others},
+  author={NLLB Team and Costa-juss{\\`a}, Marta R. and others},
   journal={arXiv preprint arXiv:2207.04672},
   year={2022}
 }
@@ -125,7 +40,7 @@
 
 @inproceedings{popovic2015chrf,
   title={chrF: character n-gram F-score for automatic MT evaluation},
-  author={Popovi{\'c}, Maja},
+  author={Popovi{\\'c}, Maja},
   booktitle={Proceedings of the Tenth Workshop on Statistical Machine Translation},
   pages={392--395},
   year={2015}
@@ -159,7 +74,7 @@
 
 @article{vaswani2017attention,
   title={Attention is all you need},
-  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\L}ukasz and Polosukhin, Illia},
+  author={Vaswani, Ashish and Shazeer, Noam and Parmar, Niki and Uszkoreit, Jakob and Jones, Llion and Gomez, Aidan N and Kaiser, {\\L}ukasz and Polosukhin, Illia},
   journal={Advances in neural information processing systems},
   volume={30},
   year={2017}
@@ -186,3 +101,7 @@
   journal={arXiv preprint arXiv:1609.08144},
   year={2016}
 }
+"""
+
+with open(r'e:\Writing Defence\biblography.bib', 'a', encoding='utf-8') as f:
+    f.write("\n" + bibtex_entries)

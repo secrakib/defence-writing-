@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex my"] 1785773800.80702 "my.aux" "my.bbl" "my" 1785773805.04565 0
-  "./biblography.bib" 1785771370 2494 9e6bf269eaf7020ea5f8e2bd2741221b ""
+["bibtex my"] 1785774492.8931 "my.aux" "my.bbl" "my" 1785774497.21876 0
+  "./biblography.bib" 1785774454 7043 d24b6827e6ba4ef05888cad382e168e8 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "my.aux" 1785773804 9089 0c153b864feba9b6fc0d673f89aa4af9 "pdflatex"
+  "my.aux" 1785774496 10336 d090b11b431f503e8b1bc131af7ef319 "pdflatex"
   (generated)
   "my.bbl"
   "my.blg"
   (rewritten before read)
-["pdflatex"] 1785773801.06248 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785773805.04665 0
+["pdflatex"] 1785774493.15257 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785774497.21936 0
   "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1785773794 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1785773799 14064 39b72d7c50addcb7e110a41b34c767ff ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1785593653 13367061 0084e52eced66129f45eb6c348f12d1f ""
@@ -98,17 +98,17 @@
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.sty" 1780057721 17611 1fdd60d12fed6aebd140f4d060571642 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "e:/Writing Defence/my.tex" 1785773774 31878 aa42a5c6fc4a287f00f0159d743b4562 ""
+  "e:/Writing Defence/my.tex" 1785774484 32611 10bcee7032716457021cf318e0b31d5d ""
   "graphics/bleu_heatmap.png" 1785773567 277882 2e3fac1e1d82e711b48ab76e85b6582c ""
   "graphics/dataset_scaling.png" 1785773566 326927 af4fea51c3d3ffd9417e6e6b45f06de7 ""
   "graphics/dialect_coverage.png" 1785773564 170846 0d0ba2317e19a79727ba75e27f05c459 ""
   "graphics/directionality.png" 1785773567 140583 638bdaa5711b2278f834ad7abc5edfc5 ""
   "graphics/model_comparison.png" 1785773565 200870 1fcb2a7c5374abaa7ceef336142cbe58 ""
   "graphics/overview.png" 1785773570 581376 3d689ef515ca0232ab4d0592c4dd1333 ""
-  "my.aux" 1785773804 9089 0c153b864feba9b6fc0d673f89aa4af9 "pdflatex"
-  "my.bbl" 1785773801 2268 355322db2e39190254f6e16e2f00e844 "bibtex my"
-  "my.out" 1785773804 4954 aaddabf1466ef780a7c89e0df3d0b0c2 "pdflatex"
-  "my.tex" 1785773774 31878 aa42a5c6fc4a287f00f0159d743b4562 ""
+  "my.aux" 1785774496 10336 d090b11b431f503e8b1bc131af7ef319 "pdflatex"
+  "my.bbl" 1785774493 6278 ef442697c65937584a5865c51e456691 "bibtex my"
+  "my.out" 1785774496 4954 aaddabf1466ef780a7c89e0df3d0b0c2 "pdflatex"
+  "my.tex" 1785774484 32611 10bcee7032716457021cf318e0b31d5d ""
   (generated)
   "my.aux"
   "my.log"
