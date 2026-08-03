@@ -6,8 +6,8 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Background and Motivation}{1}{subsection.1.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Problem Statement}{1}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Proposed System and Contributions}{2}{subsection.1.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces High-level architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting data alignment, model fine-tuning, and multi-directional evaluation.}}{2}{figure.1}\protected@file@percent }
-\newlabel{fig:overview}{{1}{2}{High-level architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting data alignment, model fine-tuning, and multi-directional evaluation}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:overview}{{1}{2}{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics}{figure.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Thesis Organization}{3}{subsection.1.4}\protected@file@percent }
 \citation{sultana2024bdregion}
 \citation{mahi2025bangladial}
@@ -23,6 +23,40 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2}Literature Review}{4}{section.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Overview of Regional Bangla NLP}{4}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Dialectal Machine Translation and LLM Benchmarks}{4}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Critical Synthesis and Research Gap}{5}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Research Hypothesis and Objectives}{6}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Research Hypothesis}{6}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Research Objectives}{6}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Methodology}{7}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Dataset Construction and Integration}{7}{subsection.4.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Source corpus contributions per dialect. Values indicate the number of parallel sentence pairs available from each source.}}{7}{table.1}\protected@file@percent }
+\newlabel{tab:source_contributions}{{1}{7}{Source corpus contributions per dialect. Values indicate the number of parallel sentence pairs available from each source}{table.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Dialect coverage distribution across the integrated corpus, revealing severe class imbalance between well-resourced dialects (Chittagonian, Sylheti) and underrepresented variants (Narail, Tangail).}}{7}{figure.2}\protected@file@percent }
+\newlabel{fig:dialect_coverage}{{2}{7}{Dialect coverage distribution across the integrated corpus, revealing severe class imbalance between well-resourced dialects (Chittagonian, Sylheti) and underrepresented variants (Narail, Tangail)}{figure.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Data Preprocessing Pipeline}{8}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Model Architectures}{8}{subsection.4.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Architectural comparison of the three NMT models evaluated in this study.}}{8}{table.2}\protected@file@percent }
+\newlabel{tab:model_specs}{{2}{8}{Architectural comparison of the three NMT models evaluated in this study}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Fine-Tuning Strategy}{8}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Multi-Directional Translation Paradigm}{9}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Evaluation Metrics}{9}{subsection.4.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Results and Analysis}{10}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Baseline Model Comparison}{10}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Overall performance comparison of the three NMT models on the poly-dialectal test set (18,062 translation pairs across all dialect directions). Best results are shown in \textbf  {bold}.}}{10}{table.3}\protected@file@percent }
+\newlabel{tab:model_results}{{3}{10}{Overall performance comparison of the three NMT models on the poly-dialectal test set (18,062 translation pairs across all dialect directions). Best results are shown in \textbf {bold}}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comparative evaluation of four model configurations across BLEU, chrF++, METEOR, and TER. Gold-bordered bars indicate the best-performing configuration.}}{10}{figure.3}\protected@file@percent }
+\newlabel{fig:model_comparison}{{3}{10}{Comparative evaluation of four model configurations across BLEU, chrF++, METEOR, and TER. Gold-bordered bars indicate the best-performing configuration}{figure.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cross-Dialectal Translation Analysis}{10}{subsection.5.2}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Cross-dialectal BLEU score heatmap (BanglaT5, 100 epochs). Darker green indicates higher translation quality. Rajshahi and Rangpur (bottom rows) exhibit uniformly low scores due to limited training data.}}{11}{figure.4}\protected@file@percent }
+\newlabel{fig:bleu_heatmap}{{4}{11}{Cross-dialectal BLEU score heatmap (BanglaT5, 100 epochs). Darker green indicates higher translation quality. Rajshahi and Rangpur (bottom rows) exhibit uniformly low scores due to limited training data}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Translation directionality asymmetry: Dialect$\rightarrow $SCB consistently outperforms SCB$\rightarrow $Dialect, with green labels indicating the BLEU gap.}}{12}{figure.5}\protected@file@percent }
+\newlabel{fig:directionality}{{5}{12}{Translation directionality asymmetry: Dialect$\rightarrow $SCB consistently outperforms SCB$\rightarrow $Dialect, with green labels indicating the BLEU gap}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Dataset Scaling Analysis}{12}{subsection.5.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces BLEU and chrF++ scaling curves as training data increases from 500 to 4,499 per dialect pair. Both LoRA configurations show consistent improvement with larger data, but with diminishing returns beyond 3,000 samples.}}{13}{figure.6}\protected@file@percent }
+\newlabel{fig:scaling}{{6}{13}{BLEU and chrF++ scaling curves as training data increases from 500 to 4,499 per dialect pair. Both LoRA configurations show consistent improvement with larger data, but with diminishing returns beyond 3,000 samples}{figure.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Limitations and Future Work}{13}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Current Limitations}{13}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Future Directions}{13}{subsection.6.2}\protected@file@percent }
 \bibstyle{plain}
 \bibdata{biblography}
 \bibcite{bhuiyan2025bhasabodh}{1}
@@ -32,9 +66,9 @@
 \bibcite{jawad2025dialtsa}{5}
 \bibcite{kundu2026anubhuti}{6}
 \bibcite{mahi2025bangladial}{7}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Critical Synthesis and Research Gap}{5}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{15}{section.7}\protected@file@percent }
 \bibcite{mahjabin2025banglachq}{8}
 \bibcite{paul2025ancholik}{9}
 \bibcite{sultana2025onubad}{10}
 \bibcite{sultana2024bdregion}{11}
-\gdef \@abspage@last{8}
+\gdef \@abspage@last{18}

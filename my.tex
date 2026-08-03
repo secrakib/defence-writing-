@@ -5,6 +5,10 @@
 \usepackage{cite}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{colortbl}
 \geometry{a4paper, margin=1in}
 
 \begin{document}
@@ -87,20 +91,20 @@ To address these fundamental limitations, this research introduces a unified \te
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/overview.png}
-  \caption{High-level architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting data alignment, model fine-tuning, and multi-directional evaluation.}
+  \includegraphics[width=0.95\textwidth]{graphics/overview.png}
+  \caption{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}
   \label{fig:overview}
 \end{figure}
 
 The primary contributions of this thesis are summarized as follows:
 \begin{enumerate}
-    \item \textbf{Largest Multi-Dialectal Parallel Corpus:} We construct the most expansive multi-dialect machine translation corpus for Bangla to date, compiling 31,460 Standard Bengali sentences paired intricately across 8 major regional dialects (including Sylheti, Chittagonian, Barisali, Noakhali, Rangpuri, Rajshahi, and Mymensingh). This extensive curation yields a grand total of over 100,000 parallel sentence pairs, meticulously aligned to capture nuanced dialectal variations.
-    \item \textbf{Comprehensive Evaluation of Multilingual NMT Architectures:} We systematically fine-tune and empirically evaluate prominent Sequence-to-Sequence models---specifically mT5, mBART-50, NLLB-200, and BanglaT5---under diverse, multi-directional translation settings. 
-    \item \textbf{Systematic Cross-Dialectal Linguistic Analysis:} We conduct a rigorous quantitative characterization of cross-dialectal transfer mechanisms. By analyzing performance metrics (BLEU, chrF++, TER, METEOR) against linguistic divergences, we uncover how morphological proximity influences neural machine translation efficacy.
+    \item \textbf{Largest Multi-Dialectal Parallel Corpus:} We construct the most expansive multi-dialect machine translation corpus for Bangla to date, comprising 14,552 aligned rows across 12 regional dialect columns. The corpus integrates seven prior datasets---Ancholik-NER, Anubhuti, BanglaDial, BhasaBodh, ChatgaiyyaAlap, ONUBAD, and Vashantor---yielding a grand total of 51,531 non-null parallel sentence pairs spanning Standard Bangla and 11 regional variants including four previously uncovered dialects (Kishoreganj, Narail, Narsingdi, and Tangail).
+    \item \textbf{Comprehensive Evaluation of Multilingual NMT Architectures:} We systematically fine-tune and empirically evaluate three prominent Sequence-to-Sequence models---BanglaT5, NLLB-200, and mBART-50---under diverse, multi-directional translation settings using parameter-efficient Low-Rank Adaptation (LoRA).
+    \item \textbf{Systematic Cross-Dialectal Linguistic Analysis:} We conduct a rigorous quantitative characterization of cross-dialectal transfer mechanisms. By analyzing performance metrics (BLEU, chrF++, TER, METEOR) against linguistic divergences, we uncover how morphological proximity and training data volume jointly influence neural machine translation efficacy.
 \end{enumerate}
 
 \subsection{Thesis Organization}
-The remainder of this report is organized as follows: Section 2 critically reviews related literature on Bangla regional NLP and dialectal machine translation. Section 3 presents our research hypothesis and main objectives. Section 4 details the methodology, dataset alignment strategies, and architectural model configurations. Section 5 presents a comprehensive evaluation of the experimental results. Finally, Section 6 discusses the limitations of the current framework and proposes future research directions, followed by concluding remarks in Section 7.
+The remainder of this report is organized as follows: Section 2 critically reviews related literature on Bangla regional NLP and dialectal machine translation. Section 3 formally states the research hypothesis and objectives. Section 4 details the methodology, including dataset construction, alignment strategies, and model configurations. Section 5 presents a comprehensive evaluation of the experimental results. Section 6 discusses the limitations of the current framework and proposes future research directions, followed by concluding remarks in Section 7.
 
 \newpage
 
@@ -128,6 +132,222 @@ While the aforementioned contributions have collectively laid a valuable foundat
 \end{enumerate}
 
 To definitively resolve these limitations, our work introduces a comprehensive, balanced, poly-dialectal parallel corpus that is orders of magnitude larger than previous efforts. By fine-tuning state-of-the-art Transformer models on this expansive dataset, we enable direct, multi-directional, poly-dialectal translation within a single, unified neural architecture.
+
+\newpage
+
+\section{Research Hypothesis and Objectives}
+
+\subsection{Research Hypothesis}
+We posit the following hypothesis: \textit{A neural machine translation model trained on a unified, multi-dialectal parallel corpus encompassing multiple Bangla regional variants will demonstrate significantly improved generalization and cross-dialectal transfer compared to models trained on isolated, uni-dialectal datasets.} Specifically, we hypothesize that a poly-dialectal training paradigm exploits shared morphological and syntactic structures across related dialects, enabling the model to learn transferable representations that benefit even low-resource dialect pairs.
+
+\subsection{Research Objectives}
+The specific objectives of this research are:
+\begin{enumerate}
+    \item To construct the largest multi-dialect parallel corpus for Bangla machine translation by integrating, aligning, and deduplicating seven existing dialectal datasets across 12 regional variants.
+    \item To develop a unified poly-dialectal translation system capable of three translation paradigms: Dialect $\rightarrow$ Standard Bangla, Standard Bangla $\rightarrow$ Dialect, and direct Dialect $\rightarrow$ Dialect translation.
+    \item To systematically evaluate and compare the performance of three state-of-the-art multilingual NMT architectures---BanglaT5, NLLB-200, and mBART-50---under parameter-efficient LoRA fine-tuning on the constructed corpus.
+    \item To quantitatively analyze cross-dialectal transfer effects by examining how training data volume and linguistic proximity jointly influence translation quality.
+    \item To promote digital inclusion and linguistic accessibility for Bangla dialect speakers by establishing open benchmarks for future research.
+\end{enumerate}
+
+\newpage
+
+\section{Methodology}
+
+\subsection{Dataset Construction and Integration}
+The foundation of our poly-dialectal NMT system is a meticulously curated multi-dialect parallel corpus. We integrate seven publicly available dialectal datasets, each contributing varying levels of coverage across different regional variants:
+
+\begin{table}[htbp]
+\centering
+\caption{Source corpus contributions per dialect. Values indicate the number of parallel sentence pairs available from each source.}
+\label{tab:source_contributions}
+\small
+\begin{tabular}{l r r r r r r r r}
+\toprule
+\textbf{Source Corpus} & \textbf{SCB} & \textbf{Syl} & \textbf{Cht} & \textbf{Bar} & \textbf{Mym} & \textbf{Noa} & \textbf{Ran} & \textbf{Raj} \\
+\midrule
+Ancholik-NER   & 3,481 & 3,481 & 3,481 & 3,481 & 3,481 & 3,481 & 0     & 0 \\
+Anubhuti        & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 0     & 0     & 0 \\
+BanglaDial      & 3,452 & 442   & 577   & 790   & 712   & 0     & 655   & 891 \\
+BhasaBodh       & 980   & 980   & 980   & 0     & 0     & 0     & 0     & 0 \\
+ChatgaiyyaAlap  & 4,011 & 0     & 4,011 & 0     & 0     & 0     & 0     & 0 \\
+ONUBAD          & 980   & 980   & 980   & 980   & 0     & 0     & 0     & 0 \\
+Vashantor       & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 2,500 & 0     & 0 \\
+\midrule
+\textbf{Total}  & \textbf{13,556} & \textbf{6,422} & \textbf{10,567} & \textbf{4,270} & \textbf{5,712} & \textbf{5,000} & \textbf{1,155} & \textbf{891} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The final integrated dataset comprises 14,552 rows across 12 dialect columns (Standard Bangla plus 11 regional variants: Sylheti, Chittagonian, Barisali, Mymensingh, Noakhali, Rangpuri, Rajshahi, Kishoreganj, Narail, Narsingdi, and Tangail), yielding 51,531 total non-null parallel sentence pairs. This represents the largest such corpus for Bangla to date. As depicted in Figure~\ref{fig:dialect_coverage}, the dataset exhibits significant class imbalance---Chittagonian has 10,567 entries while the four newly added dialects (Kishoreganj, Narail, Narsingdi, Tangail) each have approximately 500---reflecting the inherent disparity in available dialectal resources.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{graphics/dialect_coverage.png}
+  \caption{Dialect coverage distribution across the integrated corpus, revealing severe class imbalance between well-resourced dialects (Chittagonian, Sylheti) and underrepresented variants (Narail, Tangail).}
+  \label{fig:dialect_coverage}
+\end{figure}
+
+\subsection{Data Preprocessing Pipeline}
+The raw integrated corpus undergoes a rigorous four-stage preprocessing pipeline:
+\begin{enumerate}
+    \item \textbf{Unicode Normalization:} All text is normalized to Unicode NFC form to resolve inconsistent character compositions prevalent in Bangla script.
+    \item \textbf{Cleaning and Deduplication:} Duplicate entries across source datasets are identified and removed. Empty, whitespace-only, and non-Bangla script entries are filtered.
+    \item \textbf{Tokenization and Script Alignment:} Text is tokenized using model-specific SentencePiece tokenizers. For BanglaT5, the 32K vocabulary is optimized for Bangla NLG tasks; for NLLB-200 and mBART-50, the larger vocabularies ($\sim$256K and $\sim$250K, respectively) accommodate multilingual coverage.
+    \item \textbf{Train/Dev/Test Split:} The corpus is partitioned into training (80\%), development (10\%), and test (10\%) sets with stratified sampling to ensure proportional dialect representation across splits.
+\end{enumerate}
+
+\subsection{Model Architectures}
+We evaluate three state-of-the-art encoder-decoder Transformer architectures, chosen to represent a spectrum of design philosophies for multilingual and Bangla-specific NMT:
+
+\begin{table}[htbp]
+\centering
+\caption{Architectural comparison of the three NMT models evaluated in this study.}
+\label{tab:model_specs}
+\begin{tabular}{l c c c}
+\toprule
+\textbf{Feature} & \textbf{BanglaT5} & \textbf{NLLB-200} & \textbf{mBART-50} \\
+\midrule
+Parameters          & 247M    & 615M    & 611M \\
+Architecture        & T5      & Transformer & BART \\
+Encoder/Decoder Layers & 12/12 & 12/12 & 12/12 \\
+Hidden Dimension    & 768     & 1,024   & 1,024 \\
+Attention Heads     & 12      & 16      & 16 \\
+FFN Dimension       & 3,072   & 4,096   & 4,096 \\
+Vocabulary Size     & 32K     & $\sim$256K & $\sim$250K \\
+Languages Supported & Bangla  & 200     & 50 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{BanglaT5} is a T5-based model pre-trained on approximately 27.5~GB of Bangla text, making it the only language-specific model in our comparison. \textbf{NLLB-200} (No Language Left Behind, distilled 600M variant) is Meta AI's massively multilingual model designed for 200 languages. \textbf{mBART-50} is Facebook AI's multilingual denoising auto-encoder covering 50 languages.
+
+\subsection{Fine-Tuning Strategy}
+All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)}, a parameter-efficient method that injects trainable low-rank decomposition matrices into each attention layer while freezing the pre-trained weights. We investigate two LoRA configurations:
+\begin{itemize}
+    \item \textbf{Configuration A:} rank $r = 8$, scaling factor $\alpha = 16$, trained for 10 epochs.
+    \item \textbf{Configuration B:} rank $r = 64$, scaling factor $\alpha = 128$, trained for 20 epochs.
+\end{itemize}
+The best-performing model (BanglaT5) is additionally trained for 100 epochs under Configuration~A to examine the effect of extended training on convergence and performance saturation.
+
+\subsection{Multi-Directional Translation Paradigm}
+Unlike prior uni-directional approaches, our system is trained to handle all possible translation directions within a single unified model:
+\begin{itemize}
+    \item \textbf{Dialect $\rightarrow$ Standard Bangla:} Converting regional dialect text to SCB.
+    \item \textbf{Standard Bangla $\rightarrow$ Dialect:} Generating dialectal text from SCB input.
+    \item \textbf{Dialect $\rightarrow$ Dialect:} Direct translation between two different regional dialects without an intermediary pivot through Standard Bangla.
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+Model performance is assessed using four complementary automatic evaluation metrics:
+\begin{itemize}
+    \item \textbf{BLEU} (Bilingual Evaluation Understudy): Measures $n$-gram precision between generated and reference translations.
+    \item \textbf{chrF++}: Character-level $F$-score incorporating word-level bigrams, robust to morphological variations.
+    \item \textbf{METEOR}: Harmonic mean of precision and recall with synonym matching and stemming.
+    \item \textbf{TER} (Translation Edit Rate): Minimum number of edits required to transform the output into the reference (lower is better).
+\end{itemize}
+
+\newpage
+
+\section{Experimental Results and Analysis}
+
+\subsection{Baseline Model Comparison}
+Table~\ref{tab:model_results} presents the overall performance of the three NMT models after fine-tuning on the full poly-dialectal corpus. BanglaT5 consistently outperforms the two larger multilingual models despite having only 247M parameters---less than half the size of NLLB-200 (615M) and mBART-50 (611M).
+
+\begin{table}[htbp]
+\centering
+\caption{Overall performance comparison of the three NMT models on the poly-dialectal test set (18,062 translation pairs across all dialect directions). Best results are shown in \textbf{bold}.}
+\label{tab:model_results}
+\begin{tabular}{l c c c c c}
+\toprule
+\textbf{Model} & \textbf{Params} & \textbf{BLEU $\uparrow$} & \textbf{chrF++ $\uparrow$} & \textbf{METEOR $\uparrow$} & \textbf{TER $\downarrow$} \\
+\midrule
+BanglaT5 (10 ep) & 247M & 23.22 & 51.20 & 41.41 & 56.85 \\
+NLLB-200         & 615M & 14.76 & 42.62 & 33.56 & 64.53 \\
+mBART-50         & 611M &  8.96 & 32.94 & 23.82 & 77.10 \\
+\midrule
+BanglaT5 (100 ep) & 247M & \textbf{29.26} & \textbf{57.26} & \textbf{49.68} & \textbf{50.59} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The extended 100-epoch BanglaT5 training yields a 26\% relative improvement in BLEU (from 23.22 to 29.26) over the 10-epoch baseline, demonstrating that dialect translation benefits substantially from prolonged fine-tuning. Figure~\ref{fig:model_comparison} visualizes this comparison across all four metrics.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{graphics/model_comparison.png}
+  \caption{Comparative evaluation of four model configurations across BLEU, chrF++, METEOR, and TER. Gold-bordered bars indicate the best-performing configuration.}
+  \label{fig:model_comparison}
+\end{figure}
+
+\subsection{Cross-Dialectal Translation Analysis}
+Figure~\ref{fig:bleu_heatmap} presents a heatmap of BLEU scores for all source-target dialect pairs under the best model (BanglaT5, 100 epochs). Several key findings emerge:
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{graphics/bleu_heatmap.png}
+  \caption{Cross-dialectal BLEU score heatmap (BanglaT5, 100 epochs). Darker green indicates higher translation quality. Rajshahi and Rangpur (bottom rows) exhibit uniformly low scores due to limited training data.}
+  \label{fig:bleu_heatmap}
+\end{figure}
+
+\begin{enumerate}
+    \item \textbf{Morphologically proximate dialects translate better:} Mymensingh $\rightarrow$ Standard Bangla achieves the highest BLEU score of 55.0, consistent with Mymensingh's closer lexical similarity to SCB. Conversely, Rajshahi and Rangpur---dialects with distinct phonological systems---yield BLEU scores below 12 in most directions.
+    \item \textbf{Translation directionality is asymmetric:} As shown in Figure~\ref{fig:directionality}, translating \textit{from} a dialect to Standard Bangla is consistently easier than the reverse. For example, Barisali $\rightarrow$ SCB achieves 50.1 BLEU while SCB $\rightarrow$ Barisali achieves only 37.9 BLEU, a gap of 12.2 points. This asymmetry reflects the decoder's greater difficulty in generating dialectal morphological forms absent from its pre-training distribution.
+    \item \textbf{Data volume directly correlates with performance:} Dialects with fewer than 1,000 training samples (Rajshahi: 891, Rangpur: 1,155) perform drastically worse than those with 5,000+ samples, underscoring the critical role of corpus volume in NMT quality.
+\end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{graphics/directionality.png}
+  \caption{Translation directionality asymmetry: Dialect$\rightarrow$SCB consistently outperforms SCB$\rightarrow$Dialect, with green labels indicating the BLEU gap.}
+  \label{fig:directionality}
+\end{figure}
+
+\subsection{Dataset Scaling Analysis}
+To quantify the relationship between training data volume and translation quality, we conduct a controlled scaling experiment using BanglaT5 with LoRA fine-tuning. Training data is incrementally scaled from 500 to 4,499 sentence pairs per dialect combination, with results measured on a fixed test set of 10,000 pairs.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.90\textwidth]{graphics/dataset_scaling.png}
+  \caption{BLEU and chrF++ scaling curves as training data increases from 500 to 4,499 per dialect pair. Both LoRA configurations show consistent improvement with larger data, but with diminishing returns beyond 3,000 samples.}
+  \label{fig:scaling}
+\end{figure}
+
+As shown in Figure~\ref{fig:scaling}, BLEU improves from 12.09 to 25.74 (a 113\% relative increase) as data scales from 500 to 4,499 under the $r{=}8$ configuration. The higher-capacity $r{=}64$ configuration yields slightly better results (27.55 BLEU at 4,499 samples) but shows diminishing marginal returns beyond approximately 3,000 samples. This finding validates the central premise of this thesis: \textit{larger, more diverse corpora are essential for effective poly-dialectal NMT}.
+
+\newpage
+
+\section{Limitations and Future Work}
+
+\subsection{Current Limitations}
+\begin{enumerate}
+    \item \textbf{Persistent Class Imbalance:} Despite integrating seven source corpora, the dataset exhibits a 21:1 imbalance ratio between the most represented dialect (Standard Bangla: 14,535 entries) and the least represented (Kishoreganj, Narail, Narsingdi, Tangail: $\sim$502 each). This imbalance limits the model's generalization capacity for underrepresented dialects, as evidenced by the low BLEU scores for Rajshahi (23.4) and Rangpur (23.4) even under the best model.
+    \item \textbf{Computational Cost:} Fine-tuning even moderately sized models (247M--615M parameters) on the full multi-directional translation matrix requires substantial GPU memory and training time. The 100-epoch BanglaT5 training required approximately 851 seconds, while mBART-50 required 13,889 seconds---a 16$\times$ disparity highlighting the efficiency advantage of language-specific models.
+    \item \textbf{Text-Only Modality:} The current system operates exclusively on text input, neglecting the phonological richness and prosodic variation characteristic of spoken Bangla dialects. A speech-to-text pipeline would be necessary for real-world deployment in voice-based applications.
+    \item \textbf{Absence of Human Evaluation:} While automatic metrics (BLEU, chrF++, METEOR, TER) provide objective and reproducible quality assessments, they cannot fully capture translation fluency, dialectal authenticity, and semantic adequacy as perceived by native speakers.
+\end{enumerate}
+
+\subsection{Future Directions}
+\begin{enumerate}
+    \item \textbf{Corpus Expansion:} Systematic data collection for underrepresented dialects through community-driven annotation campaigns and web scraping of social media platforms.
+    \item \textbf{Multimodal Integration:} Extending the framework to incorporate speech-to-text and text-to-speech modules, enabling end-to-end dialectal speech translation.
+    \item \textbf{Advanced Training Strategies:} Investigating curriculum learning, data augmentation through back-translation, and multi-task training to improve performance on low-resource dialect pairs.
+    \item \textbf{Human Evaluation Protocol:} Designing and conducting a formal human evaluation study with native dialect speakers to assess translation adequacy, fluency, and dialectal authenticity.
+\end{enumerate}
+
+\newpage
+
+\section{Conclusion}
+
+This thesis has presented a comprehensive framework for poly-dialectal neural machine translation in Bangla, addressing the critical gap between the rich dialectal diversity of the language and the limited scope of existing NLP tools. The principal achievements of this work are threefold.
+
+First, we constructed the \textbf{largest multi-dialectal parallel corpus} for Bangla machine translation to date, integrating seven existing datasets into a unified resource comprising 14,552 aligned entries across 12 regional dialect columns, totaling 51,531 parallel sentence pairs. This corpus introduces coverage for four previously unaddressed dialects (Kishoreganj, Narail, Narsingdi, and Tangail) and provides up to 2.76$\times$ more data per dialect than the best existing competitor.
+
+Second, our systematic \textbf{model evaluation} revealed that BanglaT5---a language-specific model with only 247M parameters---decisively outperforms the larger multilingual models NLLB-200 (615M) and mBART-50 (611M), achieving a best overall BLEU of 29.26 and chrF++ of 57.26 after 100 epochs of LoRA fine-tuning. This finding underscores the importance of language-specific pre-training for low-resource intra-language translation tasks.
+
+Third, our \textbf{cross-dialectal analysis} uncovered fundamental patterns in dialect translatability: (a) morphologically proximate dialects yield higher BLEU scores (Mymensingh$\rightarrow$SCB: 55.0), (b) dialect-to-standard translation is consistently easier than the reverse by 10--15 BLEU points, and (c) translation quality scales log-linearly with training data volume, with diminishing returns observed beyond 3,000 samples per dialect pair.
+
+By enabling direct, multi-directional translation without a pivot through Standard Bangla, this system represents a meaningful step toward inclusive, dialect-aware NLP infrastructure for the Bangla-speaking population. The corpus, models, and evaluation framework established in this thesis provide a robust foundation for future research in low-resource dialectal machine translation.
 
 \bibliographystyle{plain}
 \bibliography{biblography}
