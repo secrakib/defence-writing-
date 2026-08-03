@@ -1,17 +1,17 @@
 B.Sc in Computer Science and Engineering Thesis Report on
 
-## Preventing Suicides by Detecting Depression among Bangladeshi Students Using Machine Learning
+## Poly-Dialectal Neural Machine Translation System for Bangla Regional Dialects
 
 Submitted By
 
-**Mahin Muntasir**  
-Reg No: 2018331506  
+**Rakib Ullah**  
+Reg No: 2020331520 
 
-**Golam Rasul Al Reza**  
-Reg No: 2018331557  
+**Ruhul Islam Rahul**  
+Reg No: 2020331529  
 
-**Murshed Ali**  
-Reg No: 2018331545  
+**Tanbir Ahmed**  
+Reg No: 2020331516
 
 ---
 
@@ -31,4 +31,4 @@ Affiliated with
 ### Shahjalal University of Science and Technology  
 Sylhet, Bangladesh.  
 
-13th March, 2024
+22 August,2026
