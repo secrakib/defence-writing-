@@ -249,13 +249,22 @@ Vashantor       & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 2,500 & 0     & 0 \\
 \end{tabular}
 \end{table}
 
-The final integrated dataset comprises 14,552 rows across 12 dialect columns (Standard Bangla plus 11 regional variants: Sylheti, Chittagonian, Barisali, Mymensingh, Noakhali, Rangpuri, Rajshahi, Kishoreganj, Narail, Narsingdi, and Tangail), yielding 51,531 total non-null parallel sentence pairs. This represents the largest such corpus for Bangla to date. As depicted in Figure~\ref{fig:dialect_coverage}, the dataset exhibits significant class imbalance---Chittagonian has 10,567 entries while the four newly added dialects (Kishoreganj, Narail, Narsingdi, Tangail) each have approximately 500---reflecting the inherent disparity in available dialectal resources.
+The final integrated dataset comprises 14,552 rows across 12 dialect columns (Standard Bangla plus 11 regional variants: Sylheti, Chittagonian, Barisali, Mymensingh, Noakhali, Rangpuri, Rajshahi, Kishoreganj, Narail, Narsingdi, and Tangail), yielding 51,531 total non-null parallel sentence pairs. This represents the largest such corpus for Bangla to date. Crucially, to mitigate the extreme scarcity of data for certain regional variants, we manually created a high-quality dataset consisting of altogether 2,500 bidirectional parallel sentence pairs (Standard Bangla $\leftrightarrow$ Dialect) distributed evenly across five dialects: Rangpur, Tangail, Kishoreganj, Narail, and Narsingdi (500 pairs each). To ensure rigorous data quality, each of these dialectal subsets was independently evaluated and verified by three native speakers of the corresponding dialect.
+
+As depicted comprehensively in Figure~\ref{fig:dataset_composition}, despite augmentation efforts, the dataset exhibits significant class imbalance---Chittagonian commands 10,567 entries while the newly added dialects (e.g., Narail, Tangail) are constrained to approximately 500 pairs. This unified visualization delineates both the gross dialectal volume and the exact decomposition of contributing source corpora for each variant. Furthermore, Figure~\ref{fig:coverage_matrix} presents the cross-dialect parallel coverage matrix, quantitatively illustrating the pairwise intersection of translated sentences across all regional variants.
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/dialect_coverage.png}
-  \caption{Dialect coverage distribution across the integrated corpus, revealing severe class imbalance between well-resourced dialects (Chittagonian, Sylheti) and underrepresented variants (Narail, Tangail).}
-  \label{fig:dialect_coverage}
+  \includegraphics[width=0.95\textwidth]{graphics/source_contributions_advanced.png}
+  \caption{Dataset Composition and Source Provenance: A stacked horizontal distribution illustrating the severe class imbalance alongside the precise proportional contributions from prior corpora and manual augmentation efforts for each regional dialect.}
+  \label{fig:dataset_composition}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{graphics/coverage_matrix_advanced.png}
+  \caption{Cross-Dialect Parallel Coverage Matrix: An upper-triangular masked heatmap detailing the exact density of shared, parallel sentence pairs intersecting any two evaluated dialectal variants.}
+  \label{fig:coverage_matrix}
 \end{figure}
 
 \subsection{Data Preprocessing Pipeline}
@@ -268,7 +277,7 @@ The raw integrated corpus undergoes a rigorous four-stage preprocessing pipeline
 \end{enumerate}
 
 \subsection{Model Architectures}
-We evaluate three state-of-the-art encoder-decoder Transformer \cite{vaswani2017attention} architectures, chosen to represent a spectrum of design philosophies for multilingual and Bangla-specific NMT:
+We evaluate three state-of-the-art encoder-decoder Transformer \cite{vaswani2017attention} architectures, chosen to represent a spectrum of design philosophies for multilingual and Bangla-specific NMT. The architectural comparison is summarized in Table~\ref{tab:model_specs}.
 
 \begin{table}[htbp]
 \centering
@@ -290,15 +299,87 @@ Languages Supported & Bangla  & 200     & 50 \\
 \end{tabular}
 \end{table}
 
-\textbf{BanglaT5} \cite{bhattacharjee-etal-2023-banglanlg} is a T5-based \cite{raffel2020exploring} model pre-trained on approximately 27.5~GB of Bangla text, making it the only language-specific model in our comparison. \textbf{NLLB-200} \cite{nllb2022} (No Language Left Behind, distilled 600M variant) is Meta AI's massively multilingual model designed for 200 languages. \textbf{mBART-50} \cite{tang2020multilingual} is Facebook AI's multilingual denoising auto-encoder based on BART \cite{lewis2020bart} covering 50 languages.
+\subsubsection{BanglaT5}
+\textbf{Overview and Capabilities:} BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} is a sequence-to-sequence model based on the T5 \cite{raffel2020exploring} architecture, pre-trained extensively on approximately 27.5~GB of monolingual Bangla text. 
+\textbf{Advantages and Limitations:} Being a language-specific model, its 32K vocabulary is heavily optimized for Bangla morphology, preventing the excessive subword fragmentation commonly seen in multilingual tokenizers. However, it lacks cross-lingual pre-training signals that might otherwise aid in zero-shot generalization.
+\textbf{Suitability for Dialects:} We selected BanglaT5 because its deep grounding in Standard Bangla provides a strong prior for generating morphologically complex dialectal variations. It serves as the primary language-centric baseline in our study.
+
+\subsubsection{NLLB-200}
+\textbf{Overview and Capabilities:} NLLB-200 \cite{nllb2022} (No Language Left Behind) is Meta AI's massively multilingual Transformer designed for direct translation across 200 languages. We utilize the distilled 600M parameter variant.
+\textbf{Advantages and Limitations:} Its primary advantage is robust multilingual alignment and a vast $\sim$256K vocabulary designed to encompass diverse scripts. However, this large vocabulary dilutes its representational capacity for any single low-resource language, potentially hampering its nuance in intra-language dialectal shifts.
+\textbf{Suitability for Dialects:} NLLB-200 is selected to determine if massive multilingual pre-training provides implicit transfer learning benefits for regional dialects.
+
+\subsubsection{mBART-50}
+\textbf{Overview and Capabilities:} mBART-50 \cite{tang2020multilingual} is a multilingual denoising auto-encoder based on the BART \cite{lewis2020bart} architecture, extended to cover 50 languages.
+\textbf{Advantages and Limitations:} It excels at sequence generation tasks due to its denoising objective during pre-training. Like NLLB-200, its limitation lies in the generalized multilingual tokenization which is not exclusively tuned for Bangla scripts.
+\textbf{Suitability for Dialects:} We include mBART-50 as a strong baseline for multilingual generation to compare against both the language-specific BanglaT5 and the massively multilingual NLLB-200.
+
+\subsection{Hyperparameters}
+To ensure rigorous reproducibility and optimal convergence, Table~\ref{tab:model_hyperparams} outlines the unified architectural and fine-tuning configurations applied across all three candidate models.
+
+\begin{table}[htbp]
+\centering
+\caption{Unified architectural and fine-tuning configurations for the NMT models.}
+\label{tab:model_hyperparams}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l l l l l}
+\toprule
+\textbf{Category} & \textbf{Hyperparameter} & \textbf{BanglaT5} & \textbf{mBART-50} & \textbf{NLLB-200} \\
+\midrule
+\multirow{3}{*}{Model Registry} & HuggingFace Checkpoint & \texttt{csebuetnlp/banglat5\_small} & \texttt{facebook/mbart-large-50-many-to-many-mmt} & \texttt{facebook/nllb-200-distilled-600M} \\
+& Base Parameter Count & $\sim$60M (Base) / 247M & $\sim$611M & $\sim$600M \\
+& Src/Tgt Language Tags & Prefixed & \texttt{bn\_IN} & \texttt{ben\_Beng} \\
+\midrule
+\multirow{2}{*}{Sequence Setup} & Max Length ($L_{\text{src}}$, $L_{\text{tgt}}$) & 128 tokens & 128 tokens & 128 tokens \\
+& Sequence Packing & Enabled & Disabled & Disabled \\
+\midrule
+\multirow{3}{*}{Optimization} & Optimizer & Paged AdamW 8-bit & Paged AdamW 8-bit & Paged AdamW 8-bit \\
+& Learning Rate ($\eta$) & $5 \times 10^{-4}$ & $5 \times 10^{-4}$ & $5 \times 10^{-4}$ \\
+& LR Scheduler & Cosine Annealing & Cosine Annealing & Cosine Annealing \\
+\midrule
+\multirow{3}{*}{Batching} & Per-Device Batch Size & 32 & 8 & 8 \\
+& Gradient Accum. Steps & 2 & 8 & 8 \\
+& Effective Batch Size & 64 & 64 & 64 \\
+\midrule
+\multirow{3}{*}{PEFT / DoRA} & Adapter Rank ($r$) & 64 & 64 & 64 \\
+& Scaling Factor ($\alpha$) & 128 & 128 & 128 \\
+& Target Projections & \texttt{q, v, k, o, wi, wo} & \texttt{q\_proj, k\_proj, v\_proj, out\_proj, fc1, fc2} & \texttt{q\_proj, k\_proj, v\_proj, out\_proj, fc1, fc2} \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\subsection{Dataset Scaling Protocol}
+To formally investigate the relationship between data volume and translation generalization, we conduct an optimal dataset size study. We construct a fully parallel dataset encompassing Standard Bangla and four major dialects: Sylheti, Noakhali, Chittagong, and Mymensingh. The dataset is scaled iteratively from 500 to 4,499 parallel sentence pairs. The detailed hyperparameter matrix governing this scaling experiment is provided in Table~\ref{tab:scaling_hyperparams}.
+
+\begin{table}[htbp]
+\centering
+\caption{Hyperparameter matrix for dataset scaling experiments.}
+\label{tab:scaling_hyperparams}
+\small
+\begin{tabular}{l l l}
+\toprule
+\textbf{Parameter Class} & \textbf{Hyperparameter} & \textbf{Configuration} \\
+\midrule
+\textbf{Model Config} & Base Model & \texttt{csebuetnlp/banglat5} \\
+\textbf{Sequence Dims} & Max Sequence Length & 128 tokens (Source/Target) \\
+\textbf{PEFT Settings} & DoRA Enabled & Yes ($r=8, \alpha=16$ \& $r=64, \alpha=128$) \\
+\textbf{Optimization} & Optimizer & Paged AdamW 8-bit \\
+& Learning Rate ($\eta$) & $5 \times 10^{-4}$ (Cosine Decay) \\
+\textbf{Batching} & Effective Batch Size & 90 (Batch size 45, Grad. Accum. 2) \\
+\textbf{Training Schedule} & Epochs per Step & 10 Epochs \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Fine-Tuning Strategy}
-All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)} \cite{hu2021lora}, a parameter-efficient method that injects trainable low-rank decomposition matrices into each attention layer while freezing the pre-trained weights. We investigate two LoRA configurations:
-\begin{itemize}
-    \item \textbf{Configuration A:} rank $r = 8$, scaling factor $\alpha = 16$, trained for 10 epochs.
-    \item \textbf{Configuration B:} rank $r = 64$, scaling factor $\alpha = 128$, trained for 20 epochs.
-\end{itemize}
-The best-performing model (BanglaT5) is additionally trained for 100 epochs under Configuration~A to examine the effect of extended training on convergence and performance saturation.
+All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)} \cite{hu2021lora}, a parameter-efficient method that injects trainable low-rank decomposition matrices into each attention layer while freezing the pre-trained weights. Our experimental pipeline consists of two distinct stages:
+
+\subsubsection{Stage 1: Best Model Selection}
+In the initial stage, all three candidate models (BanglaT5, NLLB-200, mBART-50) are trained for \textbf{20 epochs} using the complete integrated dataset. To ensure a fair comparative analysis, identical LoRA configurations (Configuration B: rank $r = 64$, $\alpha = 128$) are applied across all models. The best-performing model is then selected based on overall evaluation metrics for the next stage.
+
+\subsubsection{Stage 2: Final Training}
+In the second stage, the selected best model (BanglaT5) is retrained for an extended period of \textbf{100 epochs} to deeply analyze learning behavior and performance saturation. Due to hardware resource constraints (the use of a Kaggle platform featuring dual T4 GPUs and 32GB RAM), our compute resources were limited, enabling us to train only the top-performing model up to 100 epochs. This extended training phase facilitates detailed error analysis and linguistic pairwise comparisons to identify dialectal proximities.
 
 \subsection{Multi-Directional Translation Paradigm}
 Unlike prior uni-directional approaches, our system is trained to handle all possible translation directions within a single unified model:
@@ -309,13 +390,36 @@ Unlike prior uni-directional approaches, our system is trained to handle all pos
 \end{itemize}
 
 \subsection{Evaluation Metrics}
-Model performance is assessed using four complementary automatic evaluation metrics:
-\begin{itemize}
-    \item \textbf{BLEU} \cite{papineni2002bleu} (Bilingual Evaluation Understudy): Measures $n$-gram precision between generated and reference translations.
-    \item \textbf{chrF++} \cite{popovic2015chrf}: Character-level $F$-score incorporating word-level bigrams, robust to morphological variations.
-    \item \textbf{METEOR} \cite{banerjee2005meteor}: Harmonic mean of precision and recall with synonym matching and stemming.
-    \item \textbf{TER} \cite{snover2006study} (Translation Edit Rate): Minimum number of edits required to transform the output into the reference (lower is better).
-\end{itemize}
+Model performance is assessed using four complementary automatic evaluation metrics. Given the morphological complexity of Bangla dialects, relying on a single metric is insufficient; thus, we utilize a combination of word-based, character-based, and edit-distance metrics.
+
+\subsubsection{BLEU (Bilingual Evaluation Understudy)}
+BLEU \cite{papineni2002bleu} measures the $n$-gram precision of the candidate translation against reference translations, applying a brevity penalty (BP) to discourage overly short outputs. 
+\begin{equation}
+\text{BLEU} = \text{BP} \cdot \exp\left( \sum_{n=1}^N w_n \log p_n \right)
+\end{equation}
+\textbf{Interpretation and Appropriateness:} Higher BLEU scores indicate greater $n$-gram overlap. While BLEU is the industry standard allowing for broad benchmarking, its limitation lies in its strict exact-word matching, which heavily penalizes legitimate morphological variations prevalent in Bangla dialects.
+
+\subsubsection{chrF++ (Character n-gram F-score)}
+chrF++ \cite{popovic2015chrf} computes the $F$-score based on character $n$-grams (typically up to 6-grams) combined with word-level bigrams.
+\begin{equation}
+\text{chrF++} = \left( 1 + \beta^2 \right) \frac{\text{chrP} \cdot \text{chrR}}{\beta^2 \cdot \text{chrP} + \text{chrR}}
+\end{equation}
+where $\text{chrP}$ and $\text{chrR}$ represent character $n$-gram precision and recall, respectively.
+\textbf{Interpretation and Appropriateness:} A higher chrF++ score denotes better morphological alignment. This metric is exceptionally appropriate for highly inflected languages like Bangla, as it rewards partial word matches (e.g., matching root verbs with slightly altered dialectal suffixes) which BLEU would falsely score as zero.
+
+\subsubsection{METEOR}
+METEOR \cite{banerjee2005meteor} calculates the harmonic mean of unigram precision ($P$) and recall ($R$), placing a higher weight on recall. Crucially, it incorporates stemming and synonymy mapping.
+\begin{equation}
+\text{METEOR} = \frac{10 P R}{R + 9 P} \cdot (1 - \text{Penalty})
+\end{equation}
+\textbf{Interpretation and Appropriateness:} Higher scores indicate better semantic retention. The advantage of METEOR in dialectal translation is its ability to recognize synonym replacements and stem alignments, making it more aligned with human judgment regarding semantic adequacy.
+
+\subsubsection{TER (Translation Edit Rate)}
+TER \cite{snover2006study} measures the minimum number of human edits required to modify a generated hypothesis so that it exactly matches a reference translation.
+\begin{equation}
+\text{TER} = \frac{\text{Number of Edits}}{\text{Average Length of Reference Words}}
+\end{equation}
+\textbf{Interpretation and Appropriateness:} Unlike the other metrics, a \textit{lower} TER score indicates better performance. It is particularly useful for assessing the practical utility of the NMT system, as it provides a direct proxy for the post-editing effort required by human translators.
 
 \newpage
 
