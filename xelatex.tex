@@ -119,6 +119,14 @@ This limitation stems from a confluence of critical technical challenges. First,
 
 Formally, the poly-dialectal translation problem can be defined as follows. Let $\mathcal{D} = \{d_1, d_2, \ldots, d_k\}$ denote the set of $k$ regional dialect variants (including SCB). Given a source sentence $\mathbf{x} = (x_1, x_2, \ldots, x_m)$ in dialect $d_s \in \mathcal{D}$ and a target dialect $d_t \in \mathcal{D}$ where $d_s \neq d_t$, the objective is to learn a unified translation function $\mathcal{T}_\theta: (\mathbf{x}, d_s, d_t) \rightarrow \mathbf{y}$ that generates the target sentence $\mathbf{y} = (y_1, y_2, \ldots, y_n)$ such that $\mathbf{y}$ is a semantically faithful and morphologically authentic rendering of $\mathbf{x}$ in $d_t$. Addressing this challenge requires a paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach.
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/topology_comparison.pdf}
+  \caption{Structural comparison between the traditional pivot translation approach (routing through Standard Bangla) and the proposed direct poly-dialectal mapping topology.}
+  \label{fig:topology}
+\end{figure}
+
+
 \subsection{Proposed System and Contributions}
 To address these limitations, this research introduces a unified \textbf{Poly-Dialectal Neural Machine Translation System} tailored for the morphological and syntactic nuances of Bangla regional dialects. As illustrated in Figure~\ref{fig:overview}, our architecture enables multi-directional translation across three core operational paradigms: Dialect $\rightarrow$ Standard Bangla, Standard Bangla $\rightarrow$ Dialect, and direct Dialect $\rightarrow$ Dialect translation, thereby eliminating the cascading errors typically introduced by pivot-based translation methods.
 
@@ -168,6 +176,14 @@ While the aforementioned contributions have collectively established a foundatio
 \end{enumerate}
 
 The present work addresses all four limitations by introducing a comprehensive poly-dialectal parallel corpus substantially larger than previous efforts, enabling direct multi-directional translation within a single unified neural architecture, conducting the first systematic dataset scaling study, and deploying the resulting system as a publicly accessible web application.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/dataset_timeline.pdf}
+  \caption{Evolution of Bangla regional dialect datasets and resources over time, highlighting the scale and dialectal coverage of the proposed corpus.}
+  \label{fig:timeline}
+\end{figure}
+
 
 
 \subsection{Summary of Dialectal Resources}
@@ -403,6 +419,14 @@ h = W_0 x + \Delta W x = W_0 x + \frac{\alpha}{r} B A x
 \end{equation}
 where $A \in \mathbb{R}^{r \times k}$ and $B \in \mathbb{R}^{d \times r}$ are trainable low-rank matrices with rank $r \ll \min(d, k)$, and $\alpha$ is a scaling hyperparameter that controls the magnitude of the adaptation. This approach reduces the number of trainable parameters by over 99\% compared to full fine-tuning, enabling efficient adaptation on limited hardware. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count is approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50.
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/lora_efficiency.pdf}
+  \caption{Parameter efficiency of LoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters.}
+  \label{fig:lora_efficiency}
+\end{figure}
+
+
 Our experimental pipeline consists of two distinct stages:
 
 \subsubsection{Stage 1: Best Model Selection}
@@ -525,6 +549,14 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU \cite{papineni
     \item \textbf{Directional Asymmetry:} Translating \textit{from} a regional dialect to SCB is consistently easier than the reverse direction (Figure~\ref{fig:directionality}). For example, Barisali$\rightarrow$SCB achieves 50.1 BLEU \cite{papineni2002bleu} versus 37.9 for SCB$\rightarrow$Barisali---a 12.2-point gap. This asymmetry reflects a fundamental property of the decoder: generating dialectal output requires producing highly localized morphological inflections and lexical items that are sparsely represented in the SCB-dominated pre-training corpus, whereas dialect-to-standard translation can leverage the model's strong prior over standard forms.
 \end{enumerate}
 
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{graphics/proximity_vs_bleu.pdf}
+  \caption{Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score).}
+  \label{fig:proximity_bleu}
+\end{figure}
+
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\textwidth]{graphics/directionality.png}
@@ -578,7 +610,7 @@ Despite high structural accuracy overall, the model exhibits systematic failure 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.75\textwidth]{graphics/error_analysis.png}
+  \includegraphics[width=0.9\textwidth]{graphics/error_taxonomy.pdf}
   \caption{Distribution of translation errors across five linguistic failure categories, derived from manual analysis of 200 high-TER \cite{snover2006study} failure cases.}
   \label{fig:error_analysis}
 \end{figure}
@@ -668,6 +700,14 @@ Long paragraph & $\sim$60 words & 85 & $\sim$3,200 & 26.56 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.65\textwidth]{graphics/quantization_radar.pdf}
+  \caption{Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality.}
+  \label{fig:quantization}
+\end{figure}
 
 \subsection{User Interface and Translation Demonstrations}
 The application features a clean dual-column dialect selector layout with dynamic progress indicators. Figure~\ref{fig:deployment_ui} shows the main interface, while Figures~\ref{fig:deploy_sylheti} and~\ref{fig:deploy_direct} demonstrate representative translation outputs.
