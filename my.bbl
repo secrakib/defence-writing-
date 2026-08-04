@@ -2,10 +2,10 @@
 
 \bibitem{banerjee2005meteor}
 Satanjeev Banerjee and Alon Lavie.
-\newblock Meteor: An automatic metric for mt evaluation with improved
+\newblock {METEOR}: An automatic metric for {MT} evaluation with improved
   correlation with human judgments.
-\newblock In {\em Proceedings of the acl workshop on intrinsic and extrinsic
-  evaluation measures for machine translation and/or summarization}, pages
+\newblock In {\em Proceedings of the ACL Workshop on Intrinsic and Extrinsic
+  Evaluation Measures for Machine Translation and/or Summarization}, pages
   65--72, 2005.
 
 \bibitem{bhattacharjee-etal-2023-banglanlg}
@@ -13,85 +13,97 @@ Abhik Bhattacharjee, Tahmid Hasan, Wasi~Uddin Ahmad, and Rifat Shahriyar.
 \newblock {B}angla{NLG} and {B}angla{T}5: Benchmarks and resources for
   evaluating low-resource natural language generation in {B}angla.
 \newblock In {\em Findings of the Association for Computational Linguistics:
-  EACL 2023}, pages 726--735, 2023.
+  EACL 2023}, pages 726--735. Association for Computational Linguistics, 2023.
 
 \bibitem{bhuiyan2025bhasabodh}
-M.~Bhuiyan et~al.
-\newblock Bridging bangla dialects and romanized forms through machine
+Mahir Bhuiyan et~al.
+\newblock Bridging {B}angla dialects and romanized forms through machine
   translation.
-\newblock {\em Preprint}, 2025.
+\newblock {\em arXiv preprint}, 2025.
+\newblock BhasaBodh.
 
 \bibitem{chowdhury2025chatgaiyya}
-T.~Chowdhury et~al.
-\newblock A dataset for conversion from chittagonian dialect to standard
-  bangla.
+Tanvir Chowdhury et~al.
+\newblock A dataset for conversion from {C}hittagonian dialect to standard
+  {B}angla.
 \newblock {\em Data in Brief}, 59:111200, 2025.
 
 \bibitem{faria2025vashantor}
-I.~Faria et~al.
+Iftekhar Faria et~al.
 \newblock A large-scale multilingual benchmark dataset for translation of
-  bangla regional dialects.
-\newblock {\em arXiv preprint arXiv:2503.00004}, 2025.
+  {B}angla regional dialects.
+\newblock {\em arXiv preprint}, 2025.
+\newblock Vashantor.
 
 \bibitem{fayaz2025bidwesh}
-S.~Fayaz et~al.
-\newblock A bangla regional based hate speech detection dataset.
-\newblock {\em arXiv preprint arXiv:2502.00003}, 2025.
+Shahriar Fayaz et~al.
+\newblock A {B}angla regional based hate speech detection dataset.
+\newblock {\em arXiv preprint}, 2025.
+\newblock BIDWESH.
 
 \bibitem{hu2021lora}
-Edward~J Hu, Yelong Shen, Phil Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
+Edward~J Hu, Yelong Shen, Phillip Wallis, Zeyuan Allen-Zhu, Yuanzhi Li, Shean
   Wang, Lu~Wang, and Weizhu Chen.
-\newblock Lora: Low-rank adaptation of large language models.
+\newblock {LoRA}: Low-rank adaptation of large language models.
 \newblock In {\em International Conference on Learning Representations}, 2022.
 
 \bibitem{jawad2025dialtsa}
-M.~Jawad et~al.
-\newblock Benchmarking llms on bangla dialect translation and sentiment
+Mustakim Jawad et~al.
+\newblock Benchmarking {LLM}s on {B}angla dialect translation and sentiment
   analysis.
 \newblock In {\em Proceedings of the Workshop on Bangla Language Processing
   (BLP)}, pages 55--65, 2025.
 
 \bibitem{kundu2026anubhuti}
-A.~Kundu et~al.
+Avishek Kundu et~al.
 \newblock A comprehensive corpus for sentiment analysis in bangla regional
   languages.
-\newblock {\em arXiv preprint arXiv:2601.00002}, 2026.
+\newblock {\em arXiv preprint}, 2026.
+\newblock ANUBHUTI.
 
 \bibitem{lewis2020bart}
 Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed,
   Omer Levy, Veselin Stoyanov, and Luke Zettlemoyer.
-\newblock Bart: Denoising sequence-to-sequence pre-training for natural
+\newblock {BART}: Denoising sequence-to-sequence pre-training for natural
   language generation, translation, and comprehension.
 \newblock {\em arXiv preprint arXiv:1910.13461}, 2019.
 
 \bibitem{mahi2025bangladial}
-M.~Mahi et~al.
-\newblock A merged and imbalanced text dataset for bengali regional dialect
+Mahfuz Mahi et~al.
+\newblock A merged and imbalanced text dataset for {B}engali regional dialect
   analysis.
 \newblock {\em Data in Brief}, 58:111000, 2025.
 
 \bibitem{mahjabin2025banglachq}
-S.~Mahjabin et~al.
-\newblock Human-llm benchmarks for bangla dialect translation.
+Sumaiya Mahjabin et~al.
+\newblock Human-{LLM} benchmarks for {B}angla dialect translation.
 \newblock In {\em Proceedings of the Workshop on Bangla Language Processing
   (BLP)}, pages 45--54, 2025.
 
+\bibitem{nllb2022}
+{NLLB Team}, Marta~R. Costa-juss{\`a}, et~al.
+\newblock No language left behind: Scaling human-centered machine translation.
+\newblock {\em arXiv preprint arXiv:2207.04672}, 2022.
+
 \bibitem{papineni2002bleu}
 Kishore Papineni, Salim Roukos, Todd Ward, and Wei-Jing Zhu.
-\newblock Bleu: a method for automatic evaluation of machine translation.
-\newblock In {\em Proceedings of the 40th annual meeting of the Association for
-  Computational Linguistics}, pages 311--318, 2002.
+\newblock {BLEU}: A method for automatic evaluation of machine translation.
+\newblock In {\em Proceedings of the 40th Annual Meeting of the Association for
+  Computational Linguistics}, pages 311--318. Association for Computational
+  Linguistics, 2002.
 
 \bibitem{paul2025ancholik}
-S.~Paul et~al.
+Sanchay Paul et~al.
 \newblock A benchmark dataset for bangla regional named entity recognition.
-\newblock {\em arXiv preprint arXiv:2501.00001}, 2025.
+\newblock {\em arXiv preprint}, 2025.
+\newblock Ancholik-NER.
 
 \bibitem{popovic2015chrf}
 Maja Popovi{\'c}.
-\newblock chrf: character n-gram f-score for automatic mt evaluation.
+\newblock {chrF}: Character n-gram {F}-score for automatic {MT} evaluation.
 \newblock In {\em Proceedings of the Tenth Workshop on Statistical Machine
-  Translation}, pages 392--395, 2015.
+  Translation}, pages 392--395. Association for Computational Linguistics,
+  2015.
 
 \bibitem{raffel2020exploring}
 Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael
@@ -104,7 +116,8 @@ Colin Raffel, Noam Shazeer, Adam Roberts, Katherine Lee, Sharan Narang, Michael
 Rico Sennrich, Barry Haddow, and Alexandra Birch.
 \newblock Neural machine translation of rare words with subword units.
 \newblock In {\em Proceedings of the 54th Annual Meeting of the Association for
-  Computational Linguistics (Volume 1: Long Papers)}, pages 1715--1725, 2016.
+  Computational Linguistics (Volume 1: Long Papers)}, pages 1715--1725.
+  Association for Computational Linguistics, 2016.
 
 \bibitem{snover2006study}
 Matthew Snover, Bonnie Dorr, Richard Schwartz, Linnea Micciulla, and John
@@ -114,14 +127,14 @@ Matthew Snover, Bonnie Dorr, Richard Schwartz, Linnea Micciulla, and John
   Machine Translation in the Americas: Technical Papers}, pages 223--231, 2006.
 
 \bibitem{sultana2025onubad}
-N.~Sultana et~al.
-\newblock A comprehensive dataset for automated conversion of bangla regional
+Nahida Sultana et~al.
+\newblock A comprehensive dataset for automated conversion of {B}angla regional
   dialects.
 \newblock {\em Data in Brief}, 60:111500, 2025.
 
 \bibitem{sultana2024bdregion}
-R.~Sultana et~al.
-\newblock Resource creation and evaluation for bangla regional text
+Razia Sultana et~al.
+\newblock Resource creation and evaluation for {B}angla regional text
   classification.
 \newblock {\em Indonesian Journal of Electrical Engineering and Computer
   Science}, 34(2):1120--1129, 2024.
@@ -133,16 +146,11 @@ Yuqing Tang, Chau Tran, Xian Li, Peng-Jen Chen, Naman Goyal, Vishrav Chaudhary,
   finetuning.
 \newblock {\em arXiv preprint arXiv:2008.00490}, 2020.
 
-\bibitem{nllb2022}
-NLLB Team, Marta~R. Costa-juss{\`a}, et~al.
-\newblock No language left behind: Scaling human-centered machine translation.
-\newblock {\em arXiv preprint arXiv:2207.04672}, 2022.
-
 \bibitem{vaswani2017attention}
 Ashish Vaswani, Noam Shazeer, Niki Parmar, Jakob Uszkoreit, Llion Jones,
   Aidan~N Gomez, {\L}ukasz Kaiser, and Illia Polosukhin.
 \newblock Attention is all you need.
-\newblock {\em Advances in neural information processing systems}, 30, 2017.
+\newblock {\em Advances in Neural Information Processing Systems}, 30, 2017.
 
 \bibitem{wu2016google}
 Yonghui Wu, Mike Schuster, Zhifeng Chen, Quoc~V Le, Mohammad Norouzi, Wolfgang
