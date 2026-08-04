@@ -117,7 +117,7 @@ In recent years, Neural Machine Translation (NMT) architectures and Large Langua
 
 This limitation stems from a confluence of critical technical challenges. First, there is an acute scarcity of multi-dialectal parallel corpora required to effectively fine-tune deep neural networks. Second, the lack of standardized orthography for regional dialects exacerbates tokenization mismatches; standard Byte-Pair Encoding (BPE) \cite{sennrich2015neural} or WordPiece \cite{wu2016google} algorithms optimized for SCB frequently fragment dialectal words into semantically incoherent subwords. Third, existing regional text datasets suffer from severe class imbalance and are predominantly designed for classification tasks rather than complex generative alignment.
 
-Formally, the poly-dialectal translation problem can be defined as follows. Let $\mathcal{D} = \{d_1, d_2, \ldots, d_k\}$ denote the set of $k$ regional dialect variants (including SCB). Given a source sentence $\mathbf{x} = (x_1, x_2, \ldots, x_m)$ in dialect $d_s \in \mathcal{D}$ and a target dialect $d_t \in \mathcal{D}$ where $d_s \neq d_t$, the objective is to learn a unified translation function $\mathcal{T}_\theta: (\mathbf{x}, d_s, d_t) \rightarrow \mathbf{y}$ that generates the target sentence $\mathbf{y} = (y_1, y_2, \ldots, y_n)$ such that $\mathbf{y}$ is a semantically faithful and morphologically authentic rendering of $\mathbf{x}$ in $d_t$. Addressing this challenge requires a paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach.
+Formally, the poly-dialectal translation problem can be defined as follows. Let $\mathcal{D} = \{d_1, d_2, \ldots, d_k\}$ denote the set of $k$ regional dialect variants (including SCB). Given a source sentence $\mathbf{x} = (x_1, x_2, \ldots, x_m)$ in dialect $d_s \in \mathcal{D}$ and a target dialect $d_t \in \mathcal{D}$ where $d_s \neq d_t$, the objective is to learn a unified translation function $\mathcal{T}_\theta: (\mathbf{x}, d_s, d_t) \rightarrow \mathbf{y}$ that generates the target sentence $\mathbf{y} = (y_1, y_2, \ldots, y_n)$ such that $\mathbf{y}$ is a semantically faithful and morphologically authentic rendering of $\mathbf{x}$ in $d_t$. Addressing this challenge requires a paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach (see Figure~\ref{fig:topology}).
 
 \begin{figure}[htbp]
   \centering
@@ -175,7 +175,7 @@ While the aforementioned contributions have collectively established a foundatio
     \item \textbf{Absence of Deployed Applications:} Models developed in prior studies remain confined to offline evaluation environments. The community lacks open, deployed web applications capable of providing real-time translation services to dialect speakers.
 \end{enumerate}
 
-The present work addresses all four limitations by introducing a comprehensive poly-dialectal parallel corpus substantially larger than previous efforts, enabling direct multi-directional translation within a single unified neural architecture, conducting the first systematic dataset scaling study, and deploying the resulting system as a publicly accessible web application.
+The present work addresses all four limitations by introducing a comprehensive poly-dialectal parallel corpus substantially larger than previous efforts (as visualized in Figure~\ref{fig:timeline}), enabling direct multi-directional translation within a single unified neural architecture, conducting the first systematic dataset scaling study, and deploying the resulting system as a publicly accessible web application.
 
 \begin{figure}[htbp]
   \centering
@@ -273,7 +273,7 @@ The specific objectives of this research are:
 \section{Methodology}
 
 \subsection{Dataset Construction and Integration}
-The foundation of our poly-dialectal NMT system is a meticulously curated multi-dialect parallel corpus. We integrate seven publicly available dialectal datasets, each contributing varying levels of coverage across different regional variants:
+The foundation of our poly-dialectal NMT system is a meticulously curated multi-dialect parallel corpus. We integrate seven publicly available dialectal datasets, each contributing varying levels of coverage across different regional variants (see Table~\ref{tab:source_contributions}):
 
 \begin{table}[htbp]
 \centering
@@ -417,7 +417,7 @@ All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)} \cite{hu2021
 \begin{equation}
 h = W_0 x + \Delta W x = W_0 x + \frac{\alpha}{r} B A x
 \end{equation}
-where $A \in \mathbb{R}^{r \times k}$ and $B \in \mathbb{R}^{d \times r}$ are trainable low-rank matrices with rank $r \ll \min(d, k)$, and $\alpha$ is a scaling hyperparameter that controls the magnitude of the adaptation. This approach reduces the number of trainable parameters by over 99\% compared to full fine-tuning, enabling efficient adaptation on limited hardware. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count is approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50.
+where $A \in \mathbb{R}^{r \times k}$ and $B \in \mathbb{R}^{d \times r}$ are trainable low-rank matrices with rank $r \ll \min(d, k)$, and $\alpha$ is a scaling hyperparameter that controls the magnitude of the adaptation. This approach reduces the number of trainable parameters by over 99\% compared to full fine-tuning, enabling efficient adaptation on limited hardware. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count is approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50 (as shown in Figure~\ref{fig:lora_efficiency}).
 
 \begin{figure}[htbp]
   \centering
@@ -545,7 +545,7 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU \cite{papineni
 \end{figure}
 
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Morphological Proximity Effect:} Dialects that are linguistically closer to SCB yield substantially higher translation quality. Mymensingh$\rightarrow$SCB achieves the highest pairwise BLEU \cite{papineni2002bleu} of 55.0, attributable to Mymensingh's relatively conservative morphological divergence from standard forms---primarily suffix alterations and vowel shifts rather than wholesale lexical replacement. Conversely, Chittagonian and Sylheti, which exhibit extensive lexical substitution and phonological restructuring, produce lower BLEU \cite{papineni2002bleu} scores (42.76 and 45.65 to SCB, respectively). This gradient corroborates dialectological classifications \cite{chatterji1926origin} that position Mymensingh within the Central Bangla dialect continuum, while Chittagonian occupies a more peripheral position.
+    \item \textbf{Morphological Proximity Effect:} Dialects that are linguistically closer to SCB yield substantially higher translation quality (illustrated in Figure~\ref{fig:proximity_bleu}). Mymensingh$\rightarrow$SCB achieves the highest pairwise BLEU \cite{papineni2002bleu} of 55.0, attributable to Mymensingh's relatively conservative morphological divergence from standard forms---primarily suffix alterations and vowel shifts rather than wholesale lexical replacement. Conversely, Chittagonian and Sylheti, which exhibit extensive lexical substitution and phonological restructuring, produce lower BLEU \cite{papineni2002bleu} scores (42.76 and 45.65 to SCB, respectively). This gradient corroborates dialectological classifications \cite{chatterji1926origin} that position Mymensingh within the Central Bangla dialect continuum, while Chittagonian occupies a more peripheral position.
     \item \textbf{Directional Asymmetry:} Translating \textit{from} a regional dialect to SCB is consistently easier than the reverse direction (Figure~\ref{fig:directionality}). For example, Barisali$\rightarrow$SCB achieves 50.1 BLEU \cite{papineni2002bleu} versus 37.9 for SCB$\rightarrow$Barisali---a 12.2-point gap. This asymmetry reflects a fundamental property of the decoder: generating dialectal output requires producing highly localized morphological inflections and lexical items that are sparsely represented in the SCB-dominated pre-training corpus, whereas dialect-to-standard translation can leverage the model's strong prior over standard forms.
 \end{enumerate}
 
@@ -664,7 +664,7 @@ BanglaCHQ \cite{mahjabin2025banglachq} & 2,850 pairs & 2 Dialects & Gemini 2.5 F
   \label{fig:comparative_sota}
 \end{figure}
 
-The proposed system achieves a BLEU \cite{papineni2002bleu} score 5.59 points higher than the best prior result (BanglaCHQ-Prantik, 23.67 BLEU \cite{papineni2002bleu} using Gemini 2.5 Flash), representing a 23.6\% relative improvement. The chrF++ \cite{popovic2015chrf} improvement of 8.36 points (from 48.90 to 57.26) is particularly significant, as chrF++ \cite{popovic2015chrf} is better suited to morphologically rich languages where partial word matches carry semantic value. However, we note that direct numerical comparison across studies should be interpreted cautiously, as each work employs different test sets, dialect combinations, and evaluation conditions. The primary advantage of our approach lies not only in aggregate metric improvements but in the breadth of coverage (11 dialects vs. 2--5) and the unified multi-directional architecture that eliminates pivot-based translation.
+The proposed system achieves a BLEU \cite{papineni2002bleu} score 5.59 points higher than the best prior result (BanglaCHQ-Prantik, 23.67 BLEU \cite{papineni2002bleu} using Gemini 2.5 Flash), representing a 23.6\% relative improvement (see Figure~\ref{fig:comparative_sota}). The chrF++ \cite{popovic2015chrf} improvement of 8.36 points (from 48.90 to 57.26) is particularly significant, as chrF++ \cite{popovic2015chrf} is better suited to morphologically rich languages where partial word matches carry semantic value. However, we note that direct numerical comparison across studies should be interpreted cautiously, as each work employs different test sets, dialect combinations, and evaluation conditions. The primary advantage of our approach lies not only in aggregate metric improvements but in the breadth of coverage (11 dialects vs. 2--5) and the unified multi-directional architecture that eliminates pivot-based translation.
 
 \newpage
 
@@ -677,7 +677,7 @@ The primary challenge in deploying NMT systems is memory footprint. To address t
 \begin{equation}
 W_{\text{INT8}} = \text{Quantize}(W_{\text{FP32}})
 \end{equation}
-This quantization reduced peak RAM consumption by over 65\% (operating under 1.5 GB) while accelerating CPU inference speed by approximately $3.2\times$ without perceptible degradation in translation quality.
+This quantization reduced peak RAM consumption by over 65\% (operating under 1.5 GB) while accelerating CPU inference speed by approximately $3.2\times$ without perceptible degradation in translation quality (see Figure~\ref{fig:quantization}).
 
 \subsection{Inference Pipeline and Long Document Processing}
 Standard sequence-to-sequence Transformers \cite{vaswani2017attention} impose strict input length constraints ($L_{\max} = 128$ tokens). To process full articles, the backend implements a dynamic sentence segmentation pipeline using boundary delimiters (\textit{dairi} ``\textbar'', question marks, exclamation marks, and newlines). Each extracted sentence chunk is independently translated through the quantized engine using beam search decoding (beam size $B = 4$, length penalty $\alpha = 0.8$, repetition penalty $\beta = 1.2$) \cite{wu2016google} and concatenated sequentially to prevent truncation.
