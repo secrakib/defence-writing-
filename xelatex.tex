@@ -132,7 +132,7 @@ To address these limitations, this research introduces a unified \textbf{Poly-Di
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.95\textwidth]{graphics/overview.png}
+  \includegraphics[width=0.95\textwidth]{graphics/overview.pdf}
   \caption{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}
   \label{fig:overview}
 \end{figure}
@@ -303,14 +303,14 @@ As depicted comprehensively in Figure~\ref{fig:dataset_composition}, despite aug
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.95\textwidth]{graphics/source_contributions_advanced.png}
+  \includegraphics[width=0.95\textwidth]{graphics/source_contributions_advanced.pdf}
   \caption{Dataset Composition and Source Provenance: A stacked horizontal distribution illustrating the severe class imbalance alongside the precise proportional contributions from prior corpora and manual augmentation efforts for each regional dialect.}
   \label{fig:dataset_composition}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/coverage_matrix_advanced.png}
+  \includegraphics[width=0.85\textwidth]{graphics/coverage_matrix_advanced.pdf}
   \caption{Cross-Dialect Parallel Coverage Matrix: An upper-triangular masked heatmap detailing the exact density of shared, parallel sentence pairs intersecting any two evaluated dialectal variants.}
   \label{fig:coverage_matrix}
 \end{figure}
@@ -529,7 +529,7 @@ Figure~\ref{fig:model_comparison} visualizes the performance trajectory across a
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.95\textwidth]{graphics/model_comparison.png}
+  \includegraphics[width=0.95\textwidth]{graphics/model_comparison.pdf}
   \caption{Comparative evaluation across experimental phases. BLEU \cite{papineni2002bleu}, chrF++ \cite{popovic2015chrf}, and METEOR \cite{banerjee2005meteor} (higher is better) and TER \cite{snover2006study} (lower is better) are shown for all three models at 20 epochs and BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} at 100 epochs.}
   \label{fig:model_comparison}
 \end{figure}
@@ -539,7 +539,7 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU \cite{papineni
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/bleu_heatmap.png}
+  \includegraphics[width=0.85\textwidth]{graphics/bleu_heatmap.pdf}
   \caption{Cross-dialectal BLEU \cite{papineni2002bleu} score heatmap (BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, 100 epochs). Darker shading indicates higher translation quality. Low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores, while morphologically proximate pairs (Mymensingh$\leftrightarrow$SCB) achieve the highest scores.}
   \label{fig:bleu_heatmap}
 \end{figure}
@@ -559,7 +559,7 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU \cite{papineni
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/directionality.png}
+  \includegraphics[width=0.85\textwidth]{graphics/directionality.pdf}
   \caption{Translation directionality asymmetry across six major dialects. Dialect$\rightarrow$SCB (green) consistently outperforms SCB$\rightarrow$Dialect (blue), with the BLEU \cite{papineni2002bleu} gap indicated by annotations.}
   \label{fig:directionality}
 \end{figure}
@@ -629,7 +629,7 @@ To quantify the relationship between training data volume and translation qualit
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.90\textwidth]{graphics/dataset_scaling.png}
+  \includegraphics[width=0.90\textwidth]{graphics/dataset_scaling.pdf}
   \caption{BLEU \cite{papineni2002bleu} and chrF++ \cite{popovic2015chrf} as a function of training data volume for two LoRA \cite{hu2021lora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples.}
   \label{fig:scaling}
 \end{figure}
@@ -659,7 +659,7 @@ BanglaCHQ \cite{mahjabin2025banglachq} & 2,850 pairs & 2 Dialects & Gemini 2.5 F
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/comparative_sota.png}
+  \includegraphics[width=0.85\textwidth]{graphics/comparative_sota.pdf}
   \caption{Visual comparison of BLEU \cite{papineni2002bleu} and chrF++ \cite{popovic2015chrf} scores across baseline systems and the proposed approach.}
   \label{fig:comparative_sota}
 \end{figure}
