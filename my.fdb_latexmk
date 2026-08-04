@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex my"] 1785842601.98472 "my.aux" "my.bbl" "my" 1785842606.47303 0
+["bibtex my"] 1785843543.87983 "my.aux" "my.bbl" "my" 1785843548.03213 0
   "./biblography.bib" 1785774454 7043 d24b6827e6ba4ef05888cad382e168e8 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "my.aux" 1785842605 10951 1f29a74fa4fd2fbb70ae2bacf7e4f358 "pdflatex"
+  "my.aux" 1785843547 10817 42c5c30770ade947a47a7c4e58e7dec7 "pdflatex"
   (generated)
   "my.bbl"
   "my.blg"
   (rewritten before read)
-["pdflatex"] 1785842602.34659 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785842606.47365 0
+["pdflatex"] 1785843544.13929 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785843548.03274 0
   "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1785842046 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1785773799 14064 39b72d7c50addcb7e110a41b34c767ff ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1785593653 13367061 0084e52eced66129f45eb6c348f12d1f ""
@@ -103,17 +103,17 @@
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/tools/longtable.sty" 1780057721 16761 72eba725e75c70a71d7559a1c5f9dcd5 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "e:/Writing Defence/my.tex" 1785842597 39560 6b96579addb3533a5af4ede85ac7dccc ""
+  "e:/Writing Defence/my.tex" 1785843539 40083 3cb23edc7a9e0fc0c7d8e6b880ec7623 ""
   "graphics/bleu_heatmap.png" 1785773567 277882 2e3fac1e1d82e711b48ab76e85b6582c ""
   "graphics/dataset_scaling.png" 1785773566 326927 af4fea51c3d3ffd9417e6e6b45f06de7 ""
   "graphics/dialect_coverage.png" 1785773564 170846 0d0ba2317e19a79727ba75e27f05c459 ""
   "graphics/directionality.png" 1785773567 140583 638bdaa5711b2278f834ad7abc5edfc5 ""
   "graphics/model_comparison.png" 1785773565 200870 1fcb2a7c5374abaa7ceef336142cbe58 ""
   "graphics/overview.png" 1785773570 581376 3d689ef515ca0232ab4d0592c4dd1333 ""
-  "my.aux" 1785842605 10951 1f29a74fa4fd2fbb70ae2bacf7e4f358 "pdflatex"
-  "my.bbl" 1785842602 6278 ef442697c65937584a5865c51e456691 "bibtex my"
-  "my.out" 1785842605 5171 f6f5928b1023603dff0589299117ee81 "pdflatex"
-  "my.tex" 1785842597 39560 6b96579addb3533a5af4ede85ac7dccc ""
+  "my.aux" 1785843547 10817 42c5c30770ade947a47a7c4e58e7dec7 "pdflatex"
+  "my.bbl" 1785843544 6278 ef442697c65937584a5865c51e456691 "bibtex my"
+  "my.out" 1785843547 5171 f6f5928b1023603dff0589299117ee81 "pdflatex"
+  "my.tex" 1785843539 40083 3cb23edc7a9e0fc0c7d8e6b880ec7623 ""
   (generated)
   "my.aux"
   "my.log"
