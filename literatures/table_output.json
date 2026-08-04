@@ -1,0 +1,142 @@
+[
+  [
+    "Source ID & Document Title",
+    "Authors & Institutional Affiliations",
+    "Primary NLP Task & Core Research Objective",
+    "Dialectal Coverage & Exact Dataset Size",
+    "Corpus Architecture & Annotation Quality Control (QC)",
+    "Evaluation Metrics Employed",
+    "SOTA Baseline Performance & Best Results",
+    "Aligned BibTeX Citation"
+  ],
+  [
+    "1. ANCHOLIK-NER (2025)",
+    "Bidyarthi Paul, Faika Fairuj Preotee, Shuvashis Sarker, Shamim Rahim Refat (Ahsanullah University of Science and Technology), Shifat Islam (BUET), Tashreef Muhammad, Mohammad Ashraful Hoque, Shahriar Manzoor (Southeast University).",
+    "Named Entity Recognition (NER). Establishes the first structured entity extraction baseline for dialectal Bangla to support automated knowledge-base construction.",
+    "Sylhet, Chittagong, Barishal. 10,443 sentences (3,481 sentences per regional dialect).",
+    "BIO tagging scheme. Sourced from Vashantor (71.81%), ONUBAD, and web-scraped online newspapers (29.11%). Annotated by 3 expert regional linguists via a consensus-based 3-annotator pipeline. 10 Classes: Person (PER), Location (LOC), Organization (ORG), Food (FOOD), Animal (ANI), Colour (COL), Role (ROLE), Relation (REL), Object (OBJ), and Miscellaneous (O).",
+    "Tokenization accuracy, corpus class balance distribution. (Baseline model performance not quantified in source text; notes Assamese NER baseline reached 80.69% F1 with MuRIL, and medical NER baseline BanglishBERT got 56.13% F1).",
+    "First baseline resource of its kind. Exact entity instances (Table 2): Relation (REL) has 1,986 instances, Location (LOC) has 1,622 instances, Object (OBJ) has 1,038, Food (FOOD) has 926, Colour (COL) has 488, Organization (ORG) has 433, Role (ROLE) has 339, Animal (ANI) has 167, Person (PER) has 116, and Miscellaneous (O) has 54,388.",
+    "@article{paul2025ancholik,  title={ANCHOLIK-NER: A Benchmark Dataset for Bangla Regional Named Entity Recognition},  author={Paul, Bidyarthi and Preotee, Faika Fairuj and Sarker, Shuvashis and Refat, Shamim Rahim and Islam, Shifat and Muhammad, Tashreef and Hoque, Mohammad Ashraful and Manzoor, Shahriar},  journal={arXiv preprint arXiv:2502.11198},  year={2025}}"
+  ],
+  [
+    "2. ANUBHUTI (2026)",
+    "Swastika Kundu, Autoshi Ibrahim, Mithila Rahman, Tanvir Ahmed (Ahsanullah University of Science and Technology).",
+    "Thematic Sentiment & Multilabel Emotion Analysis in informal, dialect-rich online texts.",
+    "Mymensingh, Noakhali, Sylhet, Chittagong. 10,000 sentences (2,500 parallel sentences symmetrically balanced per region).",
+    "Dual-layer annotation: (1) Multiclass themes: Political, Religious, Neutral; (2) Multilabel emotions: Anger, Contempt, Disgust, Enjoyment, Fear, Sadness, Surprise. Sourced from standard MONOVAB corpus. Hired 8 native translators (2 per region). Rigorous multi-stage QA check framework: (1) Semantic & Sentiment Verification, (2) Missing Data Detection (manual review + pandas-based NaN/null parsing), (3) Anomaly Detection (stylistic noise, non-Bangla symbols, regex formatting check), and (4) Dialectal Spelling Standardization.",
+    "Cohen's Kappa ($\kappa$) for inter-translator agreement, multiclass/multilabel percentage distribution.",
+    "Inter-translator agreement reached substantial-to-almost-perfect levels: Mymensingh ($\kappa$ = 0.84), Sylhet ($\kappa$ = 0.81), Noakhali ($\kappa$ = 0.78), and Chittagong ($\kappa$ = 0.76). Thematic split: 64.0% Neutral, 19.0% Political, 17.0% Religious. Dominant emotions (Figure 3): Contempt (921), Disgust (871), Anger (732), Sadness (397), Enjoyment (324), Surprise (56), Fear (47).",
+    "@article{kundu2026anubhuti,  title={ANUBHUTI: A Comprehensive Corpus for Sentiment Analysis in Bangla Regional Languages},  author={Kundu, Swastika and Ibrahim, Autoshi and Rahman, Mithila and Tanvir Ahmed},  journal={arXiv preprint arXiv:2506.21686},  year={2026}}"
+  ],
+  [
+    "3. BIDWESH (2025)",
+    "Azizul Hakim Fayaz, MD. Shorif Uddin, Rayhan Uddin Bhuiyan, Zakia Sultana, Md. Samiul Islam, Bidyarthi Paul, Tashreef Muhammad, Shahriar Manzoor (Southeast University).",
+    "Multi-Dialectal Hate Speech Detection to mitigate regional slurs, slanders, and online toxic behavior.",
+    "Barishal, Noakhali, Chittagong. 9,183 instances (3,061 parallel instances per dialect translated from standard BD-SHS corpus).",
+    "Sourced from BD-SHS. Translated by 6 native speakers and validated via a 5-stage pipeline (Re-evaluation, Unrelated Text Remove, Sentence Verification, Emoji/Hashtag/Mention Removal). (1) Primary binary classification: Hate/Non-Hate; (2) Target: Individual, Male, Female, Group; (3) Type: Slander, Gender, Religion, callToViolence.",
+    "Multi-level target distribution and class balance percentage.",
+    "Achieved exceptionally balanced binary splits: 49.24% Hate (1,513 rows) vs. 50.76% Non-Hate (1,548 rows). Target demographic focus (Table 6): Individual targets comprised the highest proportion (34.37%, 520 instances), followed by Males (29.28%, 443), Females (18.77%, 284), Group (15.87%, 240), and Male_female (13.22%, 200). Slander is the most dominant hate type (53.65% of instances).",
+    "@article{fayaz2025bidwesh,  title={BIDWESH: A Bangla Regional Based Hate Speech Detection Dataset},  author={Fayaz, Azizul Hakim and Uddin, MD. Shorif and Bhuiyan, Rayhan Uddin and Sultana, Zakia, Md. Samiul Islam, Bidyarthi Paul, Tashreef Muhammad, Shahriar Manzoor},  journal={arXiv preprint},  year={2025}}"
+  ],
+  [
+    "4. Bangla Dialect Bibliography",
+    "Consolidated meta-synthesis index provided by the workspace environment.",
+    "Systematic Bibliography & Meta-Review mapping the unique resource landscape of low-resource Bangla Dialect NLP.",
+    "Comprehensive (Synthesises all major regional variants across Bangladesh).",
+    "Meta-analysis tracking 11 unique publications, evaluating annotation strategies, parallel alignments, and cross-lingual translation baselines.",
+    "Publication counting, dialect representation percentages, task categorization.",
+    "Aggregated and mapped 11 unique dialectal corpora, showcasing that Sylheti and Chittagonian remain the most heavily studied dialects, whereas Barishal, Mymensingh, and Noakhali are emerging.",
+    "@article{banglameta2025review,  title={The Landscape of Bangla Dialect NLP: A Systematic Bibliography and Resource Index},  author={NotebookLM Synthesis Contributors},  journal={Defence Literature Index Research Review},  year={2025}}"
+  ],
+  [
+    "5. BanglaDial (2025)",
+    "Mehraj Hossain Mahi, Anzir Rahman Khan, Mayen Uddin Mojumdar (Daffodil International University).",
+    "Dialect Identification (DID) and quantitative modeling of massive low-resource class imbalance.",
+    "11 Dialects + Standard Bangla (Kishoreganj, Chittagong, Narail, Tangail, Rangpur, Narsingdi, Barisal, Sylhet, Mymensingh, Noakhali, Rajshahi). 60,729 sentences total.",
+    "Aggregated subset compiled from 4 major corpora (Vashantor, ONUBAD, Bhashamul, and Bangla Dialect Dataset). Cleansed via rigorous duplicate removal (2,574 duplicate sentences removed, ~4.1% of all records), mention/hashtag filtering, emoji removal, and character/whitespace normalization.",
+    "Word/character counts, Shannon Entropy (H), Imbalance Ratio (IR), cumulative top-N proportion.",
+    "Documented a total corpus size of 362,430 words. Exhibits natural long-tail distribution (Table 5): Top-3: 41.3%, Top-5: 60.5%, Top-10: 94.5%. Imbalance Ratio (IR) = 9.82. Shannon Entropy (H) = 3.416 bits (Normalized Entropy = 0.953). Average sentence length (Table 2) peaks in Chittagong dialect at 6.93 words, with Kishoreganj lowest at 5.04 words.",
+    "@article{mahi2025bangladial,  title={BanglaDial: A merged and imbalanced text dataset for Bengali regional dialect analysis},  author={Mahi, Mehraj Hossain and Khan, Anzir Rahman and Mojumdar, Mayen Uddin},  journal={Data in Brief},  volume={63},  pages={112200},  year={2025},  doi={10.1016/j.dib.2025.112200}}"
+  ],
+  [
+    "6. BdRegionText (2022)",
+    "Babe Sultana (Green University of Bangladesh / United International University), S. M. Mirajul Hoque (BUBT), Md Gulzar Hussain (NUIST), Mohammad Nurul Huda (United International University).",
+    "Bangla Regional Text Classification on noisy, unstructured social media communications.",
+    "Chittagong, Noakhali, Barishal, Rangpur. 2,573 sample texts (Chittagong: 1,167, Noakhali: 755, Barishal: 338, Rangpur: 313).",
+    "Scraped from interactive social platforms (Facebook, YouTube, Instagram) using human context validation. Tokenized and preprocessed (unnecessary symbols, punctuation, emojis, and numbers removed). Feature extraction: TF-IDF, CountVectorizer, and Bag of Words (BoW).",
+    "Accuracy, Precision, Recall, Weighted F1-score, and 10-fold cross-validation.",
+    "Random Forest (RF) model trained on TF-IDF + CountVectorizer achieved the peak overall classification accuracy of 79.15% (weighted F1: 0.78, weighted precision: 0.79, weighted recall: 0.79), with a mean 10-fold cross-validation accuracy of 79.47%. RF with BoW got 75.92% accuracy. Baselines: Decision Tree (74.35%), SGD (78.10%), SVM (75.73%).",
+    "@article{sultana2022bdregiontext,  title={BdRegionText: Resource Creation and Evaluation for Bangla Regional Text Classification with Machine Learning},  author={Sultana, Babe and Hoque, S. M. Mirajul and Hussain, Md Gulzar and Huda, Mohammad Nurul},  journal={Indonesian Journal of Electrical Engineering and Computer Science},  volume={99},  number={1},  pages={1--1x},  year={2022},  doi={10.11591/ijeecs.v99.i1.pp1-1x}}"
+  ],
+  [
+    "7. BhasaBodh (2025)",
+    "Md. Tofael Ahmed Bhuiyan, Md. Abdur Rahman, Abdul Kadar Muhammad Masum (Southeast University).",
+    "Script Normalization & Multilingual Dialect Translation across native and Romanized scripts.",
+    "Chittagong, Sylhet (fully aligned with Standard Bangla & English). 1,960 aligned sentences (980 per dialect).",
+    "Sentences extracted from ONUBAD and filtered for strict sentence alignments. Augmented with Gemini 2.5 Pro to generate realistic, informal Latin-script romanizations mimicking user-generated social chats. Baseline sequence-to-sequence fine-tuning was performed using NLLB-200 and mBART-50 across 7 tasks. Fine-tuning setup: Batch size 8, learning rate 5e-5, weight decay 0.01, BLEU checkpointing with early stopping.",
+    "BLEU, METEOR, and semantic BERTScore-F1.",
+    "mBART-50 consistently outperformed NLLB-200 on dialectal and romanized tasks. Peak performance: 87.44 BLEU (METEOR: 0.869, BERTScore-F1: 0.976) achieved on the Romanized Bangla $\rightarrow$ Standard Bangla task using mBART-50. Cross-dialect Chittagong $\leftrightarrow$ Sylhet reached 74.36 BLEU. English $\rightarrow$ Romanized Sylhet was the most challenging (<41.00 BLEU).",
+    "@article{bhuiyan2025bhasabodh,  title={BhasaBodh: Bridging Bangla Dialects and Romanized Forms through Machine Translation},  author={Bhuiyan, Md. Tofael Ahmed and Rahman, Md. Abdur and Masum, Abdul Kadar Muhammad},  journal={arXiv preprint},  year={2025}}"
+  ],
+  [
+    "8. ChatgaiyyaAlap (2025)",
+    "Sinthia Chowdhury, Deawan Rakin Ahamed Remal, Syed Tangim Pasha, Ashraful Islam (Independent University Bangladesh), Sheak Rashed Haider Noori (Daffodil International University).",
+    "Dialect Conversion from Chittagonian dialect to Standard Bangla.",
+    "Chittagonian (aligned with Standard Bangla). 4,012 unique sentences alongside a 1,500-word parallel dictionary.",
+    "Compiled from Facebook and YouTube comments, dramas, short films. Validated manually by a panel of 5 native Chittagonian male university graduates to eliminate spelling mistakes, punctuation, emojis, and numbers. The parallel dictionary maps strict single-word correspondences to avoid ambiguities and potential biases.",
+    "Dissimilarity modeling, orthographic variance mapping, structural divergence analysis.",
+    "Created a clean translation mapping that addresses and resolves severe grammatical divergences, structural spelling variations, and phonetic differences, particularly in negative sentences.",
+    "@article{chowdhury2025chatgaiyyaalap,  title={ChatgaiyyaAlap: A dataset for conversion from Chittagonian dialect to standard Bangla},  author={Chowdhury, Sinthia and Remal, Deawan Rakin Ahamed and Pasha, Syed Tangim and Islam, Ashraful and Noori, Sheak Rashed Haider},  journal={Data in Brief},  volume={59},  pages={111413},  year={2025},  doi={10.1016/j.dib.2025.111413}}"
+  ],
+  [
+    "9. BanglaCHQ-Prantik (2025)",
+    "Nowshin Mahjabin, Ahmed Shafin Ruhan, Mehreen Hossain Chowdhury (Islamic University of Technology), Md Fahim (CCDS & Penta Global), Md. Azam Hossain (IUT).",
+    "Medical-Domain Machine Translation from Standard Bangla to regional dialects.",
+    "Sylheti, Chittagonian (aligned with Standard Bangla consumer health queries). 2,350 Sylheti aligned sentences, 500 Chittagonian aligned sentences.",
+    "Consumer Health Questions (CHQs) sourced from the BanglaCHQ-Summ corpus. Preprocessed for Unicode normalization, unit/dosage standardization. Annotated by 9 native speakers and validated by 11 independent validators plus 2 expert licensed physicians. Benchmarked Qwen 2.5 3B, Gemma 3 1B, GPT-4o mini, and Gemini 2.5 Flash across Zero-shot, Few-shot, and CoT settings.",
+    "BLEU (via sacreBLEU), ROUGE-1/2/L, and METEOR.",
+    "Closed-source models led overall. Gemini 2.5 Flash achieved SOTA 5-shot translation on Sylheti : 23.67 BLEU, 49.02 ROUGE-1, 25.20 ROUGE-2, 49.97 ROUGE-L, 43.82 METEOR. Translating Sylheti is easier for current LLMs than translating Chittagonian. For Chittagonian, GPT-4o under CoT prompting reached BLEU: 24.67, ROUGE-1: 51.74, ROUGE-2: 26.84, ROUGE-L: 50.57, METEOR: 47.30.",
+    "@article{mahjabin2025human,  title={Human--LLM Benchmarks for Bangla Dialect Translation: Sylheti & Chittagonian on the BanglaCHQ-Summ Corpus},  author={Mahjabin, Nowshin and Ruhan, Ahmed Shafin and Chowdhury, Mehreen Hossain and Fahim, Md and Hossain, Md. Azam},  journal={arXiv preprint},  year={2025}}"
+  ],
+  [
+    "10. DIALTSA-BN (2025)",
+    "Md Mahir Jawad, Rafid Ahmed (Penta Global), Ishita Sur Apan (CCDS, IUB), Tasnimul Hossain Tomal, Fabiha Haider (Penta Global), Mir Sazzat Hossain (CCDS, IUB), Md Farhad Alam Bhuiyan (Penta Global).",
+    "Dialect Translation & Dialectal Sentiment Analysis to evaluate prompting strategies and manual transliteration.",
+    "Chattogram, Barishal, Sylhet, Noakhali. 600 annotated instances (150 per region).",
+    "Sourced from naturally occurring YouTube comments across diverse social domains. Cleaned via Word2Vec filter with a similarity threshold of 70% to exclude standard sentences. Annotated for parallel translation by 4 regional experts. Evaluated Claude 3.7 Sonnet, GPT-4o-mini, Gemini 2.5 Flash, Qwen-2.5-7B, Gemma-3-12B, Llama-3.1-8B, and Mistral across native and Latin-transliterated prompts.",
+    "BLEU, ROUGE-1/2/L, METEOR, Sentiment Classification Precision, Recall, and F1-score.",
+    "Transliteration dramatically improved translation quality for closed-source models. Peak Zero-shot Transliterated BLEU reached 0.330 on Claude 3.7 Sonnet (METEOR: 0.571, ROUGE-L: 0.829) and 0.317 on GPT-4o-mini, compared to <0.07 on native script. In-context few-shot sentiment classification achieved near-perfect F1 of 0.98 using GPT-4o-mini. For open-source, Mistral got 0.114 BLEU on transliterated few-shot translation.",
+    "@article{jawad2025benchmarking,  title={Benchmarking Large Language Models on Bangla Dialect Translation and Dialectal Sentiment Analysis},  author={Jawad, Md Mahir and Ahmed, Rafid and Apan, Ishita Sur and Tomal, Tasnimul Hossain and Haider, Fabiha and Hossain, Mir Sazzat and Bhuiyan, Md Farhad Alam},  journal={arXiv preprint},  year={2025}}"
+  ],
+  [
+    "11. BanglaCHQ-Prantik (2025)",
+    "Nowshin Mahjabin, Ahmed Shafin Ruhan, Mehreen Hossain Chowdhury (Islamic University of Technology), Md Fahim (CCDS & Penta Global), Md. Azam Hossain (IUT).",
+    "Dual publication baseline tracking pediatric & adult clinical machine translation in low-resource medical NLP.",
+    "Sylheti, Chittagonian. 2,350 Sylheti aligned sentences, 500 Chittagonian aligned sentences.",
+    "Parallel reference tracking of consumer queries. Highlighted critical phonetic and spelling shifts (e.g., Standard pete to Sylheti feto and Chittagonian cano, meyeta to furita / maiya). Confirms that CoT prompting overgeneralizes phonetic repetition, reducing target lexical fidelity.",
+    "sacreBLEU, ROUGE-1/2/L, METEOR.",
+    "Confirms identical medical baseline trends. Few-shot examples provide morphological anchors but clinical error analysis reveals 4 dominant LLM vulnerabilities: (1) terminology mismatch, (2) numeral/dosage corruption (e.g., rendering \"500mg\" as \"5 gram\" in Qwen), (3) literalized idioms, and (4) orthographic drift.",
+    "@article{mahjabin2025human,  title={Human--LLM Benchmarks for Bangla Dialect Translation: Sylheti & Chittagonian on the BanglaCHQ-Summ Corpus},  author={Nowshin Mahjabin, Ahmed Shafin Ruhan, Mehreen Hossain Chowdhury, Md Fahim, Md. Azam Hossain},  journal={arXiv preprint},  year={2025}}"
+  ],
+  [
+    "12. ONUBAD (2025)",
+    "Nusrat Sultana, Rumana Yasmin (Jahangirnagar University), Bijon Mallik (BUET), Mohammad Shorif Uddin (Jahangirnagar University).",
+    "Dialect Conversion & Neural Machine Translation from regional dialects to Standard Bangla.",
+    "Chittagong, Sylhet, Barisal (aligned with Standard Bangla & English). 7,950 total parallel rows (1,540 words, 130 clauses, 980 sentences per region).",
+    "Sourced between July and September 2024 from literature, books, websites, and regional volunteers. Validated by native language specialists from Jahangirnagar University, Govt. BM College, and Chattagram Biggan College. Formulates NMT modeling pipelines across seq2seq (LSTM, GRU) and transformer architectures (SeamlessM4T, T5, BanglaT5).",
+    "Word/clause/sentence counts, translation quality scores (CER, WER, BLEU, METEOR, ROUGE).",
+    "Establishes a highly structured, fine-grained parallel framework. Documented average word count: 2 words per clause and 3 words per sentence (Table 2). Peak translation quality benchmarked via BanglaT5 and SeamlessM4T.",
+    "@article{sultana2025onubad,  title={ONUBAD: A comprehensive dataset for automated conversion of Bangla regional dialects into standard Bengali dialect},  author={Nusrat Sultana, Rumana Yasmin, Bijon Mallik, Mohammad Shorif Uddin},  journal={Data in Brief},  volume={58},  pages={111276},  year={2025},  doi={10.1016/j.dib.2025.111276}}"
+  ],
+  [
+    "13. Vashantor (2023)",
+    "Fatema Tuj Johora Faria, Mukaffi Bin Moin, Ahmed Al Wase, Mehidi Ahmmed (Khulna University), Md. Rabius Sani, Tashreef Muhammad (Southeast University).",
+    "Dialect-to-Standard Bangla Translation & Region Detection. Establishes the pioneer multi-task framework for dialectal NMT and dialect classification.",
+    "Chittagong, Noakhali, Sylhet, Barishal, Mymensingh. 32,500 total sentences (2,500 parallel sentences per regional Bangla and Banglish variant, plus 12,500 region detection instances).",
+    "Sourced from social networks, newspaper portals, and student conversational recordings. Validated with Cohen's Kappa (K1 for 2-rater splits: Sylhet, Mymensingh) and Fleiss' Kappa (K2 for 3-rater splits: Chittagong, Noakhali, Barishal). Cosine similarity and TF-IDF applied to quantify linguistic drift.",
+    "CER, WER, BLEU, METEOR, ROUGE-1/2/L, Region Detection Accuracy, Precision, Recall, F1, Log Loss.",
+    "Custom NMT architecture DialectBanglaT5 (BanglaT5 with decoder cross-attention and gating context fusion) outperformed mT5 and BanglaT5. SOTA translation on Mymensingh : BLEU = 71.93, METEOR = 0.8503, WER = 0.1470, CER = 0.0791. Chittagong dialect was the hardest outlier (BLEU = 46.91, METEOR = 0.6750), due to its extremely low cosine similarity to Standard Bangla (0.0099). Custom classifier DialectBanglaBERT reached 89.02% overall region classification accuracy (Table 15) (Barishal F1: 0.9476, Chittagong F1: 0.9241, Mymensingh F1: 0.8736, Noakhali F1: 0.8696, Sylhet F1: 0.8278).",
+    "@article{faria2023vashantor,  title={Vashantor: A Large-scale Multilingual Benchmark Dataset for Automated Translation of Bangla Regional Dialects to Bangla Language},  author={Faria, Fatema Tuj Johora and Moin, Mukaffi Bin and Wase, Ahmed Al and Ahmmed, Mehidi and Sani, Md. Rabius and Muhammad, Tashreef},  journal={arXiv preprint arXiv:2311.11142},  year={2023}}"
+  ]
+]
