@@ -462,15 +462,16 @@ Table~\ref{tab:model_results_search} presents the overall performance comparison
 
 \begin{table}[htbp]
 \centering
+\small
 \caption{Overall performance comparison of the three NMT candidate models fine-tuned for 20 epochs on the poly-dialectal test set (18,062 evaluation pairs). Best results are in \textbf{bold}.}
 \label{tab:model_results_search}
 \begin{tabular}{l c c c c c}
 \toprule
-\textbf{Model} & \textbf{Params} & \textbf{BLEU \cite{papineni2002bleu} $\uparrow$} & \textbf{chrF++ \cite{popovic2015chrf} $\uparrow$} & \textbf{METEOR \cite{banerjee2005meteor} $\uparrow$} & \textbf{TER \cite{snover2006study} $\downarrow$} \\
+\textbf{Model} & \textbf{Params} & \textbf{BLEU $\uparrow$} & \textbf{chrF++ $\uparrow$} & \textbf{METEOR $\uparrow$} & \textbf{TER $\downarrow$} \\
 \midrule
-BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} (20 ep) & 247M & \textbf{23.22} & \textbf{51.20} & \textbf{41.41} & \textbf{56.85} \\
-NLLB-200 \cite{nllb2022} (20 ep) & 615M & 15.30 & 43.15 & 34.20 & 63.85 \\
-mBART-50 \cite{tang2020multilingual} (20 ep) & 611M &  9.45 & 33.60 & 24.50 & 76.40 \\
+BanglaT5 (20 ep) & 247M & \textbf{23.22} & \textbf{51.20} & \textbf{41.41} & \textbf{56.85} \\
+NLLB-200 (20 ep) & 615M & 15.30 & 43.15 & 34.20 & 63.85 \\
+mBART-50 (20 ep) & 611M &  9.45 & 33.60 & 24.50 & 76.40 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -485,14 +486,15 @@ Extended training yielded substantial improvements across all evaluation metrics
 
 \begin{table}[htbp]
 \centering
-\caption{Performance progression of BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} from 20-epoch to 100-epoch LoRA \cite{hu2021lora} fine-tuning, evaluated on the poly-dialectal test set (18,062 pairs).}
+\small
+\caption{Performance progression of BanglaT5 from 20-epoch to 100-epoch fine-tuning, evaluated on the poly-dialectal test set (18,062 pairs).}
 \label{tab:model_results_final}
 \begin{tabular}{l c c c c c}
 \toprule
-\textbf{Configuration} & \textbf{Params} & \textbf{BLEU \cite{papineni2002bleu} $\uparrow$} & \textbf{chrF++ \cite{popovic2015chrf} $\uparrow$} & \textbf{METEOR \cite{banerjee2005meteor} $\uparrow$} & \textbf{TER \cite{snover2006study} $\downarrow$} \\
+\textbf{Configuration} & \textbf{Params} & \textbf{BLEU $\uparrow$} & \textbf{chrF++ $\uparrow$} & \textbf{METEOR $\uparrow$} & \textbf{TER $\downarrow$} \\
 \midrule
-BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} (20 ep) & 247M & 23.22 & 51.20 & 41.41 & 56.85 \\
-BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} (100 ep) & 247M & \textbf{29.26} & \textbf{57.26} & \textbf{49.68} & \textbf{50.59} \\
+BanglaT5 (20 ep) & 247M & 23.22 & 51.20 & 41.41 & 56.85 \\
+BanglaT5 (100 ep) & 247M & \textbf{29.26} & \textbf{57.26} & \textbf{49.68} & \textbf{50.59} \\
 \midrule
 \textit{Relative Gain} & --- & \textit{+26.0\%} & \textit{+11.8\%} & \textit{+20.0\%} & \textit{$-$11.0\%} \\
 \bottomrule
