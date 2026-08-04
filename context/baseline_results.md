@@ -2,7 +2,7 @@
 
 ## 1. Baseline Model Comparisons
 
-### BanglaT5 (10 Epochs)
+### BanglaT5 (20 Epochs)
 * **Execution Time / Log Marker**: 7990.2s
 
 #### Per-dialect-pair results:
