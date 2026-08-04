@@ -341,58 +341,50 @@ To ensure rigorous reproducibility and optimal convergence, Table~\ref{tab:model
 
 \begin{table}[htbp]
 \centering
-\caption{Unified architectural and fine-tuning configurations for the NMT models.}
+\caption{Unified hyperparameter matrix for model candidate benchmarking and dataset scaling experiments.}
 \label{tab:model_hyperparams}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{l l l l l}
+\small
+\begin{tabular}{@{} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{3.8cm} >{\raggedright\arraybackslash}p{3.8cm} @{}}
 \toprule
 \textbf{Category} & \textbf{Hyperparameter} & \textbf{BanglaT5} & \textbf{mBART-50} & \textbf{NLLB-200} \\
 \midrule
-\multirow{3}{*}{Model Registry} & HuggingFace Checkpoint & \texttt{csebuetnlp/banglat5\_small} & \texttt{facebook/mbart-large-50-many-to-many-mmt} & \texttt{facebook/nllb-200-distilled-600M} \\
-& Base Parameter Count & $\sim$60M (Base) / 247M & $\sim$611M & $\sim$600M \\
-& Src/Tgt Language Tags & Prefixed & \texttt{bn\_IN} & \texttt{ben\_Beng} \\
+\multicolumn{5}{@{}l}{\textbf{A. Model Architecture \& Tokenization}} \\
 \midrule
-\multirow{2}{*}{Sequence Setup} & Max Length ($L_{\text{src}}$, $L_{\text{tgt}}$) & 128 tokens & 128 tokens & 128 tokens \\
-& Sequence Packing & Enabled & Disabled & Disabled \\
+Model Registry & Base Checkpoint & \texttt{csebuetnlp/}\newline\texttt{banglat5} & \texttt{facebook/mbart-}\newline\texttt{large-50-many-} \newline\texttt{to-many-mmt} & \texttt{facebook/nllb-}\newline\texttt{200-distilled-}\newline\texttt{600M} \\
+\addlinespace[2pt]
+Parameters & Base Parameter Count & $\sim 247\text{M}$ & $\sim 611\text{M}$ & $\sim 600\text{M}$ \\
+\addlinespace[2pt]
+Language Tags & Tag Format & Prefixed & \texttt{bn\_IN} & \texttt{ben\_Beng} \\
+\addlinespace[2pt]
+Sequence Setup & Max Length ($L_{\text{src}}, L_{\text{tgt}}$) & 128 tokens & 128 tokens & 128 tokens \\
 \midrule
-\multirow{3}{*}{Optimization} & Optimizer & Paged AdamW 8-bit & Paged AdamW 8-bit & Paged AdamW 8-bit \\
-& Learning Rate ($\eta$) & $5 \times 10^{-4}$ & $5 \times 10^{-4}$ & $5 \times 10^{-4}$ \\
-& LR Scheduler & Cosine Annealing & Cosine Annealing & Cosine Annealing \\
+\multicolumn{5}{@{}l}{\textbf{B. Phase I \& II Fine-Tuning Setup}} \\
 \midrule
-\multirow{3}{*}{Batching} & Per-Device Batch Size & 32 & 8 & 8 \\
-& Gradient Accum. Steps & 2 & 8 & 8 \\
-& Effective Batch Size & 64 & 64 & 64 \\
+Optimization & Optimizer & Paged AdamW 8-bit & Paged AdamW 8-bit & Paged AdamW 8-bit \\
+\addlinespace[2pt]
+Learning Rate & Initial $\eta$ (Scheduler) & $5 \times 10^{-4}$ (Cosine) & $5 \times 10^{-4}$ (Cosine) & $5 \times 10^{-4}$ (Cosine) \\
+\addlinespace[2pt]
+Batching & Per-Device / Eff. Batch & 32 / 64 (Accum 2) & 8 / 64 (Accum 8) & 8 / 64 (Accum 8) \\
+\addlinespace[2pt]
+LoRA Adapter & Rank ($r$) / Scaling ($\alpha$) & $r=64, \alpha=128$ & $r=64, \alpha=128$ & $r=64, \alpha=128$ \\
+\addlinespace[2pt]
+Target Modules & Projections & \texttt{q, v, k, o,}\newline\texttt{wi, wo} & \texttt{q, k, v, out\_proj,}\newline\texttt{fc1, fc2} & \texttt{q, k, v, out\_proj,}\newline\texttt{fc1, fc2} \\
 \midrule
-\multirow{3}{*}{LoRA} & Adapter Rank ($r$) & 64 & 64 & 64 \\
-& Scaling Factor ($\alpha$) & 128 & 128 & 128 \\
-& Target Projections & \texttt{q, v, k, o, wi, wo} & \texttt{q\_proj, k\_proj, v\_proj, out\_proj, fc1, fc2} & \texttt{q\_proj, k\_proj, v\_proj, out\_proj, fc1, fc2} \\
+\multicolumn{5}{@{}l}{\textbf{C. Dataset Scaling Protocol (BanglaT5 Only)}} \\
+\midrule
+Data Sweep & Parallel Sentence Pairs & \multicolumn{3}{l}{Scaled from 500 to 4,499 pairs (iterative step increments)} \\
+\addlinespace[2pt]
+LoRA Sweep & Ranks ($r$) / Scaling ($\alpha$) & \multicolumn{3}{l}{$r \in \{8, 64\}$ and $\alpha \in \{16, 128\}$} \\
+\addlinespace[2pt]
+Batching & Per-Device / Eff. Batch & \multicolumn{3}{l}{Batch size 45 / Effective 90 (Gradient Accumulation = 2)} \\
+\addlinespace[2pt]
+Training & Epochs per Step & \multicolumn{3}{l}{10 Epochs per scaling step} \\
 \bottomrule
 \end{tabular}
-}
 \end{table}
 
 \subsection{Dataset Scaling Protocol}
-To formally investigate the relationship between data volume and translation generalization, we conduct an optimal dataset size study. We construct a fully parallel dataset encompassing Standard Bangla and four major dialects: Sylheti, Noakhali, Chittagong, and Mymensingh. The dataset is scaled iteratively from 500 to 4,499 parallel sentence pairs. The detailed hyperparameter matrix governing this scaling experiment is provided in Table~\ref{tab:scaling_hyperparams}.
-
-\begin{table}[htbp]
-\centering
-\caption{Hyperparameter matrix for dataset scaling experiments.}
-\label{tab:scaling_hyperparams}
-\small
-\begin{tabular}{l l l}
-\toprule
-\textbf{Parameter Class} & \textbf{Hyperparameter} & \textbf{Configuration} \\
-\midrule
-\textbf{Model Config} & Base Model & \texttt{csebuetnlp/banglat5} \\
-\textbf{Sequence Dims} & Max Sequence Length & 128 tokens (Source/Target) \\
-\textbf{LoRA Settings} & LoRA Configurations & $r=8, \alpha=16$ \& $r=64, \alpha=128$ \\
-\textbf{Optimization} & Optimizer & Paged AdamW 8-bit \\
-& Learning Rate ($\eta$) & $5 \times 10^{-4}$ (Cosine Decay) \\
-\textbf{Batching} & Effective Batch Size & 90 (Batch size 45, Grad. Accum. 2) \\
-\textbf{Training Schedule} & Epochs per Step & 10 Epochs \\
-\bottomrule
-\end{tabular}
-\end{table}
+To formally investigate the relationship between data volume and translation generalization, we conduct an optimal dataset size study. We construct a fully parallel dataset encompassing Standard Bangla and four major dialects: Sylheti, Noakhali, Chittagong, and Mymensingh. The dataset is scaled iteratively from 500 to 4,499 parallel sentence pairs. The detailed hyperparameter matrix governing this scaling experiment is integrated into Table~\ref{tab:model_hyperparams} (Section C).
 
 \subsection{Fine-Tuning Strategy}
 All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)} \cite{hu2021lora}, a parameter-efficient fine-tuning method that injects trainable low-rank decomposition matrices into each Transformer layer while keeping the pre-trained weights frozen. For a pre-trained weight matrix $W_0 \in \mathbb{R}^{d \times k}$, LoRA constrains the weight update $\Delta W$ to a low-rank decomposition:
@@ -533,20 +525,22 @@ Table~\ref{tab:qualitative} presents concrete translation examples demonstrating
 
 \begin{table}[htbp]
 \centering
-\caption{Qualitative translation examples generated by the final Poly-Dialectal BanglaT5 model, with romanized representations for readability.}
+\caption{Qualitative translation examples generated by the final Poly-Dialectal BanglaT5 model across diverse regional dialect pairs, comparing generated output against reference ground truth.}
 \label{tab:qualitative}
-\resizebox{\textwidth}{!}{
-\begin{tabular}{l l l l}
+\small
+\begin{tabular}{@{}l p{3.8cm} p{3.8cm} p{3.8cm}@{}}
 \toprule
-\textbf{Direction} & \textbf{Source Text (Romanized)} & \textbf{Generated Output (Romanized)} & \textbf{Reference Ground Truth} \\
+\textbf{Direction} & \textbf{Source Text (Romanized)} & \textbf{Generated Output (Romanized)} & \textbf{Reference GT (Romanized)} \\
 \midrule
 SCB $\rightarrow$ Sylheti & ami protidin shokale hat-te jai & mui fottokdin shokailku hat-te jai & mui fottokdin shokailku hat-te jai \\
+\addlinespace
 SCB $\rightarrow$ Chittagong & tomar bari kothay? & tuar ghor khonde? & tuar ghor khonde? \\
+\addlinespace
 Sylheti $\rightarrow$ SCB & ita kita mato tumi? & eshob ki bolcho tumi? & eshob ki bolcho tumi? \\
+\addlinespace
 Chittagong $\rightarrow$ Noakhali & tui ehon ki gurddo? & tui ehon ki kaj kotechho? & tui ehon ki kaj kotechho? \\
 \bottomrule
 \end{tabular}
-}
 \end{table}
 
 The examples demonstrate that the model correctly performs lexical substitutions (e.g., \textit{ami}$\rightarrow$\textit{mui}, \textit{bari}$\rightarrow$\textit{ghor}), morphological inflection changes (e.g., \textit{protidin}$\rightarrow$\textit{fottokdin}), and direct dialect-to-dialect conversion without pivoting through SCB.

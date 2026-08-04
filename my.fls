@@ -236,7 +236,6 @@ INPUT .\graphics\coverage_matrix_advanced.png
 INPUT .\graphics\coverage_matrix_advanced.png
 INPUT .\graphics\coverage_matrix_advanced.png
 INPUT .\graphics\coverage_matrix_advanced.png
-INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
 INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt10.tfm
 INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\fonts\tfm\jknappen\ec\tcrm1200.tfm
 INPUT .\graphics\model_comparison.png
@@ -281,6 +280,7 @@ INPUT .\graphics\comparative_sota.png
 INPUT .\graphics\comparative_sota.png
 INPUT .\graphics\comparative_sota.png
 INPUT .\graphics\comparative_sota.png
+INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmtt12.tfm
 INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
 INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
 INPUT C:\Users\ra3at\AppData\Local\Programs\MiKTeX\tex\latex\base\omscmr.fd
