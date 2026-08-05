@@ -114,6 +114,13 @@ Mike Lewis, Yinhan Liu, Naman Goyal, Marjan Ghazvininejad, Abdelrahman Mohamed,
   language generation, translation, and comprehension.
 \newblock {\em arXiv preprint arXiv:1910.13461}, 2019.
 
+\bibitem{liu2024dora}
+Shih-Yang Liu, Chien-Yi Wang, Hongxu Yin, Pavlo Molchanov, Yu-Chiang~Frank
+  Wang, Kwang-Ting Cheng, and Min-Hung Chen.
+\newblock {DoRA}: Weight-decomposed low-rank adaptation.
+\newblock In {\em Proceedings of the 41st International Conference on Machine
+  Learning}, 2024.
+
 \bibitem{burchardt-2013-multidimensional}
 Arle~Richard Lommel, Aljoscha Burchardt, and Hans Uszkoreit.
 \newblock Multidimensional quality metrics: a flexible system for assessing

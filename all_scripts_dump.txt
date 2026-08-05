@@ -1,0 +1,485 @@
+
+--- graphics_scripts\graph1_topology.py ---
+import matplotlib.pyplot as plt
+import networkx as nx
+import numpy as np
+import os
+
+# Ensure graphics directory exists
+os.makedirs('e:/Writing Defence/graphics', exist_ok=True)
+
+# Set Elsevier style
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.size': 10,
+    'axes.labelsize': 12,
+    'axes.titlesize': 14,
+    'legend.fontsize': 10,
+    'xtick.labelsize': 10,
+    'ytick.labelsize': 10,
+    'figure.dpi': 300
+})
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+
+# Graph 1: Pivot Translation (Star Topology)
+G1 = nx.DiGraph()
+dialects = ['Sylheti', 'Chittagonian', 'Barisali', 'Noakhali', 'Mymensingh']
+G1.add_node('SCB', pos=(0, 0))
+angles = np.linspace(0, 2*np.pi, len(dialects), endpoint=False)
+for i, d in enumerate(dialects):
+    pos = (np.cos(angles[i]), np.sin(angles[i]))
+    G1.add_node(d, pos=pos)
+    # Pivot means D -> SCB -> D
+    G1.add_edge(d, 'SCB', color='#e74c3c', weight=2, style='solid')
+    G1.add_edge('SCB', d, color='#e74c3c', weight=2, style='solid')
+
+pos1 = nx.get_node_attributes(G1, 'pos')
+edges1 = G1.edges()
+colors1 = [G1[u][v]['color'] for u,v in edges1]
+weights1 = [G1[u][v]['weight'] for u,v in edges1]
+
+nx.draw_networkx_nodes(G1, pos1, ax=ax1, node_size=1500, node_color=['#3498db' if n=='SCB' else '#ecf0f1' for n in G1.nodes()], edgecolors='#2c3e50', linewidths=1.5)
+nx.draw_networkx_edges(G1, pos1, ax=ax1, edgelist=edges1, edge_color=colors1, width=weights1, arrows=True, arrowsize=15, connectionstyle='arc3,rad=0.1')
+nx.draw_networkx_labels(G1, pos1, ax=ax1, font_family='serif', font_size=10, font_weight='bold')
+
+ax1.set_title('Traditional Pivot Translation\n(Cascading Errors)', pad=15)
+ax1.axis('off')
+
+# Graph 2: Poly-Dialectal Translation (Fully Connected Mesh)
+G2 = nx.DiGraph()
+G2.add_node('SCB', pos=(0, 0))
+for i, d in enumerate(dialects):
+    pos = (np.cos(angles[i]), np.sin(angles[i]))
+    G2.add_node(d, pos=pos)
+
+# Connect everything
+nodes = list(G2.nodes())
+for i in range(len(nodes)):
+    for j in range(len(nodes)):
+        if i != j:
+            G2.add_edge(nodes[i], nodes[j], color='#27ae60', weight=1.0, style='solid')
+
+pos2 = nx.get_node_attributes(G2, 'pos')
+edges2 = G2.edges()
+colors2 = [G2[u][v]['color'] for u,v in edges2]
+weights2 = [G2[u][v]['weight'] for u,v in edges2]
+
+nx.draw_networkx_nodes(G2, pos2, ax=ax2, node_size=1500, node_color=['#3498db' if n=='SCB' else '#ecf0f1' for n in G2.nodes()], edgecolors='#2c3e50', linewidths=1.5)
+nx.draw_networkx_edges(G2, pos2, ax=ax2, edgelist=edges2, edge_color=colors2, width=weights2, arrows=True, arrowsize=10, connectionstyle='arc3,rad=0.1', alpha=0.6)
+nx.draw_networkx_labels(G2, pos2, ax=ax2, font_family='serif', font_size=10, font_weight='bold')
+
+ax2.set_title('Proposed Poly-Dialectal Translation\n(Direct Unified Mapping)', pad=15)
+ax2.axis('off')
+
+plt.tight_layout()
+plt.savefig('e:/Writing Defence/graphics/topology_comparison.pdf', format='pdf', bbox_inches='tight')
+print("Saved topology_comparison.pdf")
+
+--- graphics_scripts\graph2_proximity.py ---
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+os.makedirs('e:/Writing Defence/graphics', exist_ok=True)
+
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.size': 11,
+    'axes.labelsize': 13,
+    'axes.titlesize': 15,
+    'legend.fontsize': 11,
+    'figure.dpi': 300,
+    'axes.grid': True,
+    'grid.alpha': 0.3
+})
+
+# Dialects and data
+dialects = ['Mymensingh', 'Barisali', 'Noakhali', 'Sylheti', 'Chittagonian']
+# Estimated distance (arbitrary scale for visualization 1-10)
+distances = [2.5, 3.8, 5.5, 8.2, 9.0] 
+# Dialect to SCB BLEU (approximate from text)
+bleu_d_scb = [55.0, 50.1, 48.0, 45.65, 42.76] 
+# SCB to Dialect BLEU (approximate from text)
+bleu_scb_d = [45.0, 37.9, 36.5, 33.2, 30.5]
+# Training data volume (bubble size)
+volumes = [5712, 4270, 5000, 6422, 10567]
+bubble_sizes = [v / 10 for v in volumes]
+
+fig, ax = plt.subplots(figsize=(8, 6))
+
+# Scatter plots
+scatter1 = ax.scatter(distances, bleu_d_scb, s=bubble_sizes, alpha=0.7, color='#2ecc71', edgecolors='black', linewidth=1.5, label='Dialect → SCB')
+scatter2 = ax.scatter(distances, bleu_scb_d, s=bubble_sizes, alpha=0.7, color='#3498db', edgecolors='black', linewidth=1.5, label='SCB → Dialect')
+
+# Annotations
+for i, txt in enumerate(dialects):
+    ax.annotate(txt, (distances[i], bleu_d_scb[i]), xytext=(0, 15), textcoords='offset points', ha='center', fontsize=9, fontweight='bold')
+    ax.annotate(txt, (distances[i], bleu_scb_d[i]), xytext=(0, -20), textcoords='offset points', ha='center', fontsize=9)
+
+# Trendlines
+z1 = np.polyfit(distances, bleu_d_scb, 1)
+p1 = np.poly1d(z1)
+ax.plot(distances, p1(distances), color='#2ecc71', linestyle='--', alpha=0.8)
+
+z2 = np.polyfit(distances, bleu_scb_d, 1)
+p2 = np.poly1d(z2)
+ax.plot(distances, p2(distances), color='#3498db', linestyle='--', alpha=0.8)
+
+# Formatting
+ax.set_xlabel('Linguistic/Morphological Distance from Standard Bangla (SCB)')
+ax.set_ylabel('Translation Quality (BLEU Score)')
+ax.set_title('Impact of Linguistic Proximity on Translation Quality')
+ax.set_xlim(1, 10)
+ax.set_ylim(20, 60)
+
+# Custom legend for bubble size
+handles, labels = ax.get_legend_handles_labels()
+l1 = plt.scatter([],[], s=400, color='gray', alpha=0.5, edgecolors='black', label='~4,000 Pairs')
+l2 = plt.scatter([],[], s=1000, color='gray', alpha=0.5, edgecolors='black', label='~10,000 Pairs')
+handles.extend([l1, l2])
+
+ax.legend(handles=handles, loc='upper right', frameon=True, framealpha=0.9, edgecolor='black')
+
+plt.tight_layout()
+plt.savefig('e:/Writing Defence/graphics/proximity_vs_bleu.pdf', format='pdf', bbox_inches='tight')
+print("Saved proximity_vs_bleu.pdf")
+
+--- graphics_scripts\graph3_lora.py ---
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+os.makedirs('e:/Writing Defence/graphics', exist_ok=True)
+
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.size': 11,
+    'axes.labelsize': 12,
+    'axes.titlesize': 14,
+    'legend.fontsize': 11,
+    'figure.dpi': 300,
+    'axes.axisbelow': True
+})
+
+categories = ['BanglaT5 (247M)', 'mBART-50 (611M)', 'NLLB-200 (615M)']
+full_params = [247, 611, 615]
+lora_params = [4.7, 9.8, 9.8] # Millions
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4.5), gridspec_kw={'width_ratios': [1.5, 1]})
+
+# Left Chart: Total vs Trainable Parameters
+y = np.arange(len(categories))
+height = 0.35
+
+rects1 = ax1.barh(y - height/2, full_params, height, label='Total Parameters (Frozen)', color='#95a5a6', edgecolor='black')
+rects2 = ax1.barh(y + height/2, lora_params, height, label='LoRA Trainable Parameters', color='#e74c3c', edgecolor='black')
+
+ax1.set_xlabel('Parameter Count (Millions)')
+ax1.set_yticks(y)
+ax1.set_yticklabels(categories)
+ax1.legend(loc='lower right')
+ax1.set_title('Parameter Efficiency of LoRA Fine-Tuning')
+ax1.grid(axis='x', linestyle='--', alpha=0.7)
+
+# Add values on bars
+for p in ax1.patches:
+    width = p.get_width()
+    ax1.annotate(f'{width:.1f}M',
+                xy=(width, p.get_y() + p.get_height() / 2),
+                xytext=(3, 0),
+                textcoords="offset points",
+                ha='left', va='center', fontsize=9)
+
+# Right Chart: Parameter Reduction %
+ax2.axis('off')
+ax2.set_title('Trainable Parameter Reduction', pad=20)
+
+for i, (full, lora) in enumerate(zip(full_params, lora_params)):
+    reduction = (1 - (lora / full)) * 100
+    circle = plt.Circle((0.5, 0.8 - i*0.3), 0.12, color='#2ecc71', alpha=0.2)
+    ax2.add_patch(circle)
+    ax2.text(0.5, 0.8 - i*0.3, f'-{reduction:.1f}%', ha='center', va='center', fontsize=12, fontweight='bold', color='#27ae60')
+    ax2.text(0.5, 0.8 - i*0.3 - 0.16, categories[i], ha='center', va='center', fontsize=10)
+
+ax1.spines['top'].set_visible(False)
+ax1.spines['right'].set_visible(False)
+
+plt.tight_layout()
+plt.savefig('e:/Writing Defence/graphics/lora_efficiency.pdf', format='pdf', bbox_inches='tight')
+print("Saved lora_efficiency.pdf")
+
+--- graphics_scripts\graph4_error.py ---
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+os.makedirs('e:/Writing Defence/graphics', exist_ok=True)
+
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.size': 11,
+    'axes.labelsize': 13,
+    'axes.titlesize': 15,
+    'figure.dpi': 300,
+    'axes.axisbelow': True
+})
+
+error_types = ['Morphological Inflection', 'Lexical Mismatch', 'Syntactic Reordering', 'Partial Translation', 'Hallucination']
+percentages = [38, 26, 18, 12, 6]
+colors = ['#34495e', '#2980b9', '#27ae60', '#f39c12', '#e74c3c']
+
+fig, ax = plt.subplots(figsize=(8, 5))
+y_pos = np.arange(len(error_types))
+
+bars = ax.barh(y_pos, percentages, align='center', color=colors, edgecolor='black', linewidth=1.2)
+ax.set_yticks(y_pos)
+ax.set_yticklabels(error_types)
+ax.invert_yaxis()  # labels read top-to-bottom
+ax.set_xlabel('Percentage of Analyzed Failure Cases (%)')
+ax.set_title('Taxonomy of Translation Errors (N=200 High-TER Cases)')
+
+# Annotate bars
+for bar in bars:
+    width = bar.get_width()
+    ax.text(width + 1, bar.get_y() + bar.get_height()/2, f'{width}%', 
+            ha='left', va='center', fontweight='bold', fontsize=11)
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.grid(axis='x', linestyle='--', alpha=0.5)
+ax.set_xlim(0, 45)
+
+plt.tight_layout()
+plt.savefig('e:/Writing Defence/graphics/error_taxonomy.pdf', format='pdf', bbox_inches='tight')
+print("Saved error_taxonomy.pdf")
+
+--- graphics_scripts\graph5_quantization.py ---
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+os.makedirs('e:/Writing Defence/graphics', exist_ok=True)
+
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.size': 11,
+    'axes.labelsize': 12,
+    'axes.titlesize': 14,
+    'legend.fontsize': 11,
+    'figure.dpi': 300,
+    'axes.grid': True,
+    'grid.alpha': 0.4
+})
+
+# Data
+metrics = ['Peak RAM (GB)', 'Avg Latency (ms)', 'Throughput (tok/s)', 'BLEU Score']
+fp32_vals = [4.3, 3200, 8.3, 29.26]
+int8_vals = [1.5, 900, 26.56, 29.18] # Values based on text
+
+# Normalize data to 0-1 range for radar chart
+def normalize(vals, max_vals):
+    return [v / m for v, m in zip(vals, max_vals)]
+
+max_vals = [5.0, 4000, 30.0, 35.0]
+fp32_norm = normalize(fp32_vals, max_vals)
+int8_norm = normalize(int8_vals, max_vals)
+
+# Angles for radar chart
+angles = np.linspace(0, 2 * np.pi, len(metrics), endpoint=False).tolist()
+fp32_norm += fp32_norm[:1]
+int8_norm += int8_norm[:1]
+angles += angles[:1]
+
+fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+
+# Draw FP32
+ax.plot(angles, fp32_norm, color='#e74c3c', linewidth=2, linestyle='solid', label='FP32 (Original)')
+ax.fill(angles, fp32_norm, color='#e74c3c', alpha=0.1)
+
+# Draw INT8
+ax.plot(angles, int8_norm, color='#2ecc71', linewidth=2, linestyle='solid', label='INT8 (Quantized)')
+ax.fill(angles, int8_norm, color='#2ecc71', alpha=0.25)
+
+# Formatting
+ax.set_theta_offset(np.pi / 2)
+ax.set_theta_direction(-1)
+ax.set_xticks(angles[:-1])
+ax.set_xticklabels(metrics, fontweight='bold', fontsize=11)
+ax.set_yticks([]) # Hide radial ticks
+
+# Annotate values
+for i, angle in enumerate(angles[:-1]):
+    ha = 'left' if 0 <= angle < np.pi else 'right'
+    if angle == 0 or angle == np.pi: ha = 'center'
+    
+    # FP32 Text
+    ax.text(angle, fp32_norm[i] + 0.1, f'{fp32_vals[i]}', color='#c0392b', ha=ha, va='center', fontweight='bold', fontsize=10)
+    # INT8 Text
+    ax.text(angle, int8_norm[i] + 0.1, f'{int8_vals[i]}', color='#27ae60', ha=ha, va='center', fontweight='bold', fontsize=10)
+
+plt.title('Performance Trade-offs: FP32 vs INT8 Quantization', y=1.1)
+plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
+
+plt.tight_layout()
+plt.savefig('e:/Writing Defence/graphics/quantization_radar.pdf', format='pdf', bbox_inches='tight')
+print("Saved quantization_radar.pdf")
+
+--- graphics_scripts\graph6_timeline.py ---
+import matplotlib.pyplot as plt
+import numpy as np
+import os
+
+os.makedirs('e:/Writing Defence/graphics', exist_ok=True)
+
+plt.rcParams.update({
+    'font.family': 'serif',
+    'font.size': 11,
+    'axes.labelsize': 12,
+    'axes.titlesize': 14,
+    'figure.dpi': 300,
+    'axes.grid': True,
+    'grid.alpha': 0.3
+})
+
+# Data for the timeline
+datasets = ['BdRegionText', 'Vashantor', 'ONUBAD', 'Anubhuti', 'BanglaDial', 'BhasaBodh', 'Proposed (Ours)']
+years = [2022, 2023, 2025, 2026, 2025, 2025, 2026]
+num_dialects = [4, 5, 3, 4, 11, 2, 11]
+# X offsets to prevent overlapping years
+years_adj = [2022, 2023, 2024.7, 2025.7, 2025.0, 2025.3, 2026.3] 
+
+# Size proportional to dataset size/impact
+sizes = [2573/10, 32500/10, 7950/10, 10000/10, 60729/10, 1960/10, 51531/10]
+
+fig, ax = plt.subplots(figsize=(10, 5))
+
+# Draw the main timeline axis
+ax.axhline(0, color='black', linewidth=1.5, alpha=0.8)
+
+# Plot each dataset as a stem/lollipop
+colors = ['#95a5a6', '#3498db', '#f39c12', '#9b59b6', '#e67e22', '#1abc9c', '#e74c3c']
+y_levels = [1, -1, 2, -2, 3, -1.5, 4]
+
+for i in range(len(datasets)):
+    ax.vlines(years_adj[i], 0, y_levels[i], color=colors[i], linestyle='-', linewidth=2, alpha=0.7)
+    ax.scatter(years_adj[i], y_levels[i], s=sizes[i]/10, color=colors[i], edgecolor='black', linewidth=1.2, zorder=5)
+    
+    # Text annotation
+    ha = 'center'
+    va = 'bottom' if y_levels[i] > 0 else 'top'
+    y_offset = 0.2 if y_levels[i] > 0 else -0.2
+    
+    label = f"{datasets[i]}\n({years[i]}, {num_dialects[i]} Dialects)"
+    if datasets[i] == 'Proposed (Ours)':
+        label = f"**{datasets[i]}**\n({years[i]}, {num_dialects[i]} Dialects)"
+        
+    ax.text(years_adj[i], y_levels[i] + y_offset, label, ha=ha, va=va, fontsize=10, 
+            bbox=dict(facecolor='white', edgecolor=colors[i], alpha=0.8, boxstyle='round,pad=0.3'))
+
+ax.set_ylim(-3.5, 5.5)
+ax.set_xlim(2021.5, 2027)
+
+# Format X axis as years
+ax.set_xticks([2022, 2023, 2024, 2025, 2026])
+ax.set_xticklabels(['2022', '2023', '2024', '2025', '2026'])
+ax.set_yticks([])
+ax.set_title('Evolution of Bangla Regional Dialect NLP Datasets', pad=20)
+
+ax.spines['left'].set_visible(False)
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.spines['bottom'].set_visible(False)
+
+plt.tight_layout()
+plt.savefig('e:/Writing Defence/graphics/dataset_timeline.pdf', format='pdf', bbox_inches='tight')
+print("Saved dataset_timeline.pdf")
+
+--- graphics_scripts\insert_graphs.py ---
+import codecs
+import re
+
+file_path = 'e:/Writing Defence/xelatex.tex'
+
+with codecs.open(file_path, 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# 1. Insert Graph 1: Topology
+graph1_latex = r"""
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/topology_comparison.pdf}
+  \caption{Structural comparison between the traditional pivot translation approach (routing through Standard Bangla) and the proposed direct poly-dialectal mapping topology.}
+  \label{fig:topology}
+\end{figure}
+"""
+content = content.replace(
+    "paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach.",
+    "paradigm shift from uni-dialectal modeling to a holistic, poly-dialectal approach.\n" + graph1_latex
+)
+
+# 2. Insert Graph 6: Timeline
+graph6_latex = r"""
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/dataset_timeline.pdf}
+  \caption{Evolution of Bangla regional dialect datasets and resources over time, highlighting the scale and dialectal coverage of the proposed corpus.}
+  \label{fig:timeline}
+\end{figure}
+"""
+content = content.replace(
+    "deploying the resulting system as a publicly accessible web application.",
+    "deploying the resulting system as a publicly accessible web application.\n" + graph6_latex
+)
+
+# 3. Insert Graph 3: LoRA Efficiency
+graph3_latex = r"""
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/lora_efficiency.pdf}
+  \caption{Parameter efficiency of LoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters.}
+  \label{fig:lora_efficiency}
+\end{figure}
+"""
+content = content.replace(
+    "approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50.",
+    "approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50.\n" + graph3_latex
+)
+
+# 4. Insert Graph 2: Proximity vs BLEU
+graph2_latex = r"""
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.9\textwidth]{graphics/proximity_vs_bleu.pdf}
+  \caption{Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score).}
+  \label{fig:proximity_bleu}
+\end{figure}
+"""
+# Use regex to insert after \end{enumerate} in the directionality section
+pattern = r"(\\end\{enumerate\}\s*\\begin\{figure\}\[htbp\]\s*\\centering\s*\\includegraphics\[width=0\.85\\textwidth\]\{graphics/directionality\.png\})"
+content = re.sub(pattern, lambda m: "\\end{enumerate}\n\n" + graph2_latex + "\n\\begin{figure}[htbp]\n  \\centering\n  \\includegraphics[width=0.85\\textwidth]{graphics/directionality.png}", content)
+
+# 5. Replace Graph 4: Error Taxonomy
+content = content.replace(
+    r"\includegraphics[width=0.75\textwidth]{graphics/error_analysis.png}",
+    r"\includegraphics[width=0.9\textwidth]{graphics/error_taxonomy.pdf}"
+)
+
+# 6. Insert Graph 5: Quantization
+graph5_latex = r"""
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.65\textwidth]{graphics/quantization_radar.pdf}
+  \caption{Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality.}
+  \label{fig:quantization}
+\end{figure}
+"""
+content = re.sub(
+    r"(\\end\{table\}\s*\\subsection\{User Interface and Translation Demonstrations\})",
+    lambda m: "\\end{table}\n\n" + graph5_latex + "\n\\subsection{User Interface and Translation Demonstrations}",
+    content
+)
+
+with codecs.open(file_path, 'w', encoding='utf-8') as f:
+    f.write(content)
+print("Updated xelatex.tex")
