@@ -36,69 +36,60 @@
 \begin{titlepage}
     \centering
     
-    \vspace*{0.8cm}
+    \vspace*{0.2cm}
     
-    \Large
-    \textbf{B.Sc in Computer Science and Engineering Thesis Report on}
+    {\large \textbf{B.Sc in Computer Science and Engineering Thesis Report on}\par}
     
-    \vspace{1.2cm}
+    \vspace{0.6cm}
     
-    \Huge
-    \textbf{Poly-Dialectal Neural Machine Translation System for Bangla Regional Dialects}
+    {\huge \textbf{Poly-Dialectal Neural Machine Translation System for Bangla Regional Dialects}\par}
     
-    \vspace{1.5cm}
+    \vspace{0.8cm}
     
-    \Large
-    \textbf{Submitted By}\\
-    \vspace{0.4cm}
-    \large
+    {\Large \textbf{Submitted By}\par}
+    \vspace{0.3cm}
+    {\large
     \begin{tabular}{ccc}
         \textbf{Rakib Ullah} & \textbf{Ruhul Islam Rahul} & \textbf{Tanbir Ahmed} \\
         Reg No: 2020331520   & Reg No: 2020331529         & Reg No: 2020331516
-    \end{tabular}
+    \end{tabular}\par}
     
-    \vspace{1.5cm}
+    \vspace{0.8cm}
     
     \begin{minipage}[t]{0.48\textwidth}
         \centering
-        \Large \textbf{Supervised By}\\
-        \vspace{0.3cm}
+        \Large \textbf{Supervised By}\\[0.2cm]
         \large
         \textbf{Nayan Kumar Nath} \\
         Lecturer \\
-        Department of Computer Science and Engineering, \\
+        Department of Computer Science and Engineering \\
         Sylhet Engineering College
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.48\textwidth}
         \centering
-        \Large \textbf{Co-Supervised By}\\
-        \vspace{0.3cm}
+        \Large \textbf{Co-Supervised By}\\[0.2cm]
         \large
         \textbf{Dr. Hira Lal Gope} \\
         Associate Professor \\
+        Department of Computer Science and Engineering \\
         Sylhet Agriculture University
     \end{minipage}
     
     \vfill
-    \includegraphics[width=0.22\textwidth]{graphics/sust-logo.png}
+    \includegraphics[width=0.18\textwidth]{graphics/sust-logo.png}
     \vfill
     
-    \Large
-    \textbf{Department of Computer Science and Engineering}\\
+    {\large \textbf{Department of Computer Science and Engineering}\par}
+    \vspace{0.1cm}
+    {\Large \textbf{SYLHET ENGINEERING COLLEGE, SYLHET}\par}
     \vspace{0.2cm}
-    \LARGE
-    \textbf{SYLHET ENGINEERING COLLEGE, SYLHET}\\
+    {\large Affiliated with\par}
+    \vspace{0.1cm}
+    {\large \textbf{Shahjalal University of Science and Technology}\par}
+    {\large Sylhet, Bangladesh.\par}
     \vspace{0.4cm}
-    \large
-    Affiliated with\\
-    \Large
-    \textbf{Shahjalal University of Science and Technology}\\
-    \large
-    Sylhet, Bangladesh.\\
-    \vspace{0.6cm}
-    \large
-    22 August, 2026
+    {\large 22 August, 2026\par}
     
 \end{titlepage}
 
@@ -134,7 +125,7 @@ To address these limitations, this research introduces a unified \textbf{Poly-Di
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.95\textwidth]{graphics/overview.pdf}
-  \caption{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA/DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}
+  \caption{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}
   \label{fig:overview}
 \end{figure}
 
@@ -265,7 +256,7 @@ The specific objectives of this research are:
 \begin{enumerate}
     \item To construct the largest multi-dialect parallel corpus for Bangla machine translation by integrating, aligning, and deduplicating seven existing dialectal datasets across 12 regional variants.
     \item To develop a unified poly-dialectal translation system capable of three translation paradigms: Dialect $\rightarrow$ Standard Bangla, Standard Bangla $\rightarrow$ Dialect, and direct Dialect $\rightarrow$ Dialect translation.
-    \item To systematically evaluate and compare the performance of three state-of-the-art multilingual NMT architectures---BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, NLLB-200 \cite{nllb2022}, and mBART-50 \cite{tang2020multilingual}---under parameter-efficient LoRA \cite{hu2021lora} and DoRA \cite{liu2024dora} fine-tuning on the constructed corpus.
+    \item To systematically evaluate and compare the performance of three state-of-the-art multilingual NMT architectures---BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, NLLB-200 \cite{nllb2022}, and mBART-50 \cite{tang2020multilingual}---under parameter-efficient DoRA \cite{liu2024dora} fine-tuning on the constructed corpus.
     \item To quantitatively analyze cross-dialectal transfer effects by examining how training data volume and linguistic proximity jointly influence translation quality.
     \item To promote digital inclusion and linguistic accessibility for Bangla dialect speakers by establishing open benchmarks for future research.
 \end{enumerate}
@@ -394,7 +385,7 @@ Learning Rate & Initial $\eta$ (Scheduler) & $5 \times 10^{-4}$ (Cosine) & $5 \t
 \addlinespace[2pt]
 Batching & Per-Device / Eff. Batch & 32 / 64 (Accum 2) & 8 / 64 (Accum 8) & 8 / 64 (Accum 8) \\
 \addlinespace[2pt]
-LoRA/DoRA Adapter & Rank ($r$) / Scaling ($\alpha$) & $r=64, \alpha=128$ & $r=64, \alpha=128$ & $r=64, \alpha=128$ \\
+DoRA Adapter & Rank ($r$) / Scaling ($\alpha$) & $r=64, \alpha=128$ & $r=64, \alpha=128$ & $r=64, \alpha=128$ \\
 \addlinespace[2pt]
 Target Modules & Projections & \texttt{q, v, k, o,}\newline\texttt{wi, wo} & \texttt{q, k, v, out\_proj,}\newline\texttt{fc1, fc2} & \texttt{q, k, v, out\_proj,}\newline\texttt{fc1, fc2} \\
 \midrule
@@ -402,7 +393,7 @@ Target Modules & Projections & \texttt{q, v, k, o,}\newline\texttt{wi, wo} & \te
 \midrule
 Data Sweep & Parallel Sentence Pairs & \multicolumn{3}{l}{Scaled from 500 to 4,499 pairs (iterative step increments)} \\
 \addlinespace[2pt]
-LoRA/DoRA Sweep & Ranks ($r$) / Scaling ($\alpha$) & \multicolumn{3}{l}{$r \in \{8, 64\}$ and $\alpha \in \{16, 128\}$} \\
+DoRA Sweep & Ranks ($r$) / Scaling ($\alpha$) & \multicolumn{3}{l}{$r \in \{8, 64\}$ and $\alpha \in \{16, 128\}$} \\
 \addlinespace[2pt]
 Batching & Per-Device / Eff. Batch & \multicolumn{3}{l}{Batch size 45 / Effective 90 (Gradient Accumulation = 2)} \\
 \addlinespace[2pt]
@@ -415,22 +406,27 @@ Training & Epochs per Step & \multicolumn{3}{l}{10 Epochs per scaling step} \\
 To formally investigate the relationship between data volume and translation generalization, we conduct an optimal dataset size study. We construct a fully parallel dataset encompassing Standard Bangla and four major dialects: Sylheti, Noakhali, Chittagong, and Mymensingh. The dataset is scaled iteratively from 500 to 4,499 parallel sentence pairs. The detailed hyperparameter matrix governing this scaling experiment is integrated into Table~\ref{tab:model_hyperparams} (Section C).
 
 \subsection{Fine-Tuning Strategy}
-All models are fine-tuned using \textbf{Low-Rank Adaptation (LoRA)} \cite{hu2021lora} and \textbf{Weight-Decomposed Low-Rank Adaptation (DoRA)} \cite{liu2024dora}, which are parameter-efficient fine-tuning (PEFT) methods. For a pre-trained weight matrix $W_0 \in \mathbb{R}^{d \times k}$, LoRA constrains the weight update $\Delta W$ to a low-rank decomposition:
-\begin{equation}
-h = W_0 x + \Delta W x = W_0 x + \frac{\alpha}{r} B A x
-\end{equation}
-where $A \in \mathbb{R}^{r \times k}$ and $B \in \mathbb{R}^{d \times r}$ are trainable low-rank matrices with rank $r \ll \min(d, k)$, and $\alpha$ is a scaling hyperparameter that controls the magnitude of the adaptation. This approach reduces the number of trainable parameters by over 99\% compared to full fine-tuning, enabling efficient adaptation on limited hardware.
+All models are fine-tuned using \textbf{Weight-Decomposed Low-Rank Adaptation (DoRA)} \cite{liu2024dora}, a parameter-efficient fine-tuning (PEFT) method. Standard Low-Rank Adaptation (LoRA) \cite{hu2021lora} constrains the weight update $\Delta W$ to a low-rank decomposition ($\Delta W = \frac{\alpha}{r} B A$), but it fundamentally entangles the magnitude and direction of the weight updates. This entanglement can restrict the learning capacity of the model, particularly in complex, low-resource tasks like dialectal machine translation.
 
-To achieve learning capacity closer to full fine-tuning while maintaining parameter efficiency, we also utilize DoRA \cite{liu2024dora}. DoRA decomposes the pre-trained weight matrix $W_0$ into a magnitude vector $m \in \mathbb{R}^{1 \times k}$ and a directional matrix $V \in \mathbb{R}^{d \times k}$. The weight update is then formulated as:
+To overcome this limitation and achieve learning capacity closer to full fine-tuning while maintaining parameter efficiency, we employ DoRA. DoRA explicitly decomposes the pre-trained weight matrix $W_0 \in \mathbb{R}^{d \times k}$ into a magnitude vector $m \in \mathbb{R}^{1 \times k}$ and a directional matrix $V \in \mathbb{R}^{d \times k}$. The weight update is then formulated as:
 \begin{equation}
 W = m \frac{V + \Delta W}{\|V + \Delta W\|_c}
 \end{equation}
-where $\Delta W = \frac{\alpha}{r} B A$ represents the low-rank adaptation matrices, and $\|\cdot\|_c$ denotes the column-wise vector norm. By updating the magnitude and direction components independently, DoRA stabilizes optimization and outperforms standard LoRA in challenging low-resource translation tasks. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count is approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50 (as shown in Figure~\ref{fig:lora_efficiency}).
+where $\Delta W = \frac{\alpha}{r} B A$ represents the trainable low-rank directional updates (with $A \in \mathbb{R}^{r \times k}$ and $B \in \mathbb{R}^{d \times r}$), and $\|\cdot\|_c$ denotes the column-wise vector norm. 
+
+By updating the magnitude ($m$) and direction ($V + \Delta W$) components independently, DoRA stabilizes optimization and consistently outperforms standard LoRA. A visual comparison illustrating the structural difference between LoRA's coupled optimization and DoRA's decomposed optimization is provided in Figure~\ref{fig:dora_vs_lora}. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count remains highly efficient---approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50 (as shown previously in Figure~\ref{fig:lora_efficiency}).
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\textwidth]{graphics/dora_vs_lora.pdf}
+  \caption{Architectural comparison between Standard LoRA (left) and Weight-Decomposed LoRA (DoRA, right). While LoRA directly adds the low-rank update to the pre-trained weights, DoRA decomposes the weights into magnitude ($m$) and directional components, applying the low-rank update strictly to the normalized direction before re-scaling by the trainable magnitude.}
+  \label{fig:dora_vs_lora}
+\end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=\textwidth]{graphics/lora_efficiency.pdf}
-  \caption{Parameter efficiency of LoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters. Furthermore, we extend our methodology by introducing \textbf{Weight-Decomposed Low-Rank Adaptation (DoRA)} \cite{liu2024dora}, which decomposes the pre-trained weights into magnitude and directional components for fine-tuning. This approach maintains the parameter efficiency of LoRA while achieving learning capacity closer to full fine-tuning. A visual comparison distinguishing LoRA's structure from DoRA's decomposed optimization is provided in Figure~\ref{fig:lora_efficiency}.}
+  \caption{Parameter efficiency of DoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters compared to full fine-tuning.}
   \label{fig:lora_efficiency}
 \end{figure}
 
@@ -438,7 +434,7 @@ where $\Delta W = \frac{\alpha}{r} B A$ represents the low-rank adaptation matri
 Our experimental pipeline consists of two distinct stages:
 
 \subsubsection{Stage 1: Best Model Selection}
-In the initial stage, all three candidate models (BanglaT5, NLLB-200, mBART-50) are fine-tuned for \textbf{20 epochs} using the complete integrated dataset. To ensure a fair comparative analysis, identical LoRA/DoRA configurations (rank $r = 64$, $\alpha = 128$) are applied uniformly across all models. The best-performing model is selected based on aggregate evaluation metrics.
+In the initial stage, all three candidate models (BanglaT5, NLLB-200, mBART-50) are fine-tuned for \textbf{20 epochs} using the complete integrated dataset. To ensure a fair comparative analysis, identical DoRA configurations (rank $r = 64$, $\alpha = 128$) are applied uniformly across all models. The best-performing model is selected based on aggregate evaluation metrics.
 
 \subsubsection{Stage 2: Extended Training}
 The selected model (BanglaT5) is retrained for \textbf{100 epochs} to analyze learning dynamics and performance saturation. All experiments are conducted on the Kaggle platform using dual NVIDIA Tesla T4 GPUs (16 GB VRAM each) with 32 GB system RAM. Due to these hardware constraints, extended training was limited to the top-performing model. This phase enables detailed error analysis and cross-dialectal pairwise comparisons.
@@ -488,7 +484,7 @@ TER \cite{snover2006study} measures the minimum number of human edits required t
 \section{Results and Discussion}
 
 \subsection{Model Selection (Phase I)}
-In the first phase, we evaluated three candidate NMT architectures---BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, NLLB-200 \cite{nllb2022}, and mBART-50 \cite{tang2020multilingual}---to determine the optimal base model for poly-dialectal translation. All models were fine-tuned for \textbf{20 epochs} using identical LoRA \cite{hu2021lora} and DoRA \cite{liu2024dora} hyperparameters (rank $r=64$, $\alpha=128$) on the complete integrated dataset.
+In the first phase, we evaluated three candidate NMT architectures---BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, NLLB-200 \cite{nllb2022}, and mBART-50 \cite{tang2020multilingual}---to determine the optimal base model for poly-dialectal translation. All models were fine-tuned for \textbf{20 epochs} using identical DoRA \cite{liu2024dora} hyperparameters (rank $r=64$, $\alpha=128$) on the complete integrated dataset.
 
 Table~\ref{tab:model_results_search} presents the overall performance comparison. BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} consistently outperforms both larger multilingual models despite having only 247M parameters---less than half the size of NLLB-200 \cite{nllb2022} (615M) and mBART-50 \cite{tang2020multilingual} (611M).
 
@@ -633,12 +629,12 @@ The dominant error categories are characterized as follows:
 \end{itemize}
 
 \subsection{Dataset Scaling Analysis}
-To quantify the relationship between training data volume and translation quality, we conducted a controlled scaling experiment using a fully parallel subset of four dialects (Sylheti, Chittagonian, Noakhali, Mymensingh) plus SCB, incrementally scaling from 500 to 4,499 sentence pairs under two LoRA \cite{hu2021lora}/DoRA \cite{liu2024dora} configurations ($r=8, \alpha=16$ and $r=64, \alpha=128$).
+To quantify the relationship between training data volume and translation quality, we conducted a controlled scaling experiment using a fully parallel subset of four dialects (Sylheti, Chittagonian, Noakhali, Mymensingh) plus SCB, incrementally scaling from 500 to 4,499 sentence pairs under two DoRA \cite{liu2024dora} configurations ($r=8, \alpha=16$ and $r=64, \alpha=128$).
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.90\textwidth]{graphics/dataset_scaling.pdf}
-  \caption{BLEU \cite{papineni2002bleu} and chrF++ \cite{popovic2015chrf} as a function of training data volume for two LoRA \cite{hu2021lora}/DoRA \cite{liu2024dora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples.}
+  \caption{BLEU \cite{papineni2002bleu} and chrF++ \cite{popovic2015chrf} as a function of training data volume for two DoRA \cite{liu2024dora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples.}
   \label{fig:scaling}
 \end{figure}
 
@@ -681,7 +677,7 @@ The proposed system achieves a BLEU \cite{papineni2002bleu} score 5.59 points hi
 To bridge the gap between academic research and real-world accessibility, the final poly-dialectal NMT system was deployed as an interactive web application, publicly available at \url{https://bangla-regional-translator.streamlit.app/}. The platform provides real-time translation across 12 dialects. The source code is available at \url{https://github.com/secrakib/Defence_Translator_App}.
 
 \subsection{Model Quantization and Serving}
-The primary challenge in deploying NMT systems is memory footprint. To address this, the fine-tuned BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} model with merged LoRA \cite{hu2021lora} and DoRA \cite{liu2024dora} weights was converted to the \textbf{CTranslate2} \cite{klein-etal-2017-opennmt} inference engine---a custom C++ runtime optimized for Transformer \cite{vaswani2017attention} architectures with hardware-accelerated vector operations (AVX2/AVX-512). Model weights were quantized from 32-bit floating-point to 8-bit integer (INT8) precision \cite{Jacob_2018_CVPR}:
+The primary challenge in deploying NMT systems is memory footprint. To address this, the fine-tuned BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} model with merged DoRA \cite{liu2024dora} weights was converted to the \textbf{CTranslate2} \cite{klein-etal-2017-opennmt} inference engine---a custom C++ runtime optimized for Transformer \cite{vaswani2017attention} architectures with hardware-accelerated vector operations (AVX2/AVX-512). Model weights were quantized from 32-bit floating-point to 8-bit integer (INT8) precision \cite{Jacob_2018_CVPR}:
 \begin{equation}
 W_{\text{INT8}} = \text{Quantize}(W_{\text{FP32}})
 \end{equation}
@@ -773,7 +769,7 @@ This thesis presented a comprehensive framework for poly-dialectal neural machin
 
 First, we constructed the \textbf{largest multi-dialectal parallel corpus} for Bangla machine translation to date, comprising 51,531 non-null parallel sentence pairs across 12 dialects. This corpus integrates seven existing datasets and introduces 2,500 expert-verified sentence pairs for five previously unaddressed dialects (Rangpur, Tangail, Kishoreganj, Narail, Narsingdi), providing up to 2.76$\times$ more data per dialect than prior efforts.
 
-Second, our systematic benchmarking demonstrated that language-specific pre-training provides a substantially stronger foundation for intra-language dialectal translation than massively multilingual models. The 247M-parameter BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} outperformed NLLB-200 \cite{nllb2022} (615M) by 51.8\% in BLEU \cite{papineni2002bleu} and mBART-50 \cite{tang2020multilingual} (611M) by 145.7\%. Extended 100-epoch LoRA \cite{hu2021lora}/DoRA \cite{liu2024dora} fine-tuning achieved a state-of-the-art overall BLEU \cite{papineni2002bleu} of 29.26 and chrF++ \cite{popovic2015chrf} of 57.26, surpassing the best prior result \cite{mahjabin2025banglachq} by 5.59 BLEU \cite{papineni2002bleu} points. Cross-dialectal analysis revealed that morphological proximity to Standard Bangla is the primary determinant of translation quality, with Mymensingh achieving 55.0 BLEU \cite{papineni2002bleu} to SCB and Chittagonian achieving 42.76. The controlled dataset scaling study established that translation quality improves by up to 140\% as parallel data scales from 500 to 4,499 pairs, with a practical saturation threshold near 3,000 samples.
+Second, our systematic benchmarking demonstrated that language-specific pre-training provides a substantially stronger foundation for intra-language dialectal translation than massively multilingual models. The 247M-parameter BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg} outperformed NLLB-200 \cite{nllb2022} (615M) by 51.8\% in BLEU \cite{papineni2002bleu} and mBART-50 \cite{tang2020multilingual} (611M) by 145.7\%. Extended 100-epoch DoRA \cite{liu2024dora} fine-tuning achieved a state-of-the-art overall BLEU \cite{papineni2002bleu} of 29.26 and chrF++ \cite{popovic2015chrf} of 57.26, surpassing the best prior result \cite{mahjabin2025banglachq} by 5.59 BLEU \cite{papineni2002bleu} points. Cross-dialectal analysis revealed that morphological proximity to Standard Bangla is the primary determinant of translation quality, with Mymensingh achieving 55.0 BLEU \cite{papineni2002bleu} to SCB and Chittagonian achieving 42.76. The controlled dataset scaling study established that translation quality improves by up to 140\% as parallel data scales from 500 to 4,499 pairs, with a practical saturation threshold near 3,000 samples.
 
 Third, the system was deployed as a publicly accessible, INT8-quantized web application enabling real-time, multi-directional translation across 12 dialects---including direct dialect-to-dialect paths that eliminate pivot-based cascading errors. This deployment represents a concrete step toward digital inclusion and linguistic accessibility for millions of Bangla dialect speakers who currently lack computational language support.
 

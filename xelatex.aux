@@ -2,7 +2,7 @@
 \providecommand\hyper@newdestlabel[2]{}
 \providecommand*\HyPL@Entry[1]{}
 \HyPL@Entry{0<</S/D>>}
-\HyPL@Entry{2<</S/D>>}
+\HyPL@Entry{1<</S/D>>}
 \citation{faria2025vashantor}
 \citation{sennrich2015neural}
 \citation{wu2016google}
@@ -16,8 +16,8 @@
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:topology}{{1}{4}{Structural comparison between the traditional pivot translation approach (routing through Standard Bangla) and the proposed direct poly-dialectal mapping topology}{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Proposed System and Contributions}{4}{subsection.1.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA/DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}}{5}{figure.caption.3}\protected@file@percent }
-\newlabel{fig:overview}{{2}{5}{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with LoRA/DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics}{figure.caption.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}}{5}{figure.caption.3}\protected@file@percent }
+\newlabel{fig:overview}{{2}{5}{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics}{figure.caption.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.4}Thesis Organization}{5}{subsection.1.4}\protected@file@percent }
 \citation{sultana2024bdregion}
 \citation{mahi2025bangladial}
@@ -48,7 +48,6 @@
 \citation{bhattacharjee-etal-2023-banglanlg}
 \citation{nllb2022}
 \citation{tang2020multilingual}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Research Hypothesis and Objectives}{12}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Research Hypothesis}{12}{subsection.3.1}\protected@file@percent }
@@ -73,35 +72,33 @@
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.2}NLLB-200}{15}{subsubsection.4.3.2}\protected@file@percent }
 \citation{tang2020multilingual}
 \citation{lewis2020bart}
+\citation{liu2024dora}
 \citation{hu2021lora}
-\citation{liu2024dora}
-\citation{liu2024dora}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.3.3}mBART-50}{16}{subsubsection.4.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Hyperparameters}{16}{subsection.4.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Dataset Scaling Protocol}{16}{subsection.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Fine-Tuning Strategy}{16}{subsection.4.6}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Unified hyperparameter matrix for model candidate benchmarking and dataset scaling experiments.}}{17}{table.caption.9}\protected@file@percent }
 \newlabel{tab:model_hyperparams}{{4}{17}{Unified hyperparameter matrix for model candidate benchmarking and dataset scaling experiments}{table.caption.9}{}}
-\citation{liu2024dora}
-\citation{liu2024dora}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Parameter efficiency of LoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters. Furthermore, we extend our methodology by introducing \textbf  {Weight-Decomposed Low-Rank Adaptation (DoRA)} \cite  {liu2024dora}, which decomposes the pre-trained weights into magnitude and directional components for fine-tuning. This approach maintains the parameter efficiency of LoRA while achieving learning capacity closer to full fine-tuning. A visual comparison distinguishing LoRA's structure from DoRA's decomposed optimization is provided in Figure~\ref {fig:lora_efficiency}.}}{18}{figure.caption.10}\protected@file@percent }
-\newlabel{fig:lora_efficiency}{{6}{18}{Parameter efficiency of LoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters. Furthermore, we extend our methodology by introducing \textbf {Weight-Decomposed Low-Rank Adaptation (DoRA)} \cite {liu2024dora}, which decomposes the pre-trained weights into magnitude and directional components for fine-tuning. This approach maintains the parameter efficiency of LoRA while achieving learning capacity closer to full fine-tuning. A visual comparison distinguishing LoRA's structure from DoRA's decomposed optimization is provided in Figure~\ref {fig:lora_efficiency}}{figure.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Architectural comparison between Standard LoRA (left) and Weight-Decomposed LoRA (DoRA, right). While LoRA directly adds the low-rank update to the pre-trained weights, DoRA decomposes the weights into magnitude ($m$) and directional components, applying the low-rank update strictly to the normalized direction before re-scaling by the trainable magnitude.}}{18}{figure.caption.10}\protected@file@percent }
+\newlabel{fig:dora_vs_lora}{{6}{18}{Architectural comparison between Standard LoRA (left) and Weight-Decomposed LoRA (DoRA, right). While LoRA directly adds the low-rank update to the pre-trained weights, DoRA decomposes the weights into magnitude ($m$) and directional components, applying the low-rank update strictly to the normalized direction before re-scaling by the trainable magnitude}{figure.caption.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.1}Stage 1: Best Model Selection}{18}{subsubsection.4.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.6.2}Stage 2: Extended Training}{18}{subsubsection.4.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Multi-Directional Translation Paradigm}{18}{subsection.4.7}\protected@file@percent }
 \citation{papineni2002bleu}
 \citation{popovic2015chrf}
-\citation{banerjee2005meteor}
-\citation{snover2006study}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Parameter efficiency of DoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters compared to full fine-tuning.}}{19}{figure.caption.11}\protected@file@percent }
+\newlabel{fig:lora_efficiency}{{7}{19}{Parameter efficiency of DoRA fine-tuning across the three evaluated model architectures, demonstrating over 98\% reduction in trainable parameters compared to full fine-tuning}{figure.caption.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.8}Evaluation Metrics}{19}{subsection.4.8}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.1}BLEU (Bilingual Evaluation Understudy)}{19}{subsubsection.4.8.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.2}chrF++ (Character n-gram F-score)}{19}{subsubsection.4.8.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.3}METEOR}{19}{subsubsection.4.8.3}\protected@file@percent }
+\citation{banerjee2005meteor}
+\citation{snover2006study}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.3}METEOR}{20}{subsubsection.4.8.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {4.8.4}TER (Translation Edit Rate)}{20}{subsubsection.4.8.4}\protected@file@percent }
 \citation{bhattacharjee-etal-2023-banglanlg}
 \citation{nllb2022}
 \citation{tang2020multilingual}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \citation{bhattacharjee-etal-2023-banglanlg}
 \citation{nllb2022}
@@ -134,8 +131,8 @@
 \citation{papineni2002bleu}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Results and Discussion}{21}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Model Selection (Phase I)}{21}{subsection.5.1}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Overall performance comparison of the three NMT candidate models fine-tuned for 20 epochs on the poly-dialectal test set (18,062 evaluation pairs). Best results are in \textbf  {bold}.}}{21}{table.caption.11}\protected@file@percent }
-\newlabel{tab:model_results_search}{{5}{21}{Overall performance comparison of the three NMT candidate models fine-tuned for 20 epochs on the poly-dialectal test set (18,062 evaluation pairs). Best results are in \textbf {bold}}{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Overall performance comparison of the three NMT candidate models fine-tuned for 20 epochs on the poly-dialectal test set (18,062 evaluation pairs). Best results are in \textbf  {bold}.}}{21}{table.caption.12}\protected@file@percent }
+\newlabel{tab:model_results_search}{{5}{21}{Overall performance comparison of the three NMT candidate models fine-tuned for 20 epochs on the poly-dialectal test set (18,062 evaluation pairs). Best results are in \textbf {bold}}{table.caption.12}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Final Model Performance (Phase II)}{21}{subsection.5.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.1}Overall Metrics}{21}{subsubsection.5.2.1}\protected@file@percent }
 \citation{papineni2002bleu}
@@ -148,46 +145,43 @@
 \citation{papineni2002bleu}
 \citation{papineni2002bleu}
 \citation{papineni2002bleu}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance progression of BanglaT5 from 20-epoch to 100-epoch fine-tuning, evaluated on the poly-dialectal test set (18,062 pairs).}}{22}{table.caption.12}\protected@file@percent }
-\newlabel{tab:model_results_final}{{6}{22}{Performance progression of BanglaT5 from 20-epoch to 100-epoch fine-tuning, evaluated on the poly-dialectal test set (18,062 pairs)}{table.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Comparative evaluation across experimental phases. BLEU \cite  {papineni2002bleu}, chrF++ \cite  {popovic2015chrf}, and METEOR \cite  {banerjee2005meteor} (higher is better) and TER \cite  {snover2006study} (lower is better) are shown for all three models at 20 epochs and BanglaT5 \cite  {bhattacharjee-etal-2023-banglanlg} at 100 epochs.}}{22}{figure.caption.13}\protected@file@percent }
-\newlabel{fig:model_comparison}{{7}{22}{Comparative evaluation across experimental phases. BLEU \cite {papineni2002bleu}, chrF++ \cite {popovic2015chrf}, and METEOR \cite {banerjee2005meteor} (higher is better) and TER \cite {snover2006study} (lower is better) are shown for all three models at 20 epochs and BanglaT5 \cite {bhattacharjee-etal-2023-banglanlg} at 100 epochs}{figure.caption.13}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Performance progression of BanglaT5 from 20-epoch to 100-epoch fine-tuning, evaluated on the poly-dialectal test set (18,062 pairs).}}{22}{table.caption.13}\protected@file@percent }
+\newlabel{tab:model_results_final}{{6}{22}{Performance progression of BanglaT5 from 20-epoch to 100-epoch fine-tuning, evaluated on the poly-dialectal test set (18,062 pairs)}{table.caption.13}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Comparative evaluation across experimental phases. BLEU \cite  {papineni2002bleu}, chrF++ \cite  {popovic2015chrf}, and METEOR \cite  {banerjee2005meteor} (higher is better) and TER \cite  {snover2006study} (lower is better) are shown for all three models at 20 epochs and BanglaT5 \cite  {bhattacharjee-etal-2023-banglanlg} at 100 epochs.}}{22}{figure.caption.14}\protected@file@percent }
+\newlabel{fig:model_comparison}{{8}{22}{Comparative evaluation across experimental phases. BLEU \cite {papineni2002bleu}, chrF++ \cite {popovic2015chrf}, and METEOR \cite {banerjee2005meteor} (higher is better) and TER \cite {snover2006study} (lower is better) are shown for all three models at 20 epochs and BanglaT5 \cite {bhattacharjee-etal-2023-banglanlg} at 100 epochs}{figure.caption.14}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.2}Cross-Dialectal Translation Analysis}{22}{subsubsection.5.2.2}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Cross-dialectal BLEU \cite  {papineni2002bleu} score heatmap (BanglaT5 \cite  {bhattacharjee-etal-2023-banglanlg}, 100 epochs). Darker shading indicates higher translation quality. Low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores, while morphologically proximate pairs (Mymensingh$\leftrightarrow $SCB) achieve the highest scores.}}{23}{figure.caption.14}\protected@file@percent }
-\newlabel{fig:bleu_heatmap}{{8}{23}{Cross-dialectal BLEU \cite {papineni2002bleu} score heatmap (BanglaT5 \cite {bhattacharjee-etal-2023-banglanlg}, 100 epochs). Darker shading indicates higher translation quality. Low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores, while morphologically proximate pairs (Mymensingh$\leftrightarrow $SCB) achieve the highest scores}{figure.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score).}}{24}{figure.caption.15}\protected@file@percent }
-\newlabel{fig:proximity_bleu}{{9}{24}{Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score)}{figure.caption.15}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Translation directionality asymmetry across six major dialects. Dialect$\rightarrow $SCB (green) consistently outperforms SCB$\rightarrow $Dialect (blue), with the BLEU \cite  {papineni2002bleu} gap indicated by annotations.}}{24}{figure.caption.16}\protected@file@percent }
-\newlabel{fig:directionality}{{10}{24}{Translation directionality asymmetry across six major dialects. Dialect$\rightarrow $SCB (green) consistently outperforms SCB$\rightarrow $Dialect (blue), with the BLEU \cite {papineni2002bleu} gap indicated by annotations}{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Cross-dialectal BLEU \cite  {papineni2002bleu} score heatmap (BanglaT5 \cite  {bhattacharjee-etal-2023-banglanlg}, 100 epochs). Darker shading indicates higher translation quality. Low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores, while morphologically proximate pairs (Mymensingh$\leftrightarrow $SCB) achieve the highest scores.}}{23}{figure.caption.15}\protected@file@percent }
+\newlabel{fig:bleu_heatmap}{{9}{23}{Cross-dialectal BLEU \cite {papineni2002bleu} score heatmap (BanglaT5 \cite {bhattacharjee-etal-2023-banglanlg}, 100 epochs). Darker shading indicates higher translation quality. Low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores, while morphologically proximate pairs (Mymensingh$\leftrightarrow $SCB) achieve the highest scores}{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score).}}{24}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:proximity_bleu}{{10}{24}{Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score)}{figure.caption.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Translation directionality asymmetry across six major dialects. Dialect$\rightarrow $SCB (green) consistently outperforms SCB$\rightarrow $Dialect (blue), with the BLEU \cite  {papineni2002bleu} gap indicated by annotations.}}{24}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:directionality}{{11}{24}{Translation directionality asymmetry across six major dialects. Dialect$\rightarrow $SCB (green) consistently outperforms SCB$\rightarrow $Dialect (blue), with the BLEU \cite {papineni2002bleu} gap indicated by annotations}{figure.caption.17}{}}
 \citation{bhattacharjee-etal-2023-banglanlg}
 \citation{bhattacharjee-etal-2023-banglanlg}
 \citation{snover2006study}
 \citation{snover2006study}
 \citation{snover2006study}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.3}Qualitative Translation Examples}{25}{subsubsection.5.2.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Qualitative translation examples generated by the final Poly-Dialectal BanglaT5 \cite  {bhattacharjee-etal-2023-banglanlg} model across diverse regional dialect pairs, comparing generated output against reference ground truth.}}{25}{table.caption.17}\protected@file@percent }
-\newlabel{tab:qualitative}{{7}{25}{Qualitative translation examples generated by the final Poly-Dialectal BanglaT5 \cite {bhattacharjee-etal-2023-banglanlg} model across diverse regional dialect pairs, comparing generated output against reference ground truth}{table.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Qualitative translation examples generated by the final Poly-Dialectal BanglaT5 \cite  {bhattacharjee-etal-2023-banglanlg} model across diverse regional dialect pairs, comparing generated output against reference ground truth.}}{25}{table.caption.18}\protected@file@percent }
+\newlabel{tab:qualitative}{{7}{25}{Qualitative translation examples generated by the final Poly-Dialectal BanglaT5 \cite {bhattacharjee-etal-2023-banglanlg} model across diverse regional dialect pairs, comparing generated output against reference ground truth}{table.caption.18}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {5.2.4}Error Analysis}{25}{subsubsection.5.2.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Distribution of translation errors across five linguistic failure categories, derived from manual analysis of 200 high-TER \cite  {snover2006study} failure cases.}}{25}{figure.caption.18}\protected@file@percent }
-\newlabel{fig:error_analysis}{{11}{25}{Distribution of translation errors across five linguistic failure categories, derived from manual analysis of 200 high-TER \cite {snover2006study} failure cases}{figure.caption.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Distribution of translation errors across five linguistic failure categories, derived from manual analysis of 200 high-TER \cite  {snover2006study} failure cases.}}{25}{figure.caption.19}\protected@file@percent }
+\newlabel{fig:error_analysis}{{12}{25}{Distribution of translation errors across five linguistic failure categories, derived from manual analysis of 200 high-TER \cite {snover2006study} failure cases}{figure.caption.19}{}}
 \citation{koehn-knowles-2017-six}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \citation{papineni2002bleu}
 \citation{popovic2015chrf}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \citation{papineni2002bleu}
 \citation{popovic2015chrf}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \citation{papineni2002bleu}
 \citation{papineni2002bleu}
 \citation{koehn-knowles-2017-six}
 \citation{papineni2002bleu}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Dataset Scaling Analysis}{26}{subsection.5.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces BLEU \cite  {papineni2002bleu} and chrF++ \cite  {popovic2015chrf} as a function of training data volume for two LoRA \cite  {hu2021lora}/DoRA \cite  {liu2024dora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples.}}{26}{figure.caption.19}\protected@file@percent }
-\newlabel{fig:scaling}{{12}{26}{BLEU \cite {papineni2002bleu} and chrF++ \cite {popovic2015chrf} as a function of training data volume for two LoRA \cite {hu2021lora}/DoRA \cite {liu2024dora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples}{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces BLEU \cite  {papineni2002bleu} and chrF++ \cite  {popovic2015chrf} as a function of training data volume for two DoRA \cite  {liu2024dora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples.}}{26}{figure.caption.20}\protected@file@percent }
+\newlabel{fig:scaling}{{13}{26}{BLEU \cite {papineni2002bleu} and chrF++ \cite {popovic2015chrf} as a function of training data volume for two DoRA \cite {liu2024dora} configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples}{figure.caption.20}{}}
 \citation{papineni2002bleu}
 \citation{popovic2015chrf}
 \citation{faria2025vashantor}
@@ -204,12 +198,11 @@
 \citation{popovic2015chrf}
 \citation{popovic2015chrf}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Comparison with Prior Studies}{27}{subsection.5.4}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Comparison with existing state-of-the-art benchmarks. Direct comparison should be interpreted with caution, as different works use different test sets and dialect combinations.}}{27}{table.caption.20}\protected@file@percent }
-\newlabel{tab:sota_comparison}{{8}{27}{Comparison with existing state-of-the-art benchmarks. Direct comparison should be interpreted with caution, as different works use different test sets and dialect combinations}{table.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Visual comparison of BLEU \cite  {papineni2002bleu} and chrF++ \cite  {popovic2015chrf} scores across baseline systems and the proposed approach.}}{27}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:comparative_sota}{{13}{27}{Visual comparison of BLEU \cite {papineni2002bleu} and chrF++ \cite {popovic2015chrf} scores across baseline systems and the proposed approach}{figure.caption.21}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Comparison with existing state-of-the-art benchmarks. Direct comparison should be interpreted with caution, as different works use different test sets and dialect combinations.}}{27}{table.caption.21}\protected@file@percent }
+\newlabel{tab:sota_comparison}{{8}{27}{Comparison with existing state-of-the-art benchmarks. Direct comparison should be interpreted with caution, as different works use different test sets and dialect combinations}{table.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Visual comparison of BLEU \cite  {papineni2002bleu} and chrF++ \cite  {popovic2015chrf} scores across baseline systems and the proposed approach.}}{27}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:comparative_sota}{{14}{27}{Visual comparison of BLEU \cite {papineni2002bleu} and chrF++ \cite {popovic2015chrf} scores across baseline systems and the proposed approach}{figure.caption.22}{}}
 \citation{bhattacharjee-etal-2023-banglanlg}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \citation{klein-etal-2017-opennmt}
 \citation{vaswani2017attention}
@@ -220,13 +213,13 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Model Quantization and Serving}{29}{subsection.6.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Inference Pipeline and Long Document Processing}{29}{subsection.6.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Inference Latency Benchmarks}{29}{subsection.6.3}\protected@file@percent }
-\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces End-to-end inference latency and throughput benchmarks for the deployed INT8-quantized model.}}{29}{table.caption.22}\protected@file@percent }
-\newlabel{tab:latency}{{9}{29}{End-to-end inference latency and throughput benchmarks for the deployed INT8-quantized model}{table.caption.22}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces End-to-end inference latency and throughput benchmarks for the deployed INT8-quantized model.}}{29}{table.caption.23}\protected@file@percent }
+\newlabel{tab:latency}{{9}{29}{End-to-end inference latency and throughput benchmarks for the deployed INT8-quantized model}{table.caption.23}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}User Interface and Translation Demonstrations}{29}{subsection.6.4}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality.}}{30}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:quantization}{{14}{30}{Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality}{figure.caption.23}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel.}}{30}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:deployment_ui}{{15}{30}{The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel}{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality.}}{30}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:quantization}{{15}{30}{Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality}{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel.}}{30}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:deployment_ui}{{16}{30}{The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel}{figure.caption.25}{}}
 \citation{papineni2002bleu}
 \citation{bhattacharjee-etal-2023-banglanlg}
 \citation{kudo-richardson-2018-sentencepiece}
@@ -235,12 +228,12 @@
 \citation{banerjee2005meteor}
 \citation{snover2006study}
 \citation{mathur-etal-2020-tangled}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Standard Bangla to Sylheti translation demonstration, showing successful morphological and lexical adaptation.}}{31}{figure.caption.25}\protected@file@percent }
-\newlabel{fig:deploy_sylheti}{{16}{31}{Standard Bangla to Sylheti translation demonstration, showing successful morphological and lexical adaptation}{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Standard Bangla to Sylheti translation demonstration, showing successful morphological and lexical adaptation.}}{31}{figure.caption.26}\protected@file@percent }
+\newlabel{fig:deploy_sylheti}{{17}{31}{Standard Bangla to Sylheti translation demonstration, showing successful morphological and lexical adaptation}{figure.caption.26}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Limitations and Future Work}{31}{section.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Current Limitations}{31}{subsection.7.1}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Direct dialect-to-dialect translation from Chittagong to Noakhali, bypassing the Standard Bangla pivot.}}{32}{figure.caption.26}\protected@file@percent }
-\newlabel{fig:deploy_direct}{{17}{32}{Direct dialect-to-dialect translation from Chittagong to Noakhali, bypassing the Standard Bangla pivot}{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Direct dialect-to-dialect translation from Chittagong to Noakhali, bypassing the Standard Bangla pivot.}}{32}{figure.caption.27}\protected@file@percent }
+\newlabel{fig:deploy_direct}{{18}{32}{Direct dialect-to-dialect translation from Chittagong to Noakhali, bypassing the Standard Bangla pivot}{figure.caption.27}{}}
 \citation{sennrich-etal-2016-improving}
 \citation{brown2020language,touvron2023llama}
 \citation{radford2023robust}
@@ -251,7 +244,6 @@
 \citation{nllb2022}
 \citation{papineni2002bleu}
 \citation{tang2020multilingual}
-\citation{hu2021lora}
 \citation{liu2024dora}
 \citation{papineni2002bleu}
 \citation{popovic2015chrf}
@@ -298,4 +290,4 @@
 \bibcite{touvron2023llama}{35}
 \bibcite{vaswani2017attention}{36}
 \bibcite{wu2016google}{37}
-\gdef \@abspage@last{39}
+\gdef \@abspage@last{38}
