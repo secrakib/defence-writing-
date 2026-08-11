@@ -65,5 +65,5 @@ plt.title('Performance Trade-offs: FP32 vs INT8 Quantization', y=1.1)
 plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
 
 plt.tight_layout()
-plt.savefig('e:/Writing Defence/graphics/quantization_radar.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig('e:/Writing Defence/graphics/quantization_radar.pdf', format='pdf', bbox_inches='tight')
 print("Saved quantization_radar.pdf")

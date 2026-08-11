@@ -71,5 +71,5 @@ ax2.set_title('Proposed Poly-Dialectal Translation\n(Direct Unified Mapping)', p
 ax2.axis('off')
 
 plt.tight_layout()
-plt.savefig('e:/Writing Defence/graphics/topology_comparison.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig('e:/Writing Defence/graphics/topology_comparison.pdf', format='pdf', bbox_inches='tight')
 print("Saved topology_comparison.pdf")

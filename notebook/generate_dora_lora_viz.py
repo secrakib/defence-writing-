@@ -112,7 +112,7 @@ def create_viz():
 
 
     plt.tight_layout()
-    plt.savefig('e:\\Writing Defence\\graphics\\dora_vs_lora.pdf', bbox_inches='tight', dpi=300)
+    # plt.savefig('e:\\Writing Defence\\graphics\\dora_vs_lora.pdf', bbox_inches='tight', dpi=300)
     print("Saved graphics/dora_vs_lora.pdf")
 
 if __name__ == '__main__':

@@ -64,5 +64,5 @@ ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_visible(False)
 
 plt.tight_layout()
-plt.savefig('e:/Writing Defence/graphics/dataset_timeline.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig('e:/Writing Defence/graphics/dataset_timeline.pdf', format='pdf', bbox_inches='tight')
 print("Saved dataset_timeline.pdf")

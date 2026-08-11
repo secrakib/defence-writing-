@@ -39,5 +39,5 @@ ax.grid(axis='x', linestyle='--', alpha=0.5)
 ax.set_xlim(0, 45)
 
 plt.tight_layout()
-plt.savefig('e:/Writing Defence/graphics/error_taxonomy.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig('e:/Writing Defence/graphics/error_taxonomy.pdf', format='pdf', bbox_inches='tight')
 print("Saved error_taxonomy.pdf")

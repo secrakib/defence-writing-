@@ -58,5 +58,5 @@ ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
 
 plt.tight_layout()
-plt.savefig('e:/Writing Defence/graphics/lora_efficiency.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig('e:/Writing Defence/graphics/lora_efficiency.pdf', format='pdf', bbox_inches='tight')
 print("Saved lora_efficiency.pdf")

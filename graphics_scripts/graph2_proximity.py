@@ -63,5 +63,5 @@ handles.extend([l1, l2])
 ax.legend(handles=handles, loc='upper right', frameon=True, framealpha=0.9, edgecolor='black')
 
 plt.tight_layout()
-plt.savefig('e:/Writing Defence/graphics/proximity_vs_bleu.pdf', format='pdf', bbox_inches='tight')
+# plt.savefig('e:/Writing Defence/graphics/proximity_vs_bleu.pdf', format='pdf', bbox_inches='tight')
 print("Saved proximity_vs_bleu.pdf")
