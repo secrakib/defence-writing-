@@ -308,6 +308,15 @@ As depicted comprehensively in Figure~\ref{fig:dataset_composition}, despite aug
   \label{fig:coverage_matrix}
 \end{figure}
 
+Beyond volumetric and parallel coverage, understanding the structural distribution of the compiled sentences is critical for robust sequence modeling. Figure~\ref{fig:sentence_lengths} illustrates the sentence length distributions, measured in characters, across eight major regional dialects in our corpus. The violin plots reveal distinct variations in morphological density; while some dialects exhibit tight, symmetrical length distributions, others present pronounced long-tailed variations, reflecting intrinsic syntactic divergences and conversational verbosity. The inclusion of both mean and median markers highlights the positive skewness inherent in naturally sourced dialectal data, which subsequently informs our tokenization and maximum sequence length configurations.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{graphics/sentence_lengths.pdf}
+  \caption{Sentence Length Distribution: Structural variation across eight major Bangla regional dialects, measured in characters. Violin bodies illustrate the density, with dashed lines indicating the mean and solid lines denoting the median, highlighting the right-skewed nature of the dialectal corpora.}
+  \label{fig:sentence_lengths}
+\end{figure}
+
 \subsection{Data Preprocessing Pipeline}
 The raw integrated corpus undergoes a rigorous four-stage preprocessing pipeline:
 \begin{enumerate}
