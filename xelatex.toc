@@ -27,23 +27,23 @@
 \contentsline {subsection}{\numberline {4.8}Evaluation Metrics}{19}{subsection.4.8}%
 \contentsline {subsubsection}{\numberline {4.8.1}BLEU (Bilingual Evaluation Understudy)}{19}{subsubsection.4.8.1}%
 \contentsline {subsubsection}{\numberline {4.8.2}chrF++ (Character n-gram F-score)}{19}{subsubsection.4.8.2}%
-\contentsline {subsubsection}{\numberline {4.8.3}METEOR}{19}{subsubsection.4.8.3}%
+\contentsline {subsubsection}{\numberline {4.8.3}METEOR}{20}{subsubsection.4.8.3}%
 \contentsline {subsubsection}{\numberline {4.8.4}TER (Translation Edit Rate)}{20}{subsubsection.4.8.4}%
 \contentsline {section}{\numberline {5}Results and Discussion}{21}{section.5}%
 \contentsline {subsection}{\numberline {5.1}Model Selection (Phase I)}{21}{subsection.5.1}%
 \contentsline {subsection}{\numberline {5.2}Final Model Performance (Phase II)}{21}{subsection.5.2}%
 \contentsline {subsubsection}{\numberline {5.2.1}Overall Metrics}{21}{subsubsection.5.2.1}%
-\contentsline {subsubsection}{\numberline {5.2.2}Cross-Dialectal Translation Analysis}{22}{subsubsection.5.2.2}%
-\contentsline {subsubsection}{\numberline {5.2.3}Qualitative Translation Examples}{24}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Error Analysis}{24}{subsubsection.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.2.2}Cross-Dialectal Translation Analysis}{21}{subsubsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.3}Qualitative Translation Examples}{23}{subsubsection.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.4}Error Analysis}{25}{subsubsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.3}Dataset Scaling Analysis}{26}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Comparison with Prior Studies}{27}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Deployment and Application Architecture}{29}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Model Quantization and Serving}{29}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Inference Pipeline and Long Document Processing}{29}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Inference Latency Benchmarks}{29}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}User Interface and Translation Demonstrations}{29}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Limitations and Future Work}{33}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Current Limitations}{33}{subsection.7.1}%
+\contentsline {subsection}{\numberline {5.4}Comparison with Prior Studies}{26}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Deployment and Application Architecture}{28}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Model Quantization and Serving}{28}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Inference Pipeline and Long Document Processing}{28}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Inference Latency Benchmarks}{28}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}User Interface and Translation Demonstrations}{30}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Limitations and Future Work}{31}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Current Limitations}{31}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}Future Directions}{33}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Conclusion}{35}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{34}{section.8}%
