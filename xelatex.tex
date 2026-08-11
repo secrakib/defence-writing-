@@ -423,7 +423,7 @@ W = m \frac{V + \Delta W}{\|V + \Delta W\|_c}
 \end{equation}
 where $\Delta W = \frac{\alpha}{r} B A$ represents the trainable low-rank directional updates (with $A \in \mathbb{R}^{r \times k}$ and $B \in \mathbb{R}^{d \times r}$), and $\|\cdot\|_c$ denotes the column-wise vector norm. 
 
-By updating the magnitude ($m$) and direction ($V + \Delta W$) components independently, DoRA stabilizes optimization and consistently outperforms standard LoRA. A visual comparison illustrating the structural difference between LoRA's coupled optimization and DoRA's decomposed optimization is provided in Figure~\ref{fig:dora_vs_lora}. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count remains highly efficient---approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50 (as shown previously in Figure~\ref{fig:lora_efficiency}).
+By updating the magnitude ($m$) and direction ($V + \Delta W$) components independently, DoRA stabilizes optimization and consistently outperforms standard LoRA. A visual comparison illustrating the structural difference between LoRA's coupled optimization and DoRA's decomposed optimization is provided in Figure~\ref{fig:dora_vs_lora}. With $r = 64$ and $\alpha = 128$ applied to all attention and feed-forward projections, the trainable parameter count remains highly efficient---approximately 4.7M for BanglaT5 and 9.8M for NLLB-200 and mBART-50 (as shown in Figure~\ref{fig:lora_efficiency}).
 
 \begin{figure}[htbp]
   \centering
