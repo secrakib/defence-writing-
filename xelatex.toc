@@ -43,7 +43,7 @@
 \contentsline {subsection}{\numberline {6.2}Inference Pipeline and Long Document Processing}{28}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Inference Latency Benchmarks}{28}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}User Interface and Translation Demonstrations}{28}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Limitations and Future Work}{30}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Current Limitations}{30}{subsection.7.1}%
+\contentsline {section}{\numberline {7}Limitations and Future Work}{32}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Current Limitations}{32}{subsection.7.1}%
 \contentsline {subsection}{\numberline {7.2}Future Directions}{32}{subsection.7.2}%
-\contentsline {section}{\numberline {8}Conclusion}{33}{section.8}%
+\contentsline {section}{\numberline {8}Conclusion}{34}{section.8}%
