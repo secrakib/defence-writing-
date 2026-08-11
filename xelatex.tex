@@ -549,15 +549,20 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU \cite{papineni
 \end{figure}
 
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Morphological Proximity Effect:} Dialects that are linguistically closer to SCB yield substantially higher translation quality (illustrated in Figure~\ref{fig:proximity_bleu}). Mymensingh$\rightarrow$SCB achieves the highest pairwise BLEU \cite{papineni2002bleu} of 55.0, attributable to Mymensingh's relatively conservative morphological divergence from standard forms---primarily suffix alterations and vowel shifts rather than wholesale lexical replacement. Conversely, Chittagonian and Sylheti, which exhibit extensive lexical substitution and phonological restructuring, produce lower BLEU \cite{papineni2002bleu} scores (42.76 and 45.65 to SCB, respectively). This gradient corroborates dialectological classifications \cite{chatterji1926origin} that position Mymensingh within the Central Bangla dialect continuum, while Chittagonian occupies a more peripheral position.
+    \item \textbf{Impact of Linguistic Proximity and Data Volume:} Dialects that are linguistically closer to SCB yield substantially higher translation quality, although dataset volume also plays a secondary role (illustrated in Figure~\ref{fig:proximity_bleu}). To quantify this, the linguistic distance $d$ between a dialect $D$ and SCB $S$ is measured on a relative scale ($1$--$10$) based on Normalized Edit Distance (NED), defined as:
+    \begin{equation}
+        d(D, S) = 10 \times \frac{1}{|V|} \sum_{i=1}^{|V|} \frac{\text{Levenshtein}(w_{D}^{(i)}, w_{S}^{(i)})}{\max(|w_{D}^{(i)}|, |w_{S}^{(i)}|)}
+    \end{equation}
+    where $V$ is a common vocabulary set, $w_{D}^{(i)}$ and $w_{S}^{(i)}$ are corresponding lexical tokens in the dialect and SCB, and $\text{Levenshtein}(\cdot, \cdot)$ computes the minimum number of single-character edits required to transform one word into the other. 
+    Mymensingh$\rightarrow$SCB achieves the highest pairwise BLEU \cite{papineni2002bleu} of 55.0 ($d=2.5$), attributable to its conservative morphological divergence from standard forms---primarily suffix alterations rather than wholesale lexical replacement---despite having a moderate dataset volume. Conversely, Chittagonian and Sylheti, which exhibit extensive lexical substitution and phonological restructuring ($d=9.0$ and $d=8.2$, respectively), produce lower BLEU \cite{papineni2002bleu} scores (42.76 and 45.65 to SCB, respectively) even with significantly larger dataset volumes. This corroborates dialectological classifications \cite{chatterji1926origin} and demonstrates that linguistic proximity often outweighs raw data volume in dictating translation efficacy.
     \item \textbf{Directional Asymmetry:} Translating \textit{from} a regional dialect to SCB is consistently easier than the reverse direction (Figure~\ref{fig:directionality}). For example, Barisali$\rightarrow$SCB achieves 50.1 BLEU \cite{papineni2002bleu} versus 37.9 for SCB$\rightarrow$Barisali---a 12.2-point gap. This asymmetry reflects a fundamental property of the decoder: generating dialectal output requires producing highly localized morphological inflections and lexical items that are sparsely represented in the SCB-dominated pre-training corpus, whereas dialect-to-standard translation can leverage the model's strong prior over standard forms.
 \end{enumerate}
 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{graphics/proximity_vs_bleu.pdf}
-  \caption{Scatter plot illustrating the inverse relationship between a dialect's linguistic proximity to Standard Bangla and the resulting translation quality (BLEU score).}
+  \includegraphics[width=1.0\textwidth]{graphics/proximity_vs_bleu_dual_axis.pdf}
+  \caption{Dual-axis chart illustrating the interplay between a dialect's linguistic proximity to Standard Bangla (x-axis), dataset volume (dashed line, secondary y-axis), and the resulting translation quality (grouped bars, primary y-axis).}
   \label{fig:proximity_bleu}
 \end{figure}
 
