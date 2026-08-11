@@ -544,7 +544,7 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU \cite{papineni
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.85\textwidth]{graphics/bleu_heatmap.pdf}
-  \caption{Cross-dialectal BLEU \cite{papineni2002bleu} score heatmap (BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, 100 epochs). Darker shading indicates higher translation quality. Low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores, while morphologically proximate pairs (Mymensingh$\leftrightarrow$SCB) achieve the highest scores.}
+  \caption{Cross-dialectal BLEU \cite{papineni2002bleu} score heatmap (BanglaT5 \cite{bhattacharjee-etal-2023-banglanlg}, 100 epochs) expanded to all 12 dialects. The full asymmetric evaluation matrix reveals translation directionality effects, where top performing pairs (BLEU $\ge 50$) are highlighted with dotted borders. Un-evaluated sparse pairs are marked with an em-dash (—). Darker shading indicates higher translation quality, with morphologically proximate pairs (e.g., Mymensingh$\leftrightarrow$SCB) achieving the highest scores, whereas low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores.}
   \label{fig:bleu_heatmap}
 \end{figure}
 
