@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex my"] 1785855569.52591 "my.aux" "my.bbl" "my" 1785855574.96448 0
-  "./biblography.bib" 1785853434 11791 8f9b455664538b7777b94d293e972918 ""
+["bibtex my"] 1786535818.03452 "my.aux" "my.bbl" "my" 1786535823.41987 0
+  "./biblography.bib" 1785929035 12439 ea04969563b96feb04790aff34fdb0a5 ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "my.aux" 1785855574 24378 d607775939cd03a7cf4683951d92f79a "pdflatex"
+  "my.aux" 1786535822 24378 d607775939cd03a7cf4683951d92f79a "pdflatex"
   (generated)
   "my.bbl"
   "my.blg"
   (rewritten before read)
-["pdflatex"] 1785855569.78505 "e:/Writing Defence/my.tex" "my.pdf" "my" 1785855574.96512 0
-  "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1785853975 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+["pdflatex"] 1786535818.28718 "e:/Writing Defence/my.tex" "my.pdf" "my" 1786535823.42048 0
+  "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1785931280 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1785773799 14064 39b72d7c50addcb7e110a41b34c767ff ""
   "C:/Users/ra3at/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1785593653 13367061 0084e52eced66129f45eb6c348f12d1f ""
   "C:/Users/ra3at/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
@@ -130,20 +130,20 @@
   "deployement/app_interface_overview.png" 1785847737 37411 e692ad0f5798e28d2c51f403934ea282 ""
   "deployement/inference_chittagong_to_noakhali.png" 1785847976 46037 f9b6980696e88b413a0ebd72127499cd ""
   "deployement/inference_standard_to_sylheti.png" 1785847754 48769 5e0ed0fbda7d6330b2cda5bd8e112eef ""
-  "e:/Writing Defence/my.tex" 1785855556 70953 6e12a38f6853c8bce469b0016e79a829 ""
-  "graphics/bleu_heatmap.png" 1785773567 277882 2e3fac1e1d82e711b48ab76e85b6582c ""
+  "e:/Writing Defence/my.tex" 1786535811 70953 6e12a38f6853c8bce469b0016e79a829 ""
+  "graphics/bleu_heatmap.png" 1785932474 277882 2e3fac1e1d82e711b48ab76e85b6582c ""
   "graphics/comparative_sota.png" 1785848921 147971 254e370c3352e06eb23257c7566ee7c8 ""
   "graphics/coverage_matrix_advanced.png" 1785845754 226982 c7d9901cfd245626d1484bf84bc7b0f9 ""
-  "graphics/dataset_scaling.png" 1785773566 326927 af4fea51c3d3ffd9417e6e6b45f06de7 ""
-  "graphics/directionality.png" 1785773567 140583 638bdaa5711b2278f834ad7abc5edfc5 ""
+  "graphics/dataset_scaling.png" 1785932474 326927 af4fea51c3d3ffd9417e6e6b45f06de7 ""
+  "graphics/directionality.png" 1785932474 140583 638bdaa5711b2278f834ad7abc5edfc5 ""
   "graphics/error_analysis.png" 1785848921 125232 c026fa2ffd0959e86c27909ab002e1ed ""
-  "graphics/model_comparison.png" 1785773565 200870 1fcb2a7c5374abaa7ceef336142cbe58 ""
-  "graphics/overview.png" 1785773570 581376 3d689ef515ca0232ab4d0592c4dd1333 ""
+  "graphics/model_comparison.png" 1785932474 201803 6e3f207f0424cafe5263b216fb018ee9 ""
+  "graphics/overview.png" 1786303096 581376 3d689ef515ca0232ab4d0592c4dd1333 ""
   "graphics/source_contributions_advanced.png" 1785845754 221778 bb1f7b6f28349e0778a82d69cb931a23 ""
-  "my.aux" 1785855574 24378 d607775939cd03a7cf4683951d92f79a "pdflatex"
-  "my.bbl" 1785855569 10490 bc884b9fb52ff93c478fba36ac76bdc5 "bibtex my"
-  "my.out" 1785855574 9273 cbfffcc13da03e0785a8fb5c9ae25570 "pdflatex"
-  "my.tex" 1785855556 70953 6e12a38f6853c8bce469b0016e79a829 ""
+  "my.aux" 1786535822 24378 d607775939cd03a7cf4683951d92f79a "pdflatex"
+  "my.bbl" 1786535818 10490 bc884b9fb52ff93c478fba36ac76bdc5 "bibtex my"
+  "my.out" 1786535822 9273 cbfffcc13da03e0785a8fb5c9ae25570 "pdflatex"
+  "my.tex" 1786535811 70953 6e12a38f6853c8bce469b0016e79a829 ""
   (generated)
   "my.aux"
   "my.log"
