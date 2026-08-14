@@ -96,6 +96,12 @@
 \newpage
 \tableofcontents
 \newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\section*{List of Abbreviations}
+\newpage
 
 \section{Introduction}
 
@@ -216,31 +222,31 @@ Table \ref{tab:literature_summary} summarizes the major dialectal datasets and r
 \bottomrule
 \endlastfoot
 
-1. ANCHOLIK-NER (2025) & Dialectal Named Entity Recognition (NER); 10 entity classes. & Sylhet, Chittagong, Barishal. 10,443 sentences (3,481/dialect). & BIO tagging. Sourced from Vashantor (71.8\%), ONUBAD, \& news. 3-annotator consensus pipeline. & First dialectal NER baseline. Assamese NER baseline reached 80.69\% F1 (MuRIL); medical BanglishBERT got 56.13\% F1. \\
+Ancholik-Ner (2025) & Dialectal Named Entity Recognition (NER); 10 entity classes. & Sylhet, Chittagong, Barishal. 10,443 sentences (3,481/dialect). & BIO tagging. Sourced from Vashantor (71.8\%), ONUBAD, \& news. 3-annotator consensus pipeline. & First dialectal NER baseline. Assamese NER baseline reached 80.69\% F1 (MuRIL); medical BanglishBERT got 56.13\% F1. \\
 \midrule
-2. ANUBHUTI (2026) & Thematic Sentiment \& Multilabel Emotion Analysis in dialectal text. & Mymensingh, Noakhali, Sylhet, Chittagong. 10,000 sentences (2,500/region). & Sourced from MONOVAB. 8 native translators (2/region) with 4-stage QA (sentiment, NaN parsing, anomaly, spelling). & High inter-rater agreement (Cohen's $\kappa = 0.76$--$0.84$). Dominant emotions: Contempt (921), Disgust (871), Anger (732). \\
+Anubhuti (2026) & Thematic Sentiment \& Multilabel Emotion Analysis in dialectal text. & Mymensingh, Noakhali, Sylhet, Chittagong. 10,000 sentences (2,500/region). & Sourced from MONOVAB. 8 native translators (2/region) with 4-stage QA (sentiment, NaN parsing, anomaly, spelling). & High inter-rater agreement (Cohen's $\kappa = 0.76$--$0.84$). Dominant emotions: Contempt (921), Disgust (871), Anger (732). \\
 \midrule
-3. BIDWESH (2025) & Multi-Dialectal Hate Speech \& Toxicity Detection. & Barishal, Noakhali, Chittagong. 9,183 instances (3,061 parallel/dialect). & Sourced from BD-SHS; translated by 6 native speakers; 5-stage validation. Target/Type taxonomy. & Balanced binary split (49.2\% Hate / 50.8\% Non-Hate). Individual targets highest (34.4\%); Slander dominant (53.7\%). \\
+Bidwesh (2025) & Multi-Dialectal Hate Speech \& Toxicity Detection. & Barishal, Noakhali, Chittagong. 9,183 instances (3,061 parallel/dialect). & Sourced from BD-SHS; translated by 6 native speakers; 5-stage validation. Target/Type taxonomy. & Balanced binary split (49.2\% Hate / 50.8\% Non-Hate). Individual targets highest (34.4\%); Slander dominant (53.7\%). \\
 \midrule
-4. Bangla Dialect Bibliography & Systematic Bibliography \& Meta-Review of Bangla Dialect NLP. & Comprehensive overview across major regional variants in BD. & Systematic synthesis tracking 11 publications, annotation strategies, \& baselines. & Mapped 11 unique corpora; highlights Sylheti \& Chittagonian as most studied; Barishal, Mymensingh, Noakhali emerging. \\
+Bangla Dialect Bibliography & Systematic Bibliography \& Meta-Review of Bangla Dialect NLP. & Comprehensive overview across major regional variants in BD. & Systematic synthesis tracking 11 publications, annotation strategies, \& baselines. & Mapped 11 unique corpora; highlights Sylheti \& Chittagonian as most studied; Barishal, Mymensingh, Noakhali emerging. \\
 \midrule
-5. BanglaDial (2025) & Dialect Identification (DID) \& Class Imbalance Modeling. & 12 Dialects. & Aggregated from 4 corpora (Vashantor, ONUBAD, etc.). Deduplicated (4.1\% removed) \& normalized. & Long-tail distribution (Top-3: 41.3\% of records). Imbalance Ratio $IR = 9.82$; Shannon Entropy $H = 3.416$ bits. \\
+BanglaDial (2025) & Dialect Identification (DID) \& Class Imbalance Modeling. & 12 Dialects. & Aggregated from 4 corpora (Vashantor, ONUBAD, etc.). Deduplicated (4.1\% removed) \& normalized. & Long-tail distribution (Top-3: 41.3\% of records). Imbalance Ratio $IR = 9.82$; Shannon Entropy $H = 3.416$ bits. \\
 \midrule
-6. BdRegionText (2022) & Bangla Regional Text Classification on social media content. & Chittagong, Noakhali, Barishal, Rangpur. 2,573 sample texts. & Scraped from FB/YouTube/IG with human validation. Extracted TF-IDF, CountVectorizer, \& BoW. & Random Forest + TF-IDF achieved peak 79.15\% accuracy (10-fold CV: 79.47\%, weighted F1: 0.78). RF + BoW got 75.92\%. \\
+BdRegion\newline Text (2022) & Bangla Regional Text Classification on social media content. & Chittagong, Noakhali, Barishal, Rangpur. 2,573 sample texts. & Scraped from FB/YouTube/IG with human validation. Extracted TF-IDF, CountVectorizer, \& BoW. & Random Forest + TF-IDF achieved peak 79.15\% accuracy (10-fold CV: 79.47\%, weighted F1: 0.78). RF + BoW got 75.92\%. \\
 \midrule
-7. BhasaBodh (2025) & Script Normalization \& Multilingual Dialect Translation (Native/Romanized). & Chittagong, Sylhet (aligned with Standard Bangla \& English). 1,960 sentences. & Sourced from ONUBAD; augmented via Gemini 2.5 Pro for Romanizations. Fine-tuned NLLB-200 \& mBART-50. & mBART-50 achieved peak 87.44 BLEU on Romanized $\rightarrow$ Standard Bangla and 74.36 BLEU on Chittagong $\leftrightarrow$ Sylhet. \\
+BhasaBodh (2025) & Script Normalization \& Multilingual Dialect Translation (Native/Romanized). & Chittagong, Sylhet (aligned with Standard Bangla \& English). 1,960 sentences. & Sourced from ONUBAD; augmented via Gemini 2.5 Pro for Romanizations. Fine-tuned NLLB-200 \& mBART-50. & mBART-50 achieved peak 87.44 BLEU on Romanized $\rightarrow$ Standard Bangla and 74.36 BLEU on Chittagong $\leftrightarrow$ Sylhet. \\
 \midrule
-8. ChatgaiyyaAlap (2025) & Dialect Conversion (Chittagonian $\rightarrow$ Standard Bangla). & Chittagonian (aligned with Standard Bangla). 4,012 sentences + 1,500-word dictionary. & Sourced from social media/dramas; validated by 5 native Chittagonian graduates. & Created clean translation mapping resolving severe grammatical divergences \& phonetic shifts in negative sentences. \\
+Chatgaiyya\newline Alap (2025) & Dialect Conversion (Chittagonian $\rightarrow$ Standard Bangla). & Chittagonian (aligned with Standard Bangla). 4,012 sentences + 1,500-word dictionary. & Sourced from social media/dramas; validated by 5 native Chittagonian graduates. & Created clean translation mapping resolving severe grammatical divergences \& phonetic shifts in negative sentences. \\
 \midrule
-9. BanglaCHQ-Prantik (2025) & Medical-Domain Machine Translation (Standard Bangla $\rightarrow$ Dialects). & Sylheti (2,350 sentences), Chittagonian (500 sentences). & Sourced from BanglaCHQ-Summ; validated by 11 validators \& 2 physicians. Evaluated LLMs (Qwen, Gemma, GPT-4o, Gemini). & Gemini 2.5 Flash achieved SOTA on Sylheti (23.67 BLEU); GPT-4o with CoT achieved SOTA on Chittagonian (24.67 BLEU). \\
+BanglaCHQ-Prantik (2025) & Medical-Domain Machine Translation (Standard Bangla $\rightarrow$ Dialects). & Sylheti (2,350 sentences), Chittagonian (500 sentences). & Sourced from BanglaCHQ-Summ; validated by 11 validators \& 2 physicians. Evaluated LLMs (Qwen, Gemma, GPT-4o, Gemini). & Gemini 2.5 Flash achieved SOTA on Sylheti (23.67 BLEU); GPT-4o with CoT achieved SOTA on Chittagonian (24.67 BLEU). \\
 \midrule
-10. DIALTSA-BN (2025) & Dialect Translation \& Sentiment Analysis (Native vs. Transliterated). & Chattogram, Barishal, Sylhet, Noakhali. 600 annotated instances (150/region). & Sourced from YouTube; filtered via Word2Vec. Evaluated Claude 3.7, GPT-4o-mini, Gemma-3, Llama-3.1, etc. & Transliteration boosted translation BLEU from <0.07 to 0.330 (Claude 3.7) \& 0.317 (GPT-4o-mini). Few-shot sentiment F1 reached 0.98. \\
+DialTSA-BN (2025) & Dialect Translation \& Sentiment Analysis (Native vs. Transliterated). & Chattogram, Barishal, Sylhet, Noakhali. 600 annotated instances (150/region). & Sourced from YouTube; filtered via Word2Vec. Evaluated Claude 3.7, GPT-4o-mini, Gemma-3, Llama-3.1, etc. & Transliteration boosted translation BLEU from <0.07 to 0.330 (Claude 3.7) \& 0.317 (GPT-4o-mini). Few-shot sentiment F1 reached 0.98. \\
 \midrule
-11. BanglaCHQ-Prantik Baseline (2025) & Pediatric \& Adult Clinical MT Error Taxonomy. & Sylheti, Chittagonian. 2,850 total aligned queries. & Parallel clinical reference tracking. Highlighted phonetic shifts (e.g., *pete* $\rightarrow$ *feto* / *cano*). & Identified 4 main LLM failure modes: terminology mismatch, dosage corruption ("500mg" $\rightarrow$ "5 gram"), idioms, \& orthographic drift. \\
+BanglaCHQ-Prantik Baseline (2025) & Pediatric \& Adult Clinical MT Error Taxonomy. & Sylheti, Chittagonian. 2,850 total aligned queries. & Parallel clinical reference tracking. Highlighted phonetic shifts (e.g., *pete* $\rightarrow$ *feto* / *cano*). & Identified 4 main LLM failure modes: terminology mismatch, dosage corruption ("500mg" $\rightarrow$ "5 gram"), idioms, \& orthographic drift. \\
 \midrule
-12. ONUBAD (2025) & Fine-Grained Dialect Conversion \& Neural Machine Translation. & Chittagong, Sylhet, Barisal. 7,950 total parallel rows (980 sentences/region). & Sourced from literature/volunteers; validated by university linguists. Benchmarked Seq2Seq \& Transformers. & Documented 2 words/clause \& 3 words/sentence. BanglaT5 and SeamlessM4T established peak NMT baselines. \\
+Onubad (2025) & Fine-Grained Dialect Conversion \& Neural Machine Translation. & Chittagong, Sylhet, Barisal. 7,950 total parallel rows (980 sentences/region). & Sourced from literature/volunteers; validated by university linguists. Benchmarked Seq2Seq \& Transformers. & Documented 2 words/clause \& 3 words/sentence. BanglaT5 and SeamlessM4T established peak NMT baselines. \\
 \midrule
-13. Vashantor (2023) & Multi-Task Dialectal NMT \& Region Classification. & Chittagong, Noakhali, Sylhet, Barishal, Mymensingh. 32,500 total sentences. & Sourced from social media/news; validated with Cohen's \& Fleiss' Kappa. Custom DialectBanglaT5 \& DialectBanglaBERT. & DialectBanglaT5 achieved SOTA on Mymensingh (71.93 BLEU). DialectBanglaBERT reached 89.02\% region classification accuracy. \\
+Vashantor (2023) & Multi-Task Dialectal NMT \& Region Classification. & Chittagong, Noakhali, Sylhet, Barishal, Mymensingh. 32,500 total sentences. & Sourced from social media/news; validated with Cohen's \& Fleiss' Kappa. Custom DialectBanglaT5 \& DialectBanglaBERT. & DialectBanglaT5 achieved SOTA on Mymensingh (71.93 BLEU). DialectBanglaBERT reached 89.02\% region classification accuracy. \\
 \end{longtable}
 }
 }
