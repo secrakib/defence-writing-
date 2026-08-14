@@ -560,9 +560,9 @@ Figure~\ref{fig:model_comparison} visualizes the performance trajectory across a
 \subsubsection{Cross-Dialectal Translation Analysis}
 Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU scores for all source--target dialect combinations under the final model. Two key linguistic phenomena emerge from this analysis:
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/bleu_heatmap.pdf}
+  \includegraphics[width=1\textwidth]{graphics/bleu_heatmap.pdf}
   \caption{Cross-dialectal BLEU score heatmap (BanglaT5, 100 epochs) spanning all 12 dialects. The full asymmetric evaluation matrix reveals translation directionality effects; top-performing pairs (BLEU $\ge 50$) are highlighted with dotted borders. Un-evaluated sparse pairs are marked with an em-dash (---). Darker shading indicates higher translation quality: morphologically proximate pairs (e.g., Mymensingh$\leftrightarrow$SCB) achieve the highest scores, whereas low-resource dialects (Rajshahi, Rangpur) exhibit uniformly lower scores.}
   \label{fig:bleu_heatmap}
 \end{figure}
@@ -578,14 +578,14 @@ Figure~\ref{fig:bleu_heatmap} presents a heatmap of pairwise BLEU scores for all
 \end{enumerate}
 
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=1.0\textwidth]{graphics/proximity_vs_bleu_dual_axis.pdf}
+  \includegraphics[width=.85\textwidth]{graphics/proximity_vs_bleu_dual_axis.pdf}
   \caption{Dual-axis chart illustrating the interplay between a dialect's linguistic proximity to Standard Bangla (x-axis), dataset volume (dashed line, secondary y-axis), and the resulting translation quality (grouped bars, primary y-axis).}
   \label{fig:proximity_bleu}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.85\textwidth]{graphics/directionality.pdf}
   \caption{Translation directionality asymmetry across six major dialects. Dialect$\rightarrow$SCB (green) consistently outperforms SCB$\rightarrow$Dialect (blue), with the BLEU gap indicated by annotations.}
@@ -638,7 +638,7 @@ Despite high structural accuracy overall, the model exhibits systematic failure 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.9\textwidth]{graphics/error_taxonomy.pdf}
+  \includegraphics[width=0.75\textwidth]{graphics/error_taxonomy.pdf}
   \caption{Distribution of translation errors across five linguistic failure categories, derived from manual analysis of 200 high-TER failure cases.}
   \label{fig:error_analysis}
 \end{figure}
@@ -655,7 +655,7 @@ The dominant error categories are characterized as follows:
 \subsection{Dataset Scaling Analysis}
 To quantify the relationship between training data volume and translation quality, we conducted a controlled scaling experiment using a fully parallel subset of four dialects (Sylheti, Chittagonian, Noakhali, Mymensingh) plus SCB, incrementally scaling from 500 to 4,499 sentence pairs under two DoRA configurations ($r=8, \alpha=16$ and $r=64, \alpha=128$).
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.90\textwidth]{graphics/dataset_scaling.pdf}
   \caption{BLEU and chrF++ as a function of training data volume for two DoRA configurations. Consistent improvement is observed, with diminishing returns beyond approximately 3,000 samples.}
@@ -687,7 +687,7 @@ BanglaCHQ \cite{mahjabin2025banglachq} & 2,850 pairs & 2 Dialects & Gemini 2.5 F
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.85\textwidth]{graphics/comparative_sota.pdf}
+  \includegraphics[width=0.75\textwidth]{graphics/comparative_sota.pdf}
   \caption{Visual comparison of BLEU and chrF++ scores across baseline systems and the proposed approach.}
   \label{fig:comparative_sota}
 \end{figure}
@@ -743,7 +743,7 @@ The application features a clean dual-column dialect selector layout with dynami
 \begin{figure}[htbp]
   \centering
   % Top: Main App Interface
-  \begin{subfigure}[b]{0.95\textwidth}
+  \begin{subfigure}[b]{0.85\textwidth}
     \centering
     \includegraphics[width=\textwidth]{deployement/app_interface_overview.png}
     \caption{The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel.}

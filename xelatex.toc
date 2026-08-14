@@ -35,15 +35,15 @@
 \contentsline {subsubsection}{\numberline {5.2.1}Overall Metrics}{23}{subsubsection.5.2.1}%
 \contentsline {subsubsection}{\numberline {5.2.2}Cross-Dialectal Translation Analysis}{23}{subsubsection.5.2.2}%
 \contentsline {subsubsection}{\numberline {5.2.3}Qualitative Translation Examples}{24}{subsubsection.5.2.3}%
-\contentsline {subsubsection}{\numberline {5.2.4}Error Analysis}{27}{subsubsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.3}Dataset Scaling Analysis}{28}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Comparison with Prior Studies}{29}{subsection.5.4}%
-\contentsline {section}{\numberline {6}Deployment and Application Architecture}{30}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Model Quantization and Serving}{30}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Inference Pipeline and Long Document Processing}{30}{subsection.6.2}%
+\contentsline {subsubsection}{\numberline {5.2.4}Error Analysis}{25}{subsubsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.3}Dataset Scaling Analysis}{27}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Comparison with Prior Studies}{28}{subsection.5.4}%
+\contentsline {section}{\numberline {6}Deployment and Application Architecture}{29}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Model Quantization and Serving}{29}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Inference Pipeline and Long Document Processing}{29}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Inference Latency Benchmarks}{30}{subsection.6.3}%
 \contentsline {subsection}{\numberline {6.4}User Interface and Translation Demonstrations}{30}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Limitations and Future Work}{31}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Current Limitations}{31}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Future Directions}{33}{subsection.7.2}%
+\contentsline {section}{\numberline {7}Limitations and Future Work}{32}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Current Limitations}{32}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Future Directions}{32}{subsection.7.2}%
 \contentsline {section}{\numberline {8}Conclusion}{33}{section.8}%
