@@ -130,7 +130,7 @@ To overcome the limitations outlined above, this research introduces a unified \
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=.95\textwidth]{graphics/overview.pdf}
-  \caption{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets, the data processing pipeline, NMT model fine-tuning with DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}
+  \caption{End-to-end architectural workflow of the Poly-Dialectal Neural Machine Translation Framework, depicting five phases: source corpora integration from seven existing datasets and one novel manual corpus, the data processing pipeline, NMT model fine-tuning with DoRA, multi-directional translation paradigm, and evaluation with four standard MT metrics.}
   \label{fig:overview}
 \end{figure}
 
@@ -277,22 +277,24 @@ The cornerstone of the proposed poly-dialectal NMT system is a carefully assembl
 \centering
 \caption{Source corpus contributions per dialect. Values indicate the number of parallel sentence pairs available from each source.}
 \label{tab:source_contributions}
-\small
-\begin{tabular}{l r r r r r r r r}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l r r r r r r r r r r r r}
 \toprule
-\textbf{Source Corpus} & \textbf{SCB} & \textbf{Syl} & \textbf{Cht} & \textbf{Bar} & \textbf{Mym} & \textbf{Noa} & \textbf{Ran} & \textbf{Raj} \\
+\textbf{Source Corpus} & \textbf{SCB} & \textbf{Syl} & \textbf{Cht} & \textbf{Bar} & \textbf{Mym} & \textbf{Noa} & \textbf{Ran} & \textbf{Raj} & \textbf{Kis} & \textbf{Nar} & \textbf{Ndi} & \textbf{Tan} \\
 \midrule
-Ancholik-NER   & 3,481 & 3,481 & 3,481 & 3,481 & 3,481 & 3,481 & 0     & 0 \\
-Anubhuti        & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 0     & 0     & 0 \\
-BanglaDial      & 3,452 & 442   & 577   & 790   & 712   & 0     & 655   & 891 \\
-BhasaBodh       & 980   & 980   & 980   & 0     & 0     & 0     & 0     & 0 \\
-ChatgaiyyaAlap  & 4,011 & 0     & 4,011 & 0     & 0     & 0     & 0     & 0 \\
-ONUBAD          & 980   & 980   & 980   & 980   & 0     & 0     & 0     & 0 \\
-Vashantor       & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 2,500 & 0     & 0 \\
+Ancholik-NER   & 3,481 & 3,481 & 3,481 & 3,481 & 3,481 & 3,481 & 0     & 0   & 0   & 0   & 0   & 0 \\
+Anubhuti        & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 0     & 0     & 0   & 0   & 0   & 0   & 0 \\
+BanglaDial      & 3,452 & 442   & 577   & 790   & 712   & 0     & 655   & 891 & 0   & 0   & 0   & 0 \\
+BhasaBodh       & 980   & 980   & 980   & 0     & 0     & 0     & 0     & 0   & 0   & 0   & 0   & 0 \\
+ChatgaiyyaAlap  & 4,011 & 0     & 4,011 & 0     & 0     & 0     & 0     & 0   & 0   & 0   & 0   & 0 \\
+ONUBAD          & 980   & 980   & 980   & 980   & 0     & 0     & 0     & 0   & 0   & 0   & 0   & 0 \\
+Vashantor       & 2,500 & 2,500 & 2,500 & 0     & 2,500 & 2,500 & 0     & 0   & 0   & 0   & 0   & 0 \\
+Novel Manual Corpus & 2,500 & 0     & 0     & 0     & 0     & 0     & 500   & 0   & 500 & 500 & 500 & 500 \\
 \midrule
-\textbf{Total}  & \textbf{13,556} & \textbf{6,422} & \textbf{10,567} & \textbf{4,270} & \textbf{5,712} & \textbf{5,000} & \textbf{1,155} & \textbf{891} \\
+\textbf{Total}  & \textbf{14,552} & \textbf{6,422} & \textbf{10,567} & \textbf{4,270} & \textbf{5,712} & \textbf{5,000} & \textbf{1,155} & \textbf{891} & \textbf{500} & \textbf{500} & \textbf{500} & \textbf{500} \\
 \bottomrule
 \end{tabular}
+}
 \end{table}
 
 The final integrated dataset comprises 14,552 rows across 12 dialects (Standard Bangla, Sylheti, Chittagonian, Barisali, Mymensingh, Noakhali, Rangpuri, Rajshahi, Kishoreganj, Narail, Narsingdi, and Tangail), yielding 51,531 total non-null parallel sentence pairs. This represents the largest such corpus for Bangla to date. To ensure open science and facilitate downstream NLP research, the complete dataset is publicly available at Mendeley Data (\url{https://data.mendeley.com/datasets/v9cf66fk2t/2}). Crucially, to mitigate the extreme scarcity of data for certain regional variants, we manually created a high-quality dataset consisting of altogether 2,500 bidirectional parallel sentence pairs (Standard Bangla $\leftrightarrow$ Dialect) distributed evenly across five dialects: Rangpur, Tangail, Kishoreganj, Narail, and Narsingdi (500 pairs each). To ensure rigorous data quality, each of these dialectal subsets was independently evaluated and verified by three native speakers of the corresponding dialect.
