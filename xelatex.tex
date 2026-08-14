@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{booktabs}
+\usepackage{threeparttable} % Add to preamble
 \usepackage{cite}
 \usepackage{amsmath,amssymb}
 \usepackage{hyperref}
@@ -100,8 +101,6 @@
 \newpage
 \listoftables
 \newpage
-\section*{List of Abbreviations}
-\newpage
 
 \section{Introduction}
 
@@ -146,8 +145,6 @@ The primary contributions of this thesis are summarized as follows:
 
 \subsection{Thesis Organization}
 The remainder of this report is organized as follows. Section~2 critically reviews related literature on Bangla regional NLP and dialectal machine translation. Section~3 formally states the research hypothesis and objectives. Section~4 details the methodology, encompassing dataset construction, model architectures, and fine-tuning configurations. Section~5 presents the experimental results, including cross-dialectal analysis, error taxonomy, dataset scaling findings, and comparison with prior studies. Section~6 describes the deployment architecture and the publicly available web application. Section~7 discusses limitations and proposes future research directions. Section~8 concludes the thesis.
-
-\newpage
 
 
 \section{Literature Review}
@@ -252,7 +249,7 @@ Vashantor (2023) & Multi-Task Dialectal NMT \& Region Classification. & Chittago
 }
 
 
-\newpage
+
 
 \section{Research Hypothesis and Objectives}
 
@@ -269,7 +266,7 @@ The specific objectives of this research are:
     \item To promote digital inclusion and linguistic accessibility for Bangla dialect speakers by establishing open benchmarks for future research.
 \end{enumerate}
 
-\newpage
+
 
 \section{Methodology}
 
@@ -369,49 +366,61 @@ Languages Supported & Bangla  & 200     & 50 \\
 \subsection{Hyperparameters}
 To ensure rigorous reproducibility and optimal convergence, Table~\ref{tab:model_hyperparams} outlines the unified architectural and fine-tuning configurations applied across all three candidate models.
 
-\begin{table}[htbp]
+\begin{table}[!htbp]
 \centering
 \caption{Unified hyperparameter matrix for model candidate benchmarking and dataset scaling experiments.}
 \label{tab:model_hyperparams}
-\small
-\begin{tabular}{@{} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{3.0cm} >{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{3.8cm} >{\raggedright\arraybackslash}p{3.8cm} @{}}
-\toprule
+\scriptsize
+\begin{threeparttable}
+\begin{tabular}{|l|l|c|c|c|}
+\hline
 \textbf{Category} & \textbf{Hyperparameter} & \textbf{BanglaT5} & \textbf{mBART-50} & \textbf{NLLB-200} \\
-\midrule
-\multicolumn{5}{@{}l}{\textbf{A. Model Architecture \& Tokenization}} \\
-\midrule
-Model Registry & Base Checkpoint & \texttt{csebuetnlp/}\newline\texttt{banglat5} & \texttt{facebook/mbart-}\newline\texttt{large-50-many-} \newline\texttt{to-many-mmt} & \texttt{facebook/nllb-}\newline\texttt{200-distilled-}\newline\texttt{600M} \\
-\addlinespace[2pt]
-Parameters & Base Parameter Count & $\sim 247\text{M}$ & $\sim 611\text{M}$ & $\sim 600\text{M}$ \\
-\addlinespace[2pt]
-Language Tags & Tag Format & Prefixed & \texttt{bn\_IN} & \texttt{ben\_Beng} \\
-\addlinespace[2pt]
-Sequence Setup & Max Length ($L_{\text{src}}, L_{\text{tgt}}$) & 128 tokens & 128 tokens & 128 tokens \\
-\midrule
-\multicolumn{5}{@{}l}{\textbf{B. Phase I \& II Fine-Tuning Setup}} \\
-\midrule
-Optimization & Optimizer & Paged AdamW 8-bit & Paged AdamW 8-bit & Paged AdamW 8-bit \\
-\addlinespace[2pt]
-Learning Rate & Initial $\eta$ (Scheduler) & $5 \times 10^{-4}$ (Cosine) & $5 \times 10^{-4}$ (Cosine) & $5 \times 10^{-4}$ (Cosine) \\
-\addlinespace[2pt]
-Batching & Per-Device / Eff. Batch & 32 / 64 (Accum 2) & 8 / 64 (Accum 8) & 8 / 64 (Accum 8) \\
-\addlinespace[2pt]
-DoRA Adapter & Rank ($r$) / Scaling ($\alpha$) & $r=64, \alpha=128$ & $r=64, \alpha=128$ & $r=64, \alpha=128$ \\
-\addlinespace[2pt]
-Target Modules & Projections & \texttt{q, v, k, o,}\newline\texttt{wi, wo} & \texttt{q, k, v, out\_proj,}\newline\texttt{fc1, fc2} & \texttt{q, k, v, out\_proj,}\newline\texttt{fc1, fc2} \\
-\midrule
-\multicolumn{5}{@{}l}{\textbf{C. Dataset Scaling Protocol (BanglaT5 Only)}} \\
-\midrule
-Data Sweep & Parallel Sentence Pairs & \multicolumn{3}{l}{Scaled from 500 to 4,499 pairs (iterative step increments)} \\
-\addlinespace[2pt]
-DoRA Sweep & Ranks ($r$) / Scaling ($\alpha$) & \multicolumn{3}{l}{$r \in \{8, 64\}$ and $\alpha \in \{16, 128\}$} \\
-\addlinespace[2pt]
-Batching & Per-Device / Eff. Batch & \multicolumn{3}{l}{Batch size 45 / Effective 90 (Gradient Accumulation = 2)} \\
-\addlinespace[2pt]
-Training & Epochs per Step & \multicolumn{3}{l}{10 Epochs per scaling step} \\
-\bottomrule
+\hline
+\multicolumn{5}{|l|}{\textit{A. Model Architecture \& Tokenization}} \\
+\hline
+Architecture  & Base checkpoint        & \texttt{banglat5}\tnote{a}   & \texttt{mbart-large-50}\tnote{b} & \texttt{nllb-200-dist.}\tnote{c} \\
+\cline{2-5}
+              & Parameters             & ${\sim}247$M                 & ${\sim}611$M                     & ${\sim}600$M                     \\
+\cline{2-5}
+              & Language tag format    & Prefixed                     & \texttt{bn\_IN}                  & \texttt{ben\_Beng}               \\
+\cline{2-5}
+              & Max sequence length    & \multicolumn{3}{c|}{128 tokens ($L_\text{src}$, $L_\text{tgt}$)}            \\
+\hline
+\multicolumn{5}{|l|}{\textit{B. Phase I \& II Fine-Tuning (All Models)}} \\
+\hline
+Optimization  & Optimizer              & \multicolumn{3}{c|}{Paged AdamW 8-bit}                                      \\
+\cline{2-5}
+              & Initial $\eta$; schedule & \multicolumn{3}{c|}{$5\times10^{-4}$; Cosine decay}                       \\
+\cline{2-5}
+              & Per-device / eff. batch & $32$ / $64$\tnote{d}        & \multicolumn{2}{c|}{$8$ / $64$\tnote{e}}     \\
+\hline
+DoRA adapter  & Rank $r$ / scaling $\alpha$ & \multicolumn{3}{c|}{$r=64$, $\alpha=128$}                              \\
+\cline{2-5}
+              & Target modules         & \texttt{q,v,k,o,wi,wo}       & \multicolumn{2}{c|}{\texttt{q,k,v,out\_proj,fc1,fc2}} \\
+\hline
+\multicolumn{5}{|l|}{\textit{C. Dataset Scaling Protocol (BanglaT5 only)}} \\
+\hline
+Data sweep    & Parallel sentence pairs & \multicolumn{3}{l|}{500–4,499 pairs (iterative increments)}               \\
+\hline
+DoRA sweep    & Ranks / scaling        & \multicolumn{3}{l|}{$r\in\{8,64\}$, $\alpha\in\{16,128\}$}               \\
+\hline
+Batching      & Per-device / eff. batch & \multicolumn{3}{l|}{45 / 90 (gradient accumulation $= 2$)}               \\
+\hline
+Training      & Epochs per scaling step & \multicolumn{3}{l|}{10}                                                   \\
+\hline
 \end{tabular}
+\begin{tablenotes}[flushleft]
+\scriptsize
+\item[a] \texttt{csebuetnlp/banglat5} (HuggingFace).
+\item[b] \texttt{facebook/mbart-large-50-many-to-many-mmt}.
+\item[c] \texttt{facebook/nllb-200-distilled-600M}.
+\item[d] Gradient accumulation steps $= 2$.
+\item[e] Gradient accumulation steps $= 8$.
+\end{tablenotes}
+\end{threeparttable}
 \end{table}
+
+
 
 \subsection{Dataset Scaling Protocol}
 To formally investigate the relationship between data volume and translation generalization, we conduct an optimal dataset size study. We construct a fully parallel dataset encompassing Standard Bangla and four major dialects: Sylheti, Noakhali, Chittagong, and Mymensingh. The dataset is scaled iteratively from 500 to 4,499 parallel sentence pairs. The detailed hyperparameter matrix governing this scaling experiment is integrated into Table~\ref{tab:model_hyperparams} (Section C).
@@ -490,7 +499,6 @@ TER \cite{snover2006study} measures the minimum number of human edits required t
 \end{equation}
 \textbf{Interpretation and Appropriateness:} Unlike the other metrics, a \textit{lower} TER score indicates better performance. It is particularly useful for assessing the practical utility of the NMT system, as it provides a direct proxy for the post-editing effort required by human translators.
 
-\newpage
 
 \section{Results and Discussion}
 
@@ -686,7 +694,7 @@ BanglaCHQ \cite{mahjabin2025banglachq} & 2,850 pairs & 2 Dialects & Gemini 2.5 F
 
 The proposed system achieves a BLEU score 5.59 points higher than the best prior result (BanglaCHQ-Prantik, 23.67 BLEU using Gemini 2.5 Flash), representing a 23.6\% relative improvement (see Figure~\ref{fig:comparative_sota}). The chrF++ gain of 8.36 points (from 48.90 to 57.26) is particularly noteworthy, as chrF++ is better suited to morphologically rich languages where partial word matches carry semantic value. We note, however, that direct numerical comparison across studies should be interpreted cautiously, since each work employs different test sets, dialect combinations, and evaluation conditions. The primary advantage of the proposed approach lies not only in aggregate metric gains but also in the breadth of coverage (12 dialects vs.\ 2--5) and the unified multi-directional architecture that eliminates pivot-based translation. Moreover, whereas prior studies evaluate performance using only one or two metrics, our work assesses translation quality across four complementary metrics---including METEOR and TER---providing a more comprehensive characterisation of syntactic accuracy, semantic alignment, and practical post-editing effort.
 
-\newpage
+
 
 \section{Deployment and Application Architecture}
 
@@ -722,9 +730,9 @@ Long paragraph & $\sim$60 words & 85 & $\sim$3,200 & 26.56 \\
 \end{table}
 
 
-\begin{figure}[htbp]
+\begin{figure}[h]
   \centering
-  \includegraphics[width=0.65\textwidth]{graphics/quantization_radar.pdf}
+  \includegraphics[width=0.5\textwidth]{graphics/quantization_radar.pdf}
   \caption{Multidimensional performance trade-off (Radar chart) demonstrating the advantages of INT8 quantization in reducing latency and memory footprint while preserving translation quality.}
   \label{fig:quantization}
 \end{figure}
@@ -734,26 +742,36 @@ The application features a clean dual-column dialect selector layout with dynami
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.95\textwidth]{deployement/app_interface_overview.png}
-  \caption{The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel.}
-  \label{fig:deployment_ui}
+  % Top: Main App Interface
+  \begin{subfigure}[b]{0.95\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{deployement/app_interface_overview.png}
+    \caption{The deployed Streamlit web application interface showing source/target dialect selectors, text input area, and translation output panel.}
+    \label{fig:deployment_ui}
+  \end{subfigure}
+  
+  \vspace{0.4cm} % Vertical spacing between top and bottom rows
+  
+  % Bottom Left: Standard to Sylheti
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{deployement/inference_standard_to_sylheti.png}
+    \caption{Standard Bangla to Sylheti translation demonstration, showing morphological and lexical adaptation.}
+    \label{fig:deploy_sylheti}
+  \end{subfigure}
+  \hfill
+  % Bottom Right: Chittagong to Noakhali
+  \begin{subfigure}[b]{0.48\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{deployement/inference_chittagong_to_noakhali.png}
+    \caption{Direct dialect-to-dialect translation from Chittagong to Noakhali, bypassing the Standard Bangla pivot.}
+    \label{fig:deploy_direct}
+  \end{subfigure}
+  
+  \caption{Overview and translation inference demonstrations of the deployed multi-dialect translation system: (a) main interface, (b) standard-to-dialect translation, and (c) direct dialect-to-dialect translation.}
+  \label{fig:deployment_overview}
 \end{figure}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.90\textwidth]{deployement/inference_standard_to_sylheti.png}
-  \caption{Standard Bangla to Sylheti translation demonstration, showing successful morphological and lexical adaptation.}
-  \label{fig:deploy_sylheti}
-\end{figure}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.90\textwidth]{deployement/inference_chittagong_to_noakhali.png}
-  \caption{Direct dialect-to-dialect translation from Chittagong to Noakhali, bypassing the Standard Bangla pivot.}
-  \label{fig:deploy_direct}
-\end{figure}
-
-\newpage
 
 \section{Limitations and Future Work}
 
@@ -777,7 +795,7 @@ Several limitations of the present work merit acknowledgment:
     \item \textbf{Cross-Lingual Transfer:} Exploring transfer learning from related Indo-Aryan languages (e.g., Assamese, Hindi regional dialects) that share typological features with Bangla dialects, potentially improving performance for the most divergent variants.
 \end{enumerate}
 
-\newpage
+
 
 \section{Conclusion}
 
