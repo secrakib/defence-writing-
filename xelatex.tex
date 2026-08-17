@@ -225,6 +225,11 @@ Finally, we must acknowledge with due respect the constant support and patience 
 \end{flushright}
 
 \newpage
+\begin{abstract}
+While Neural Machine Translation (NMT) architectures and Large Language Models have achieved remarkable performance on cross-lingual tasks, their effectiveness diminishes sharply when applied to intra-lingual variations, such as the regional dialects of Bangla. Existing Bangla NLP benchmarks predominantly assume a homogeneous language distribution, thereby marginalizing millions of dialectal speakers from modern digital technologies. Furthermore, existing dialectal machine translation approaches typically rely on pivot-based translation through Standard Colloquial Bangla (SCB), compounding errors and failing to capture direct cross-dialectal nuances. To address these critical gaps, this thesis introduces a unified Poly-Dialectal Neural Machine Translation System capable of direct, multi-directional translation across Standard Bangla and eleven regional variants without requiring an intermediate pivot. We construct and release the most extensive multi-dialect parallel corpus for Bangla to date, comprising 14,552 aligned rows and yielding 51,531 non-null parallel pairs. We systematically benchmark prominent sequence-to-sequence architectures---BanglaT5, NLLB-200, and mBART-50---employing parameter-efficient Weight-Decomposed Low-Rank Adaptation (DoRA). Our empirical results establish that BanglaT5, despite its smaller parameter footprint, significantly outperforms larger multilingual models, achieving state-of-the-art scores of 29.26 BLEU, 57.26 chrF++, and 49.68 METEOR after extended fine-tuning. Furthermore, we conduct the first systematic dataset scaling study and quantitative characterization of cross-dialectal transfer mechanisms, demonstrating that morphological proximity heavily influences translation efficacy. Finally, we deploy the optimized NMT model as an INT8-quantized web application, establishing a robust, open-source foundation for inclusive language technology and equitable digital access for marginalized dialect communities.
+\end{abstract}
+
+\newpage
 \tableofcontents
 \newpage
 \listoffigures
